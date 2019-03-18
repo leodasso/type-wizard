@@ -10,14 +10,12 @@ class Key extends Component{
 
 	state = {
 		keyState: 'idle',
-		keyCode: 70,
-		key: 'F',
 	}
 
 	// Each key component is bound to a specific key. This function checks if the 
 	// given event is related to that key.
 	eventIsThisKey = event => {
-		return Number(event.keyCode) === this.state.keyCode;
+		return Number(event.keyCode) === this.props.myKeyData.keyCode;
 	}
 
 	// When the component mounts, add listeners for the keydown and keyup events
@@ -29,14 +27,12 @@ class Key extends Component{
 
 	keyDown = (event) => {
 		if (!this.eventIsThisKey(event)) return;
-		console.log('key down', event);
 		this.setState({ keyState: 'pressed' });
 	}
 
 
 	keyUp = (event) => {
 		if (!this.eventIsThisKey(event)) return;
-		console.log('key up', event);
 		this.setState({ keyState: 'idle' });
 	}
 
@@ -54,7 +50,7 @@ class Key extends Component{
 				onKeyDown={this.keyDown}
 				onKeyUp={this.keyUp}
 			>
-				<h3>{this.state.key} </h3>
+				<h3>{this.props.myKeyData.key} </h3>
 			</div>
 		);
 	}

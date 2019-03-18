@@ -1,8 +1,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Key from '../Key/Key';
+import KeyData from '../../classes/keyData';
+
+//temp list 
+const keys = [
+	new KeyData(65, 'A', true),
+	new KeyData(83, 'S', true),
+	new KeyData(68, 'D', true),
+	new KeyData(70, 'F', true),
+	new KeyData(71, 'G', false),
+	new KeyData(72, 'H', false),
+	new KeyData(74, 'J', true),
+	new KeyData(75, 'K', true),
+	new KeyData(76, 'L', true),
+	new KeyData(186, ';', false),
+]
 
 class Trainer extends Component {
+
+	// When the component mounts, add listeners for the keydown and keyup events
+	componentDidMount = () => {
+		document.addEventListener('keydown', this.keyDown);
+
+	}
+
+	keyDown = (event) => {
+		console.log('key down', event.key, event.keyCode);
+	}
 
 	render() {
 		return (
@@ -11,7 +36,9 @@ class Trainer extends Component {
 					<h1 >Training!</h1>
 				</div>
 				<div className="training-area">
-					<Key />
+					{
+						keys.map(keyData => <Key myKeyData={keyData} />)
+					}
 				</div>
 			</div>
 		)
