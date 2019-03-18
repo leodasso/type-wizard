@@ -38,7 +38,7 @@ class Trainer extends Component {
 				</div>
 				<div className="training-area">
 					{
-						keys.map(keyData => <Key myKeyData={keyData} />)
+						keys.map((keyData, index) => <Key key={index} myKeyData={keyData} />)
 					}
 				</div>
 			</div>

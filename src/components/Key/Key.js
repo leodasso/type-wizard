@@ -26,7 +26,7 @@ class Key extends Component{
 	}
 
 	keyDown = (event) => {
-		if (!this.eventIsThisKey(event)) return;
+		if (!this.eventIsThisKey(event) || !this.props.myKeyData.enabled) return;
 		this.setState({ keyState: 'pressed' });
 	}
 
@@ -41,8 +41,13 @@ class Key extends Component{
 	render() {
 
 		// Set CSS class of key based on if it's pressed or not.
-		const keyClass = this.state.keyState !== 'pressed' ? 
-			'Key' : 'Key Pressed';
+		var keyClass = this.state.keyState !== 'pressed' ? 
+			'Key' : 'Key pressed';
+
+		// override class for disabled keys
+		if (!this.props.myKeyData.enabled) {
+			keyClass = 'Key disabled'
+		}
 
 		return (
 			<div

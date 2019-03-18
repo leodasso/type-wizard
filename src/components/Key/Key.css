@@ -1,4 +1,5 @@
 .Key {
+    box-sizing: border-box;
     margin: 8px;
     padding: 12px 12px;
     background-color: rgb(95, 212, 173);
@@ -10,9 +11,16 @@
     border-color: rgb(64, 165, 168)
 }
 
-.Key.Pressed {
+.Key.pressed {
     background-color: rgb(66, 146, 119);
     transform: translateY(5px);
+}
+
+.Key.disabled {
+    background-color: rgba(66, 146, 119, 0.329);
+    color: rgba(0, 0, 0, 0.363);
+    border-width: 1px;
+
 }
 
 .Key h3 {
