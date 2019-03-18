@@ -9,7 +9,7 @@ const keyRows = [
 		new KeyData(82, 'R'),
 		new KeyData(84, 'T'),
 		new KeyData(89, 'Y'),
-		new KeyData(90, 'U'),
+		new KeyData(85, 'U'),
 		new KeyData(73, 'I'),
 		new KeyData(79, 'O'),
 		new KeyData(80, 'P'),

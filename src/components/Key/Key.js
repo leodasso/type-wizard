@@ -26,7 +26,7 @@ class Key extends Component{
 	}
 
 	keyDown = (event) => {
-		if (!this.eventIsThisKey(event) || !this.props.myKeyData.enabled) return;
+		if (!this.eventIsThisKey(event) || !this.isEnabled()) return;
 		this.setState({ keyState: 'pressed' });
 	}
 
@@ -37,6 +37,9 @@ class Key extends Component{
 	}
 
 
+	isEnabled() {
+		return this.props.ableKeys.includes(this.props.myKeyData.keyCode);
+	}
 
 	render() {
 
@@ -45,7 +48,7 @@ class Key extends Component{
 			'Key' : 'Key pressed';
 
 		// override class for disabled keys
-		if (!this.props.myKeyData.enabled) {
+		if (!this.isEnabled()) {
 			keyClass = 'Key disabled'
 		}
 
@@ -61,4 +64,8 @@ class Key extends Component{
 	}
 }
 
-export default Key;
+const mapReduxState = reduxState => {
+	return reduxState;
+}
+
+export default connect(mapReduxState)(Key);
