@@ -1,0 +1,21 @@
+.Key {
+    margin: 8px;
+    padding: 12px 12px;
+    background-color: rgb(95, 212, 173);
+    width: 60px;
+    height: 50px;
+    border-radius: 8px;
+    border-style: solid;
+    border-width: 3px;
+    border-color: rgb(64, 165, 168)
+}
+
+.Key.Pressed {
+    background-color: rgb(66, 146, 119);
+    transform: translateY(5px);
+}
+
+.Key h3 {
+    margin: auto;
+    text-align: center;
+}
