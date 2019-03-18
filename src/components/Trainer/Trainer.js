@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Keyboard from '../Keyboard/Keyboard';
 import englishUS from '../../data/keyboard-layouts/english-us';
 import korean from '../../data/keyboard-layouts/korean';
+import Timer from '../Timer/Timer';
 
 
 class Trainer extends Component {
@@ -24,6 +25,8 @@ class Trainer extends Component {
 					<h1 >Training!</h1>
 				</div>
 				<Keyboard keyboard={englishUS} />
+				<br />
+				<Timer />
 			</div>
 		)
 	}
