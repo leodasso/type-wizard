@@ -5,6 +5,7 @@
 }
 
 .keyboard {
+    transform: skew(-7deg, 0deg);
     display: flex;
     flex-direction: column;
     background-color: rgba(0, 0, 0, 0.568);

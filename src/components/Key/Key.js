@@ -58,7 +58,9 @@ class Key extends Component{
 				onKeyDown={this.keyDown}
 				onKeyUp={this.keyUp}
 			>
-				<h3>{this.props.myKeyData.key} </h3>
+				<h3>{
+					this.props.shifted ? this.props.myKeyData.getShifted() : this.props.myKeyData.key
+				} </h3>
 			</div>
 		);
 	}

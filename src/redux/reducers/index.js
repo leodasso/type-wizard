@@ -3,6 +3,7 @@ import errors from './errorsReducer';
 import loginMode from './loginModeReducer';
 import user from './userReducer';
 import ableKeys from './EnabledKeys.reducer';
+import shifted from './Shifted.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
 	loginMode, 		// will have a value of 'login' or 'registration' to control which screen is shown
 	user, 			// will have an id and username if someone is logged in
 	ableKeys,		// We want to be able to change which keys are enabled/disabled
+	shifted,		// Keep track of when the user has the shift key(s) held in
 });
 
 export default rootReducer;

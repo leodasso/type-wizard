@@ -8,6 +8,35 @@ import './Keyboard.css';
  */
 class Keyboard extends Component {
 
+
+	// When the component mounts, add listeners for the keydown and keyup events
+	componentDidMount = () => {
+		document.addEventListener('keydown', this.keyDown);
+		document.addEventListener('keyup', this.keyUp);
+
+	}
+
+	// listen for shift keys
+	keyDown = (event) => {
+		if (event.keyCode == 16){
+			this.props.dispatch({
+				type:'SET_SHIFTED', 
+				payload: true,
+			});
+		}
+	}
+
+
+	// still listening for shift keys
+	keyUp = (event) => {
+		if (event.keyCode == 16){
+			this.props.dispatch({
+				type:'SET_SHIFTED', 
+				payload: false,
+			});
+		}
+	}
+
 	render() {
 		return (
 			<div className="keyboard">

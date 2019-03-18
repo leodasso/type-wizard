@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Keyboard from '../Keyboard/Keyboard';
 import englishUS from '../../data/keyboard-layouts/english-us';
+import korean from '../../data/keyboard-layouts/korean';
 
 
 class Trainer extends Component {
