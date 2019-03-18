@@ -21,7 +21,7 @@ class Keyboard extends Component {
 		if (event.keyCode == 16){
 			this.props.dispatch({
 				type:'SET_SHIFTED', 
-				payload: true,
+				delta: 1,
 			});
 		}
 	}
@@ -32,7 +32,7 @@ class Keyboard extends Component {
 		if (event.keyCode == 16){
 			this.props.dispatch({
 				type:'SET_SHIFTED', 
-				payload: false,
+				delta: -1,
 			});
 		}
 	}
