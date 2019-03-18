@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Key from '../Key/Key';
 import KeyData from '../../classes/keyData';
+import './Trainer.css';
 
 //temp list 
 const keys = [
