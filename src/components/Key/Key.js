@@ -14,15 +14,15 @@ class Key extends Component{
 
 	// Each key component is bound to a specific key. This function checks if the 
 	// given event is related to that key.
-	eventIsThisKey = event => {
-		return Number(event.keyCode) === this.props.myKeyData.keyCode;
-	}
+	eventIsThisKey = event => Number(event.keyCode) === this.props.myKeyData.keyCode;
 
 	// When the component mounts, add listeners for the keydown and keyup events
 	componentDidMount = () => {
 		document.addEventListener('keydown', this.keyDown);
 		document.addEventListener('keyup', this.keyUp);
 
+		// dispatch an action for the key being active/inactive
+		console.log("key " + this.props.myKeyData.keyCode + " mounted and enabled:", this.isEnabled());
 	}
 
 	keyDown = (event) => {
@@ -54,7 +54,7 @@ class Key extends Component{
 
 
 	isEnabled() {
-		return this.props.ableKeys.includes(this.props.myKeyData.keyCode);
+		return this.props.level.enabledKeys.includes(this.props.myKeyData.keyCode);
 	}
 
 	render() {
@@ -85,7 +85,7 @@ class Key extends Component{
 
 const mapReduxState = reduxState => {
 	return {
-		ableKeys: reduxState.ableKeys,
+		level: reduxState.currentLevel,
 		shifted: reduxState.shifted,
 	};
 }

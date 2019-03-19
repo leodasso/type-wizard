@@ -8,5 +8,10 @@ export default class GameLevel {
         this.duration = duration;
     }
 
-    
+    /** Takes an array of keycodes and sets those as the active
+     * keys for this level.
+     */
+    setEnabledKeys = (keyCodes) => {
+        this.enabledKeys = keyCodes;
+    }
 }

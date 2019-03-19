@@ -1,3 +1,5 @@
+
+/** Keeps track of all keys that are currently pressed down */
 const pressedKeys = (state = [], action) => {
 	switch (action.type) {
 
