@@ -13,6 +13,7 @@ class GameStage extends Component {
 	timer = 0;
 	fps = 60;
 	gameObjects = [];
+	prevPressedKeys = [];
 
 	state = {
 		intervalId: 0,
@@ -71,35 +72,31 @@ class GameStage extends Component {
 
 		this.updateLevel();
 
-		// render every key game object
+		// render every game object
 		for (const go of this.gameObjects) {
 			go.render(this.getContext());
 		}
-
-		this.getContext().strokeStyle = 'black';
-		this.getContext().strokeRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
 	}
 
-		updateLevel = () => {
+	updateLevel = () => {
 
-			if (Math.random() <= 1 / 60) {
+		// Every frame, there's a random chance that the monster will appear
+		if (Math.random() <= 1 / 60) {
+			// get a random key
+			const randomIndex = Math.floor(Math.random() * this.props.enabledKeys.length);
+			// This div is where the monster will appear
+			const div = this.props.enabledKeys[randomIndex].element;
 
-				// get a random key
-				const randomIndex = Math.floor(Math.random() * this.props.enabledKeys.length);
+			// get the rect from the div
+			let monsterRect = div.getBoundingClientRect();
+			// Convert the element's coords to canvas coords
+			monsterRect = domToCanvasCoords(this.refs.canvas, monsterRect);
 
-				// This div is where the monster will appear
-				const div = this.props.enabledKeys[randomIndex].element;
-
-				// get the rect from the div
-				let monsterRect = div.getBoundingClientRect();
-				// Convert the element's coords to canvas coords
-				monsterRect = domToCanvasCoords(this.refs.canvas, monsterRect);
-
-				console.log(monsterRect);
-				const newMonster = new GameObject(monsterRect.x, monsterRect.y, 0, 0, 50, 50, 'red');
-				this.gameObjects.push(newMonster);
-			}
+			
+			const newMonster = new GameObject(monsterRect.x, monsterRect.y, 0, 0, 50, 50, 'red');
+			this.gameObjects.push(newMonster);
 		}
+	}
 
 	/** Returns the progress (between 0 and 1) of the current level */
 	progress = () => this.timer / this.props.level.duration;
@@ -124,11 +121,36 @@ class GameStage extends Component {
 	}
 
 	render() {
+
+		this.checkKeyStrokes();
+
 		return (
 			<div ref="canvasContainer" className="stage-parent" >
 				<canvas ref="canvas" className="canvas"/>
 			</div>
 		)
+	}
+
+	// Check if any of the keystrokes land on a monster. Store prev key pressed state
+	// so we can determine when to call keydown / keyup events
+	checkKeyStrokes = () => {
+
+		for (const keyPress of this.props.pressedKeys) {
+
+			// If the prev state didn't include this key's id, that means this
+			// press is new. Call the onKeyPressed function
+			if (!this.prevPressedKeys.includes(keyPress.id)) {
+				this.onKeyPressed(keyPress);
+			}
+		}
+
+		// refresh the prev keys state
+		this.prevPressedKeys = this.props.pressedKeys.map( keyPress => keyPress.id);
+
+	}
+
+	onKeyPressed(keyPress) {
+		console.log("Pressed " + keyPress.id);
 	}
 }
 

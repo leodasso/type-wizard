@@ -4,20 +4,8 @@ import Keyboard from '../Keyboard/Keyboard';
 import englishUS from '../../data/keyboard-layouts/english-us';
 import korean from '../../data/keyboard-layouts/korean';
 import GameStage from '../Timer/GameStage';
-import GameObject from '../../classes/gameObject';
 
 class Trainer extends Component {
-
-	// // When the component mounts, add listeners for the keydown and keyup events
-	// componentDidMount = () => {
-	// 	document.addEventListener('keydown', this.keyDown);
-	// }
-
-	// // This is just for debugging
-	// keyDown = (event) => {
-	// 	// console.log('key down', event.key, event.keyCode);
-	// }
-
 
 	render() {
 
@@ -35,9 +23,6 @@ class Trainer extends Component {
 	}
 }
 
-// Instead of taking everything from state, we just want the user info.
-// if you wanted you could write this code like this:
-// const mapStateToProps = ({user}) => ({ user });
 const mapStateToProps = state => ({
 	user: state.user,
 	enabledKeys: state.ableKeys,
