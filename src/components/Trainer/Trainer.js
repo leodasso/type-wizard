@@ -24,7 +24,7 @@ class Trainer extends Component {
 				<div>
 					<h1 >Training!</h1>
 				</div>
-				<Keyboard keyboard={englishUS} />
+				<Keyboard keyboard={korean} />
 				<br />
 				<Timer />
 			</div>
