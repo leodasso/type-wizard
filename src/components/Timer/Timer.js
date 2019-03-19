@@ -47,18 +47,13 @@ class Timer extends Component {
 		this.recalculateCanvasDimensions();
 	}
 
-	/**If the window is resized, we want to know the new size that the 
-	 * canvas container should be. */
+	/**If the window is resized, this function should be called. It finds 
+	 * the width and height of the canvas's parent container, and sets the canvas
+	 * width and height.. */
 	recalculateCanvasDimensions = () => {
 
-		// Get the new size of the container
-		const width = this.refs.canvasContainer.getBoundingClientRect().width;
-		const height = this.refs.canvasContainer.getBoundingClientRect().height;
-		this.setState({width, height});
-
-		// return the dimensions so they can be used immediately (since setState is async)
-		this.refs.canvas.width = this.state.width;
-		this.refs.canvas.height = this.state.height;
+		this.refs.canvas.width = this.refs.canvasContainer.getBoundingClientRect().width;
+		this.refs.canvas.height = this.refs.canvasContainer.getBoundingClientRect().height;
 	}
 
 	progress() {
