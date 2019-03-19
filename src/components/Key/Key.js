@@ -84,7 +84,10 @@ class Key extends Component{
 }
 
 const mapReduxState = reduxState => {
-	return reduxState;
+	return {
+		ableKeys: reduxState.ableKeys,
+		shifted: reduxState.shifted,
+	};
 }
 
 export default connect(mapReduxState)(Key);

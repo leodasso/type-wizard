@@ -25,7 +25,7 @@ class Trainer extends Component {
 					<h1 >Training!</h1>
 				</div>
 				<div className="container">
-					<Keyboard keyboard={korean} />
+					<Keyboard keyboard={englishUS} />
 					<GameStage />
 				</div>
 			</div>
