@@ -4,6 +4,7 @@ import Keyboard from '../Keyboard/Keyboard';
 import englishUS from '../../data/keyboard-layouts/english-us';
 import korean from '../../data/keyboard-layouts/korean';
 import GameStage from '../Timer/GameStage';
+import GameObject from '../../classes/gameObject';
 
 class Trainer extends Component {
 
@@ -17,16 +18,6 @@ class Trainer extends Component {
 	// 	// console.log('key down', event.key, event.keyCode);
 	// }
 
-	updateLevel = () => {
-
-		if (Math.random() <= 1 / 60) {
-
-			// get a random key
-			const randomIndex = Math.floor(Math.random() * this.props.enabledKeys.length);
-			console.log('monster index:', this.props.enabledKeys[randomIndex]);
-		}
-	}
-
 
 	render() {
 
@@ -37,7 +28,7 @@ class Trainer extends Component {
 				</div>
 				<div className="container">
 					<Keyboard keyboard={englishUS} ref="keyboard"/>
-					<GameStage levelUpdate={this.updateLevel}/>
+					<GameStage />
 				</div>
 			</div>
 		)

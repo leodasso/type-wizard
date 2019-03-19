@@ -12,8 +12,6 @@ class GameStage extends Component {
 	// re-rendering every time we count down (i.e like 60 times a second)
 	timer = 0;
 	fps = 60;
-	// these are temporary and just used for debugging, will be deleted eventually
-	keyGameObjects = [];
 	gameObjects = [];
 
 	state = {
@@ -71,10 +69,10 @@ class GameStage extends Component {
 
 		this.updateTimer();
 
-		this.props.levelUpdate();
+		this.updateLevel();
 
 		// render every key game object
-		for (const go of this.keyGameObjects) {
+		for (const go of this.gameObjects) {
 			go.render(this.getContext());
 		}
 
@@ -82,15 +80,29 @@ class GameStage extends Component {
 		this.getContext().strokeRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
 	}
 
-	createRandomMonster = () => {
+		updateLevel = () => {
 
-		// get a random key
-	}
+			if (Math.random() <= 1 / 60) {
+
+				// get a random key
+				const randomIndex = Math.floor(Math.random() * this.props.enabledKeys.length);
+
+				// This div is where the monster will appear
+				const div = this.props.enabledKeys[randomIndex].element;
+
+				// get the rect from the div
+				let monsterRect = div.getBoundingClientRect();
+				// Convert the element's coords to canvas coords
+				monsterRect = domToCanvasCoords(this.refs.canvas, monsterRect);
+
+				console.log(monsterRect);
+				const newMonster = new GameObject(monsterRect.x, monsterRect.y, 0, 0, 50, 50, 'red');
+				this.gameObjects.push(newMonster);
+			}
+		}
 
 	/** Returns the progress (between 0 and 1) of the current level */
-	progress() {
-		return this.timer / this.props.level.duration;
-	}
+	progress = () => this.timer / this.props.level.duration;
 
 	updateTimer = () => {
 
@@ -112,19 +124,6 @@ class GameStage extends Component {
 	}
 
 	render() {
-
-		// update pressed keys
-		const newGameObjectArray = [];
-		for (const keyData of this.props.pressedKeys) {
-
-			const canvasSpaceRect = domToCanvasCoords( this.refs.canvas, keyData.rect)
-
-			newGameObjectArray.push(
-				new GameObject(canvasSpaceRect.x, canvasSpaceRect.y, 0, 0, 
-					canvasSpaceRect.width, canvasSpaceRect.height, 'red'));
-		}
-		this.keyGameObjects = newGameObjectArray;
-
 		return (
 			<div ref="canvasContainer" className="stage-parent" >
 				<canvas ref="canvas" className="canvas"/>
@@ -155,6 +154,7 @@ const mapReduxState = reduxState => {
 	return {
 		pressedKeys: reduxState.pressedKeys,
 		level: reduxState.currentLevel,
+		enabledKeys: reduxState.ableKeys,
 	}
 }
 
