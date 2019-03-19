@@ -4,33 +4,32 @@ import Keyboard from '../Keyboard/Keyboard';
 import englishUS from '../../data/keyboard-layouts/english-us';
 import korean from '../../data/keyboard-layouts/korean';
 import GameStage from '../Timer/GameStage';
-import GameLevel from '../../classes/GameLevel';
-
 
 class Trainer extends Component {
 
-	testLevel = new GameLevel(1, 5, 60);
+	// // When the component mounts, add listeners for the keydown and keyup events
+	// componentDidMount = () => {
+	// 	document.addEventListener('keydown', this.keyDown);
+	// }
 
-	// When the component mounts, add listeners for the keydown and keyup events
-	componentDidMount = () => {
-		document.addEventListener('keydown', this.keyDown);
-
-	}
-
-	// This is just for debugging
-	keyDown = (event) => {
-		// console.log('key down', event.key, event.keyCode);
-	}
+	// // This is just for debugging
+	// keyDown = (event) => {
+	// 	// console.log('key down', event.key, event.keyCode);
+	// }
 
 	updateLevel = () => {
-		// Update the level
+
 		if (Math.random() <= 1 / 60) {
-			console.log('monster');
+
+			// get a random key
+			const randomIndex = Math.floor(Math.random() * this.props.enabledKeys.length);
+			console.log('monster index:', this.props.enabledKeys[randomIndex]);
 		}
 	}
 
 
 	render() {
+
 		return (
 			<div>
 				<div>
@@ -38,7 +37,7 @@ class Trainer extends Component {
 				</div>
 				<div className="container">
 					<Keyboard keyboard={englishUS} ref="keyboard"/>
-					<GameStage level={this.testLevel} levelUpdate={this.updateLevel}/>
+					<GameStage levelUpdate={this.updateLevel}/>
 				</div>
 			</div>
 		)
@@ -50,6 +49,7 @@ class Trainer extends Component {
 // const mapStateToProps = ({user}) => ({ user });
 const mapStateToProps = state => ({
 	user: state.user,
+	enabledKeys: state.ableKeys,
 });
 
 // this allows us to use <App /> in index.js

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import GameObject from '../../classes/gameObject';
 import './GameStage.css';
-import GameLevel from '../../classes/GameLevel';
 
 /** The Keyboard component takes in a keyboard data class, and renders the keyboard on screen.
  * Keyboard data is keyData divided into rows.
@@ -153,7 +152,10 @@ const domToCanvasCoords = (canvasElement, inputRect) => {
 }
 
 const mapReduxState = reduxState => {
-	return {pressedKeys: reduxState.pressedKeys}
+	return {
+		pressedKeys: reduxState.pressedKeys,
+		level: reduxState.currentLevel,
+	}
 }
 
 

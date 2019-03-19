@@ -5,6 +5,7 @@ import user from './userReducer';
 import ableKeys from './EnabledKeys.reducer';
 import shifted from './Shifted.reducer';
 import pressedKeys from './PressedKeys.reducer';
+import currentLevel from './Level.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
 	ableKeys,		// We want to be able to change which keys are enabled/disabled
 	shifted,		// Keep track of when the user has the shift key(s) held in
 	pressedKeys,	// keep track of which keys are pressed (other than shift)
+	currentLevel,	// The current level's full info
 });
 
 export default rootReducer;
