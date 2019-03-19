@@ -22,7 +22,15 @@ class Key extends Component{
 		document.addEventListener('keyup', this.keyUp);
 
 		// dispatch an action for the key being active/inactive
-		console.log("key " + this.props.myKeyData.keyCode + " mounted and enabled:", this.isEnabled());
+		if (this.isEnabled()) {
+			this.props.dispatch({
+				type: 'ENABLE_KEY',
+				payload: {
+					keyCode: this.props.myKeyData.keyCode,
+					element: this.refs.keyDiv,
+				}
+			})
+		}
 	}
 
 	keyDown = (event) => {
