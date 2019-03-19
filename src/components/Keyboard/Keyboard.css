@@ -5,11 +5,11 @@
 }
 
 .keyboard {
-    transform: skew(-7deg, 0deg);
+    position: absolute;
     display: flex;
     flex-direction: column;
     background-color: rgba(0, 0, 0, 0.568);
     border-radius: 16px;
-    max-width: 700px;
-    margin: 48px auto;
+    width: 100%;
+    top: 32px;
 }

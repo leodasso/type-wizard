@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './Timer.css';
-
-// let ctx;
+import './GameStage.css';
 
 /** The Keyboard component takes in a keyboard data class, and renders the keyboard on screen.
  * Keyboard data is keyData divided into rows.
  */
-class Timer extends Component {
+class GameStage extends Component {
 
 	state = {
 		intervalId: 0,
-		time: 90,
-		startTime: 90,
+		time: 300,
+		startTime: 300,
 		ctx: null,
 	}
 
@@ -61,21 +59,25 @@ class Timer extends Component {
 	}
 
 	update = () => {
+		// clear the canvas
+		this.getContext().clearRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
+
+		this.updateTimer();
+
+		this.getContext().strokeStyle = 'black';
+		this.getContext().strokeRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
+	}
+
+	updateTimer = () => {
 
 		// Update the timer
 		let newTime = this.state.time - .1;
 		this.setState({time:newTime});
 
-		// clear the canvas
-		this.getContext().clearRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
-
 		// Draw a new rect
 		this.getContext().fillStyle = 'red';
 		let newWidth = this.refs.canvas.width * this.progress();
-		this.getContext().fillRect(1, 1, newWidth, this.refs.canvas.height);
-
-		this.getContext().strokeStyle = 'black';
-		this.getContext().strokeRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
+		this.getContext().fillRect(1, 1, newWidth, 10);
 	}
 
 	/** Returns the canvas context, which is used to draw on the canvas. The context
@@ -88,7 +90,7 @@ class Timer extends Component {
 
 	render() {
 		return (
-			<div className="timer" ref="canvasContainer">
+			<div ref="canvasContainer" className="stage-parent" >
 				<canvas ref="canvas" className="canvas"/>
 			</div>
 		)
@@ -96,4 +98,4 @@ class Timer extends Component {
 }
 
 
-export default connect()(Timer);
+export default connect()(GameStage);
