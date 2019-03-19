@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import GameObject from '../../classes/gameObject';
 import './GameStage.css';
+import GameLevel from '../../classes/GameLevel';
 
 /** The Keyboard component takes in a keyboard data class, and renders the keyboard on screen.
  * Keyboard data is keyData divided into rows.
@@ -12,12 +13,12 @@ class GameStage extends Component {
 	// re-rendering every time we count down (i.e like 60 times a second)
 	timer = 0;
 	fps = 60;
+	// these are temporary and just used for debugging, will be deleted eventually
 	keyGameObjects = [];
-
+	gameObjects = [];
 
 	state = {
 		intervalId: 0,
-		startTime: 100,
 		ctx: null,
 	}
 
@@ -26,7 +27,7 @@ class GameStage extends Component {
 		// Add event listener for when the window is resized
 		window.addEventListener('resize', this.onWindowResized);
 
-		// Update every .1 seconds
+		// Update based on the FPS
 		let newInterval = setInterval(this.update, 1000 / this.fps);
 		this.setState({intervalId: newInterval});
 
@@ -38,7 +39,7 @@ class GameStage extends Component {
 		//Set the canvas dimensions
 		this.recalculateCanvasDimensions();
 
-		this.timer = this.state.startTime;
+		this.timer = this.props.level.duration;
 	}
 
 	componentWillUnmount = () => {
@@ -62,15 +63,16 @@ class GameStage extends Component {
 		this.refs.canvas.height = this.refs.canvasContainer.getBoundingClientRect().height;
 	}
 
-	progress() {
-		return this.timer / this.state.startTime;
-	}
 
+
+	/** This update runs every frame */
 	update = () => {
 		// clear the canvas
 		this.getContext().clearRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
 
 		this.updateTimer();
+
+		this.props.levelUpdate();
 
 		// render every key game object
 		for (const go of this.keyGameObjects) {
@@ -79,6 +81,16 @@ class GameStage extends Component {
 
 		this.getContext().strokeStyle = 'black';
 		this.getContext().strokeRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
+	}
+
+	createRandomMonster = () => {
+
+		// get a random key
+	}
+
+	/** Returns the progress (between 0 and 1) of the current level */
+	progress() {
+		return this.timer / this.props.level.duration;
 	}
 
 	updateTimer = () => {

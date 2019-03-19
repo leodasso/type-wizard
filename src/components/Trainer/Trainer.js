@@ -4,9 +4,12 @@ import Keyboard from '../Keyboard/Keyboard';
 import englishUS from '../../data/keyboard-layouts/english-us';
 import korean from '../../data/keyboard-layouts/korean';
 import GameStage from '../Timer/GameStage';
+import GameLevel from '../../classes/GameLevel';
 
 
 class Trainer extends Component {
+
+	testLevel = new GameLevel(1, 5, 60);
 
 	// When the component mounts, add listeners for the keydown and keyup events
 	componentDidMount = () => {
@@ -14,9 +17,18 @@ class Trainer extends Component {
 
 	}
 
+	// This is just for debugging
 	keyDown = (event) => {
-		console.log('key down', event.key, event.keyCode);
+		// console.log('key down', event.key, event.keyCode);
 	}
+
+	updateLevel = () => {
+		// Update the level
+		if (Math.random() <= 1 / 60) {
+			console.log('monster');
+		}
+	}
+
 
 	render() {
 		return (
@@ -25,8 +37,8 @@ class Trainer extends Component {
 					<h1 >Training!</h1>
 				</div>
 				<div className="container">
-					<Keyboard keyboard={englishUS} />
-					<GameStage />
+					<Keyboard keyboard={englishUS} ref="keyboard"/>
+					<GameStage level={this.testLevel} levelUpdate={this.updateLevel}/>
 				</div>
 			</div>
 		)
