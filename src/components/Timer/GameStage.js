@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import GameObject from '../../classes/gameObject';
 import './GameStage.css';
 
 /** The Keyboard component takes in a keyboard data class, and renders the keyboard on screen.
@@ -7,10 +8,16 @@ import './GameStage.css';
  */
 class GameStage extends Component {
 
+	// Timer is intentionally left outside of state so that we aren't
+	// re-rendering every time we count down (i.e like 60 times a second)
+	timer = 0;
+	fps = 60;
+	keyGameObjects = [];
+
+
 	state = {
 		intervalId: 0,
-		time: 300,
-		startTime: 300,
+		startTime: 100,
 		ctx: null,
 	}
 
@@ -20,7 +27,7 @@ class GameStage extends Component {
 		window.addEventListener('resize', this.onWindowResized);
 
 		// Update every .1 seconds
-		let newInterval = setInterval(this.update, 100);
+		let newInterval = setInterval(this.update, 1000 / this.fps);
 		this.setState({intervalId: newInterval});
 
 		// Get and store the canvas context (used for drawing)
@@ -31,6 +38,7 @@ class GameStage extends Component {
 		//Set the canvas dimensions
 		this.recalculateCanvasDimensions();
 
+		this.timer = this.state.startTime;
 	}
 
 	componentWillUnmount = () => {
@@ -55,7 +63,7 @@ class GameStage extends Component {
 	}
 
 	progress() {
-		return this.state.time / this.state.startTime;
+		return this.timer / this.state.startTime;
 	}
 
 	update = () => {
@@ -64,6 +72,11 @@ class GameStage extends Component {
 
 		this.updateTimer();
 
+		// render every key game object
+		for (const go of this.keyGameObjects) {
+			go.render(this.getContext());
+		}
+
 		this.getContext().strokeStyle = 'black';
 		this.getContext().strokeRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
 	}
@@ -71,8 +84,7 @@ class GameStage extends Component {
 	updateTimer = () => {
 
 		// Update the timer
-		let newTime = this.state.time - .1;
-		this.setState({time:newTime});
+		this.timer -= (1 / this.fps);
 
 		// Draw a new rect
 		this.getContext().fillStyle = 'red';
@@ -89,11 +101,42 @@ class GameStage extends Component {
 	}
 
 	render() {
+
+		// update pressed keys
+		const newGameObjectArray = [];
+		for (const keyData of this.props.pressedKeys) {
+
+			const canvasSpaceRect = domToCanvasCoords( this.refs.canvas, keyData.rect)
+
+			newGameObjectArray.push(
+				new GameObject(canvasSpaceRect.x, canvasSpaceRect.y, 0, 0, 
+					canvasSpaceRect.width, canvasSpaceRect.height, 'red'));
+		}
+		this.keyGameObjects = newGameObjectArray;
+
 		return (
 			<div ref="canvasContainer" className="stage-parent" >
 				<canvas ref="canvas" className="canvas"/>
 			</div>
 		)
+	}
+}
+
+/** Given a canvas DOM element and a rect, converts the rect's coordinates to the
+ *  local space of the canvas. This is useful if you have an element's coordinates
+ * on the DOM, but you want to render something in the canvas on top of that element.
+ */
+const domToCanvasCoords = (canvasElement, inputRect) => {
+	const canvasRect = canvasElement.getBoundingClientRect();
+	return {
+		x: inputRect.x - canvasRect.x,
+		y: inputRect.y - canvasRect.y,
+		left: inputRect.left - canvasRect.left,
+		right: inputRect.right - canvasRect.left,
+		top: inputRect.top - canvasRect.top,
+		bottom: inputRect.bottom - canvasRect.top,
+		width: inputRect.width,
+		height: inputRect.height,
 	}
 }
 
