@@ -97,5 +97,9 @@ class GameStage extends Component {
 	}
 }
 
+const mapReduxState = reduxState => {
+	return {pressedKeys: reduxState.pressedKeys}
+}
 
-export default connect()(GameStage);
+
+export default connect(mapReduxState)(GameStage);

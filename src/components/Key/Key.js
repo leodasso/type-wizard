@@ -28,12 +28,28 @@ class Key extends Component{
 	keyDown = (event) => {
 		if (!this.eventIsThisKey(event) || !this.isEnabled()) return;
 		this.setState({ keyState: 'pressed' });
+
+		// dispatch an event with the key info
+		this.props.dispatch({
+			type: 'KEY_PRESSED',
+			payload: {
+				id: this.props.myKeyData.keyCode,
+				keyData: this.props.myKeyData,
+				rect: this.refs.keyDiv.getBoundingClientRect(),
+			},
+		})
 	}
 
 
 	keyUp = (event) => {
 		if (!this.eventIsThisKey(event)) return;
 		this.setState({ keyState: 'idle' });
+
+		// dispatch an event with the key info
+		this.props.dispatch({
+			type: 'KEY_RELEASED',
+			id: this.props.myKeyData.keyCode,
+		})
 	}
 
 
@@ -54,6 +70,7 @@ class Key extends Component{
 
 		return (
 			<div
+				ref="keyDiv"
 				className= {keyClass}
 				onKeyDown={this.keyDown}
 				onKeyUp={this.keyUp}
