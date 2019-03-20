@@ -95,7 +95,10 @@ class GameStage extends Component {
 
 		// Convert the element's coords to canvas coords
 		const monsterRect = domToCanvasCoords(this.refs.canvas, keyInfo.element.getBoundingClientRect());
-		const newMonster = new KeyboardGameObject(monsterRect.x, monsterRect.y, 0, 0, 50, 50, 'red', keyInfo.keyData);
+		const newMonster = new KeyboardGameObject(
+			{x:monsterRect.x, y:monsterRect.y}, 
+			{x: 0, y: 0},
+			 50, 50, 'red', keyInfo.keyData);
 		this.gameObjects.push(newMonster);
 	}
 

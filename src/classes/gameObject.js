@@ -4,11 +4,9 @@ export default class GameObject {
 	// lets the game update loop know that it can remove this object.
 	destroyed = false;
 
-	constructor(x, y, vel_x, vel_y, width, height, color) {
-		this.x = x;
-		this.y = y;
-		this.vel_x = vel_x;
-		this.vel_y = vel_y;
+	constructor(position, velocity, width, height, color) {
+		this.position = position;
+		this.velocity = velocity;
 		this.width = width;
 		this.height = height;
 		this.color = color;
