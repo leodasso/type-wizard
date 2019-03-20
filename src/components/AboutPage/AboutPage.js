@@ -10,6 +10,8 @@ const AboutPage = () => (
     <div>
       <p>
         This about page is for anyone to read!
+
+        keyboard image thanks to LukasMayer lukasmay.er https://www.pexels.com/@lmay
       </p>
     </div>
   </div>
