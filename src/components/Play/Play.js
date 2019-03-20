@@ -9,6 +9,7 @@ class Play extends Component{
 		return (
 			<div>
                 Hi here's ur Play
+				<p></p>
 			</div>
 		);
 	}

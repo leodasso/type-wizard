@@ -7,14 +7,17 @@
 }
 
 .nav {
-  overflow: hidden;
-  background-color: #00acb0;
+  background-color: #000000;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: fixed;
+  width: 180px;
 }
 
 .nav-link {
-  float: left;
+  background-color: #000000;
   color: #f2f2f2;
-  background-color: #00acb0;
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
@@ -28,9 +31,5 @@
 }
 
 .nav-link:hover {
-  background-color: #008183;
-}
-
-.nav-right {
-  float: right;
+  background-color: #351836;
 }
