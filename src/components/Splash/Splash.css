@@ -1,0 +1,33 @@
+.splash {
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.hero-button {
+    background-color: inherit;
+    font-size: 36px;
+    color: var(--main-color);
+    padding: 12px 18px;
+    margin: 24px;
+    transition: .1s;
+    border-radius: 4px;
+}
+
+.hero-button:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0px 8px 8px rgb(0, 0, 0);
+
+}
+
+.hero-button:active {
+    transform: translateY(1px);
+    box-shadow: 0px 0px rgb(0, 0, 0);
+
+}
+
+.hero-button:focus {
+    outline-width: 0px;
+}
