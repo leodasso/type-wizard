@@ -3,15 +3,16 @@
     font-weight: 700;
     display: inline-block;
     color: #f2f2f2;
-    padding-left: 10px;
+    padding: 20px;
 }
 
 .nav {
-  background-color: #000000;
+  background-image: linear-gradient(black, black, rgba(0, 0, 0, 0));
   display: flex;
   flex-direction: column;
   height: 100%;
-  position: fixed;
+  position:sticky;
+  min-height: 600px;
   width: 180px;
 }
 
@@ -19,7 +20,7 @@
   background-color: #000000;
   color: #f2f2f2;
   text-align: center;
-  padding: 24px 10px;
+  padding: 12px 3px;
   text-decoration: none;
   font-size: 15px;
 

@@ -13,7 +13,13 @@ body {
 }
 
 .content {
-    margin-left: 200px;
+    /* Large left margin to keep the content from being overlapped 
+    by the navigation */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 600px;
 }
 
 form {
@@ -66,5 +72,6 @@ input {
 
 .main-container {
     display: flex;
-    height: 100%;;
+    height: 100%;
+    flex-direction: row;
 }

@@ -30,8 +30,9 @@ class App extends Component {
 			<Router>
 				<div className="main-container">
 					<Nav />
+					<div className="content">
 					<Switch>
-						<div className="content">
+						
 							{/* Visiting localhost:3000 will redirect to localhost:3000/dashboard */}
 							<Redirect exact from="/" to="/play" />
 
@@ -69,9 +70,11 @@ class App extends Component {
 
 							{/* If none of the other routes matched, we will show a 404. */}
 							<Route render={() => <h1>404</h1>} />
-						</div>
+						
 					</Switch>
 					<Footer />
+
+					</div>
 				</div>
 			</Router>
 	)}
