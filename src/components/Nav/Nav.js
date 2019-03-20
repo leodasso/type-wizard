@@ -11,34 +11,33 @@ const Nav = (props) => (
       <h2 className="nav-title">Type Wizard</h2>
     </Link>
 
-    <div className="nav-right">
-      <Link className="nav-link" to="/play">
-        {/* Show this link if they are logged in or not,
-        but call this link 'Home' if they are logged in,
-        and call this link 'Login / Register' if they are not */}
-        {props.user.id ? 'Play' : 'Login / Register'}
-      </Link>
+    <Link className="nav-link" to="/play">
+      {/* Show this link if they are logged in or not,
+      but call this link 'Home' if they are logged in,
+      and call this link 'Login / Register' if they are not */}
+      {props.user.id ? 'Play' : 'Login / Register'}
+    </Link>
 
-      {/* Show the link to the info page and the logout button if the user is logged in */}
-      {props.user.id && (
-        <>
-          <Link className="nav-link" to="/stats">
-            Stats
-          </Link>
+    {/* Show the link to the info page and the logout button if the user is logged in */}
+    {props.user.id && (
+      <>
+        <Link className="nav-link" to="/stats">
+          Stats
+        </Link>
 
-          <Link className="nav-link" to="/settings">
-            Settings
-          </Link>
+        <Link className="nav-link" to="/settings">
+          Settings
+        </Link>
 
-          <LogOutButton className="nav-link"/>
-        </>
-      )}
+        <LogOutButton className="nav-link"/>
+      </>
+    )}
 
-      {/* Always show this link since the about page is not protected */}
-      <Link className="nav-link" to="/about">
-        About
-      </Link>
-    </div>
+    {/* Always show this link since the about page is not protected */}
+    <Link className="nav-link" to="/about">
+      About
+    </Link>
+
   </div>
 );
 

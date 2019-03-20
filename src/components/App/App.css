@@ -2,11 +2,24 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0px;
     box-sizing: border-box;
+    background-color: rgb(32, 32, 32);
+    color: rgb(100, 100, 100);
+    /* min-he */
 }
 
 .alert {
     background-color: #ff4545;
     margin: 50px;
+}
+
+.content {
+    /* Large left margin to keep the content from being overlapped 
+    by the navigation */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 600px;
 }
 
 form {
@@ -55,4 +68,10 @@ input {
     max-width: 800px;
     width: 90%;
     margin: 12px auto;
+}
+
+.main-container {
+    display: flex;
+    height: 100%;
+    flex-direction: row;
 }
