@@ -27,6 +27,7 @@ class Key extends Component{
 				type: 'ENABLE_KEY',
 				payload: {
 					keyCode: this.props.myKeyData.keyCode,
+					keyData: this.props.myKeyData,
 					element: this.refs.keyDiv,
 				}
 			})

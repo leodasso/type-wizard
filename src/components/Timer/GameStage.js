@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import GameObject from '../../classes/gameObject';
 import './GameStage.css';
+import KeyboardGameObject from '../../classes/KeyboardGameObject';
 
 /** The Keyboard component takes in a keyboard data class, and renders the keyboard on screen.
  * Keyboard data is keyData divided into rows.
@@ -74,6 +75,7 @@ class GameStage extends Component {
 
 		// render every game object
 		for (const go of this.gameObjects) {
+			if (go.destroyed) continue;
 			go.render(this.getContext());
 		}
 	}
@@ -82,20 +84,19 @@ class GameStage extends Component {
 
 		// Every frame, there's a random chance that the monster will appear
 		if (Math.random() <= 1 / 60) {
-			// get a random key
-			const randomIndex = Math.floor(Math.random() * this.props.enabledKeys.length);
-			// This div is where the monster will appear
-			const div = this.props.enabledKeys[randomIndex].element;
-
-			// get the rect from the div
-			let monsterRect = div.getBoundingClientRect();
-			// Convert the element's coords to canvas coords
-			monsterRect = domToCanvasCoords(this.refs.canvas, monsterRect);
-
-			
-			const newMonster = new GameObject(monsterRect.x, monsterRect.y, 0, 0, 50, 50, 'red');
-			this.gameObjects.push(newMonster);
+			this.addNewMonster();
 		}
+	}
+
+	addNewMonster = () => {
+		// get a random key
+		const randomIndex = Math.floor(Math.random() * this.props.enabledKeys.length);
+		const keyInfo = this.props.enabledKeys[randomIndex];
+
+		// Convert the element's coords to canvas coords
+		const monsterRect = domToCanvasCoords(this.refs.canvas, keyInfo.element.getBoundingClientRect());
+		const newMonster = new KeyboardGameObject(monsterRect.x, monsterRect.y, 0, 0, 50, 50, 'red', keyInfo.keyData);
+		this.gameObjects.push(newMonster);
 	}
 
 	/** Returns the progress (between 0 and 1) of the current level */
@@ -150,7 +151,14 @@ class GameStage extends Component {
 	}
 
 	onKeyPressed(keyPress) {
-		console.log("Pressed " + keyPress.id);
+
+		for (const go of this.gameObjects) {
+			if (!go.keyData) continue;
+			if (go.keyData.keyCode === keyPress.id) {
+				go.destroy();
+			}
+		}
+		// console.log("Pressed " + keyPress.id);
 	}
 }
 

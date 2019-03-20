@@ -1,7 +1,10 @@
 
 export default class GameObject {
 
-	constructor(x, y, vel_x, vel_y, width, height, color, bounce, gravity) {
+	// lets the game update loop know that it can remove this object.
+	destroyed = false;
+
+	constructor(x, y, vel_x, vel_y, width, height, color) {
 		this.x = x;
 		this.y = y;
 		this.vel_x = vel_x;
@@ -9,8 +12,6 @@ export default class GameObject {
 		this.width = width;
 		this.height = height;
 		this.color = color;
-		this.bounce = bounce;
-		this.gravity = gravity;
 	}
 
 	// Draws the game object for this frame. Requires the context of the 
@@ -50,6 +51,10 @@ export default class GameObject {
 				this.onCollision();
 			}
 		}
+	}
+
+	destroy = () => {
+		this.destroyed = true;
 	}
 
 	onCollision = () => {
