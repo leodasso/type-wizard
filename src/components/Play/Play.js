@@ -9,10 +9,9 @@ class Play extends Component{
 
 		return (
 			<>
-			<Header />
+			<Header title="PLAY"/>
 			<div>
-                Hi here's ur Play
-				<p></p>
+				
 			</div>
 			</>
 		);

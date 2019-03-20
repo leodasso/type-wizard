@@ -1,9 +1,10 @@
 .header {
     margin-bottom: 12px;
-    background-color: black;
+    background-color: var(--deep-black);
     color: rgb(207, 207, 202);
-    padding: 40px;
+    padding: 60px 12px;
 
     font-size: 38px;
     text-align: center;
+    transform: skewY(-4deg) translateY(-30px);
 }
