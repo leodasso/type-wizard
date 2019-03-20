@@ -1,9 +1,9 @@
 :root {
     --default-color: rgb(161, 161, 161);
     --primary-color: rgb(255, 79, 187);
-    --secondary-color: rgb(218, 218, 218);
+    --secondary-color: rgb(194, 194, 194);
 
-    --deep-black: rgba(2, 2, 2, .5);
+    --deep-black: rgba(2, 2, 2, 0.719);
     --matte-black: rgb(40, 40, 40);
     --bg-pink:   #351836;
 
