@@ -3,8 +3,10 @@
     --primary-color: rgb(255, 79, 187);
     --secondary-color: rgb(218, 218, 218);
 
-    --deep-black: rgb(2, 2, 2);
+    --deep-black: rgba(2, 2, 2, .5);
     --matte-black: rgb(40, 40, 40);
+    --bg-pink:   #351836;
+
 }
 
 body {
