@@ -8,3 +8,7 @@
     text-align: center;
     transform: skewY(-4deg) translateY(-30px);
 }
+
+.header-content {
+    transform: skewY(4deg) translateY(10px);
+}

@@ -2,7 +2,7 @@
 
 export default class GameLevel {
 
-    constructor(startDifficulty, endDifficulty, duration) {
+    constructor(startDifficulty, endDifficulty, duration, enabled) {
         this.startDifficulty = startDifficulty;
         this.endDifficulty = endDifficulty;
         this.duration = duration;
