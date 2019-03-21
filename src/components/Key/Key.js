@@ -18,7 +18,6 @@ class Key extends Component {
 		this.setDivRef = element => {
 			if (!element) return;
 			this.keyDiv = element;
-			console.log('Setting Div ref', this.keyDiv);
 		}
 
 		this.state = {
@@ -68,6 +67,7 @@ class Key extends Component {
 				rect: this.keyDiv.getBoundingClientRect(),
 			},
 		})
+
 	}
 
 
