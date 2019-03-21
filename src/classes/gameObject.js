@@ -3,12 +3,14 @@ export default class GameObject {
 	// lets the game update loop know that it can remove this object.
 	destroyed = false;
 
-	constructor(position, velocity, width, height, color) {
+	constructor(position, velocity, width, height, color, lifetime, deathObject) {
 		this.position = position;
 		this.velocity = velocity;
 		this.width = width;
 		this.height = height;
 		this.color = color;
+		this.lifetime = lifetime;
+		this.deathObject = deathObject;
 	}
 
 	// Draws the game object for this frame. Requires the context of the 
@@ -21,8 +23,19 @@ export default class GameObject {
 
 	update = (stage) => {
 
+		// console.log('updating', this);
+
 		// Set an interval so that speeds are consistent no matter the framrate
-		let interval = 1 / stage.framerate;
+		let interval = 1 / stage.fps;
+
+		// count down lifetime
+		if (this.lifetime) {
+			this.lifetime -= interval;
+			if (this.lifetime <= 0) {
+				this.destroy(stage);
+				return;
+			}
+		}
 
 		// gravity
 		if (this.gravity) {
@@ -53,11 +66,8 @@ export default class GameObject {
 	/** Destroys this object. Takes in the array of the game stage, and
 	 * removes this object from the array.
 	 */
-	destroy = (stage) => {
+	destroy(stage) {
 		this.destroyed = true;
-		const deathObject = new GameObject(this.position, this.velocity, 60, 60, 'blue');
-		stage.gameObjects.push(deathObject);
-
 	}
 
 	onCollision = () => {

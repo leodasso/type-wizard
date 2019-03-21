@@ -38,6 +38,8 @@ class GameStage extends Component {
 		this.recalculateCanvasDimensions();
 
 		this.beginSession();
+
+		console.log('playing level', this.props.level);
 	}
 
 	// Begin a new game session
@@ -84,13 +86,17 @@ class GameStage extends Component {
 		for (const go of this.stage.gameObjects) {
 			if (go.destroyed) continue;
 			go.render(this.getContext());
+			go.update(this.stage);
 		}
+
+		// clear out destroyed gameobjects
+		this.stage.gameObjects = this.stage.gameObjects.filter(gameObject => !gameObject.destroyed);
 	}
 
 	updateLevel = () => {
 
 		// Every frame, there's a random chance that the monster will appear
-		if (Math.random() <= 1 / 60) {
+		if (Math.random() <= this.props.level.difficulty / 500) {
 			this.addNewMonster();
 		}
 	}
