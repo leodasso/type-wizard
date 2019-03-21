@@ -6,11 +6,26 @@ import './Key.css';
 /**The Key component renders a single key of the on-screen keyboard.
  * It's responsive to key presses for it's given keycode
  */
-class Key extends Component{
+class Key extends Component {
 
-	state = {
-		keyState: 'idle',
+	constructor(props) {
+
+		super(props);
+		// Create a ref to store the key div element 
+		this.keyDiv = null;
+
+		// Function for storing the reference to the DOM node for this key
+		this.setDivRef = element => {
+			if (!element) return;
+			this.keyDiv = element;
+			console.log('Setting Div ref', this.keyDiv);
+		}
+
+		this.state = {
+			keyState: 'idle',
+		}
 	}
+
 
 	// Each key component is bound to a specific key. This function checks if the 
 	// given event is related to that key.
@@ -28,10 +43,16 @@ class Key extends Component{
 				payload: {
 					keyCode: this.props.myKeyData.keyCode,
 					keyData: this.props.myKeyData,
-					element: this.refs.keyDiv,
+					element: this.keyDiv,
 				}
 			})
 		}
+	}
+
+	componentWillUnmount = () => {
+
+		document.removeEventListener('keydown', this.keyDown);
+		document.removeEventListener('keyup', this.keyUp);
 	}
 
 	keyDown = (event) => {
@@ -44,7 +65,7 @@ class Key extends Component{
 			payload: {
 				id: this.props.myKeyData.keyCode,
 				keyData: this.props.myKeyData,
-				rect: this.refs.keyDiv.getBoundingClientRect(),
+				rect: this.keyDiv.getBoundingClientRect(),
 			},
 		})
 	}
@@ -79,7 +100,7 @@ class Key extends Component{
 
 		return (
 			<div
-				ref="keyDiv"
+				ref={this.setDivRef}
 				className= {keyClass}
 				onKeyDown={this.keyDown}
 				onKeyUp={this.keyUp}

@@ -18,5 +18,5 @@ export default [
 
 	new GameLevel(100, 'Journeyman', 
 			'Try practicing with new keys!', 
-			1, 60, beginnerKeys),
+			1, 60, middleRowKeys),
 ]
