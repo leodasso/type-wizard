@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import './GameStage.css';
 import KeyboardGameObject from '../../classes/KeyboardGameObject';
 import prefabs from '../../data/prefabs';
+import calc from '../../data/calc';
 
 /** The Keyboard component takes in a keyboard data class, and renders the keyboard on screen.
  * Keyboard data is keyData divided into rows.
@@ -91,8 +92,13 @@ class GameStage extends Component {
 		this.getContext().clearRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
 
 		this.updateTimer();
-		this.updateLevel();
+		this.checkKeyStrokes();
 
+		// Every frame, there's a random chance that the monster will appear
+		if (Math.random() <= this.props.level.difficulty / 100) {
+			console.log('make new mosnter');
+			this.addNewMonster();
+		}
 
 		// render every game object
 		for (const go of this.stage.gameObjects) {
@@ -105,17 +111,8 @@ class GameStage extends Component {
 		this.stage.gameObjects = this.stage.gameObjects.filter(gameObject => !gameObject.destroyed);
 	}
 
-	updateLevel = () => {
 
-		this.checkKeyStrokes();
-
-		// Every frame, there's a random chance that the monster will appear
-		if (Math.random() <= this.props.level.difficulty / 100) {
-			console.log('make new mosnter');
-			this.addNewMonster();
-		}
-	}
-
+	/** Adds a new monster on a random available key. */
 	addNewMonster = () => {
 
 		// get a random key
@@ -123,7 +120,7 @@ class GameStage extends Component {
 		const keyInfo = this.props.enabledKeys[randomIndex];
 
 		// Convert the element's coords to canvas coords
-		const monsterRect = domToCanvasCoords(this.refs.canvas, keyInfo.element.getBoundingClientRect());
+		const monsterRect = calc.domToCanvasCoords(this.refs.canvas, keyInfo.element.getBoundingClientRect());
 
 		// Create a new monster instance, and add it to the stage
 		const newMonster = prefabs.basicMonster({x: monsterRect.x, y:monsterRect.y});
@@ -167,8 +164,10 @@ class GameStage extends Component {
 	render() {
 
 		return (
-			<div ref="canvasContainer" className="stage-parent" >
-				<canvas ref="canvas" className="canvas"/>
+			<div>
+				<div ref="canvasContainer" className="stage-parent" >
+					<canvas ref="canvas" className="canvas"/>
+				</div>
 			</div>
 		)
 	}
@@ -212,23 +211,7 @@ class GameStage extends Component {
 	}
 }
 
-/** Given a canvas DOM element and a rect, converts the rect's coordinates to the
- *  local space of the canvas. This is useful if you have an element's coordinates
- * on the DOM, but you want to render something in the canvas on top of that element.
- */
-const domToCanvasCoords = (canvasElement, inputRect) => {
-	const canvasRect = canvasElement.getBoundingClientRect();
-	return {
-		x: inputRect.x - canvasRect.x,
-		y: inputRect.y - canvasRect.y,
-		left: inputRect.left - canvasRect.left,
-		right: inputRect.right - canvasRect.left,
-		top: inputRect.top - canvasRect.top,
-		bottom: inputRect.bottom - canvasRect.top,
-		width: inputRect.width,
-		height: inputRect.height,
-	}
-}
+
 
 const mapReduxState = reduxState => {
 	return {
