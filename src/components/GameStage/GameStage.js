@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './GameStage.css';
 import KeyboardGameObject from '../../classes/KeyboardGameObject';
+import prefabs from '../../data/prefabs';
 
 /** The Keyboard component takes in a keyboard data class, and renders the keyboard on screen.
  * Keyboard data is keyData divided into rows.
@@ -96,7 +97,8 @@ class GameStage extends Component {
 	updateLevel = () => {
 
 		// Every frame, there's a random chance that the monster will appear
-		if (Math.random() <= this.props.level.difficulty / 500) {
+		if (Math.random() <= 2 / 500) {
+			console.log('make new mosnter');
 			this.addNewMonster();
 		}
 	}
@@ -109,10 +111,10 @@ class GameStage extends Component {
 
 		// Convert the element's coords to canvas coords
 		const monsterRect = domToCanvasCoords(this.refs.canvas, keyInfo.element.getBoundingClientRect());
-		const newMonster = new KeyboardGameObject(
-			{x:monsterRect.x, y:monsterRect.y}, 
-			{x: 0, y: 0},
-			 50, 50, 'red', keyInfo.keyData);
+		const newMonster = prefabs.basicMonster();
+		newMonster.position = {x: monsterRect.x, y:monsterRect.y}
+		newMonster.keyData = keyInfo.keyData;
+		console.log('addeed new monster', newMonster);
 		this.stage.gameObjects.push(newMonster);
 	}
 
@@ -177,7 +179,6 @@ class GameStage extends Component {
 			}
 		})
 
-		// TODO change this to being a function
 		for (const go of this.stage.gameObjects) {
 
 			// If the game object doesn't support key presses, just continue
