@@ -8,15 +8,27 @@ const allKeys = [81, 87, 69, 82, 84, 89, 85, 73, 79, 80,
 				90, 88, 67, 86, 66, 78, 77, ]
 
 export default [
-	new GameLevel(0, 'Tutorial', 
-			'Learn proper key placement!', 
-			.6, 30, beginnerKeys),
+	new GameLevel(
+		0, 
+		'Tutorial', 
+		'Learn proper key placement!', 
+		.6, 
+		30, 
+		beginnerKeys),
 
-	new GameLevel(1, 'Beginner', 
-			'Practice using the home row keys', 
-			1, 30, beginnerKeys),
+	new GameLevel(
+		1, 
+		'Beginner', 
+		'Practice using the home row keys', 
+		2, 
+		30, 
+		beginnerKeys),
 
-	new GameLevel(100, 'Journeyman', 
-			'Try practicing with new keys!', 
-			1, 60, middleRowKeys),
+	new GameLevel(
+		100, 
+		'Journeyman', 
+		'Try practicing with new keys!', 
+		3, 
+		60, 
+		middleRowKeys),
 ]

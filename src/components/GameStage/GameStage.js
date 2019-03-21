@@ -183,7 +183,7 @@ class GameStage extends Component {
 
 	getAccuracy = () => {
 		if (this.state.keyPresses <= 0) return 0;
-		return (this.state.score / this.state.keyPresses).toFixed(2);
+		return ((this.state.score / this.state.keyPresses) * 100).toFixed(2);
 	}
 
 	// Check if any of the keystrokes land on a monster. Store prev key pressed state
