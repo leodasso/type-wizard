@@ -19,17 +19,18 @@ class GameStage extends Component {
 		gameObjects: [],
 		gravity: 3,
 		onMonsterKilled:() => {
-			const newPoints = this.state.points + 1;
-			console.log('points is now', newPoints);
-			this.setState({points:newPoints});
+			const newScore = this.state.score + 1;
+			console.log('points is now', newScore);
+			this.setState({score:newScore});
 		}
 	}
 
 	state = {
+		sessionUploaded: false,
 		intervalId: 0,
 		ctx: null,
 		keyPresses: 0,
-		points: 0,
+		score: 0,
 		complete: false,
 	}
 
@@ -58,6 +59,7 @@ class GameStage extends Component {
 	}
 
 	uploadSession = () => {
+		if (this.state.sessionUploaded) return;
 		console.log('hi im uploading ur session now kthx');
 	}
 
@@ -89,7 +91,7 @@ class GameStage extends Component {
 	update = () => {
 
 		// clear the canvas
-		this.getContext().clearRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
+		this.clearCanvas();
 
 		this.updateTimer();
 		this.checkKeyStrokes();
@@ -109,6 +111,10 @@ class GameStage extends Component {
 
 		// clear out destroyed gameobjects from the list
 		this.stage.gameObjects = this.stage.gameObjects.filter(gameObject => !gameObject.destroyed);
+	}
+
+	clearCanvas = () => {
+		this.getContext().clearRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
 	}
 
 
@@ -168,8 +174,16 @@ class GameStage extends Component {
 				<div ref="canvasContainer" className="stage-parent" >
 					<canvas ref="canvas" className="canvas"/>
 				</div>
+				<p>Score: {this.state.score}</p>
+				<p>Key Presses: {this.state.keyPresses}</p>
+				<p>Accuracy: {this.getAccuracy() + '%'}</p>
 			</div>
 		)
+	}
+
+	getAccuracy = () => {
+		if (this.state.keyPresses <= 0) return 0;
+		return (this.state.score / this.state.keyPresses).toFixed(2);
 	}
 
 	// Check if any of the keystrokes land on a monster. Store prev key pressed state
@@ -200,8 +214,13 @@ class GameStage extends Component {
 			}
 		})
 
-		for (const go of this.stage.gameObjects) {
+		// count the key press
+		const newCount = this.state.keyPresses + 1;
+		this.setState({keyPresses:newCount});
 
+		// Send relevant key presses to the game objects - some of them are listening
+		// for key press events!
+		for (const go of this.stage.gameObjects) {
 			// If the game object doesn't support key presses, just continue
 			if (!go.pressMe) continue;
 			if (go.keyData.keyCode === keyPress.id) {
