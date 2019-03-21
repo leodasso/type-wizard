@@ -1,31 +1,40 @@
-.Key {
+.key {
     box-sizing: border-box;
     margin: 8px;
     padding: 12px 12px;
-    background-color: var(--deep-black);
+    background-color: var(--matte-black);
     width: 60px;
     height: 50px;
     border-radius: 8px;
     border-style: solid;
-    border-width: 3px;
-    border-color: rgb(64, 165, 168)
-}
-
-.Key.pressed {
-    background-color: rgb(66, 146, 119);
-    transform: translateY(5px);
-}
-
-.Key.disabled {
-    background-color: rgba(66, 146, 119, 0.329);
-    color: rgba(0, 0, 0, 0.363);
     border-width: 1px;
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transition: 80ms;
+    box-shadow: 0px 5px 6px var(--bg-pink);
+}
+
+.key.pressed {
+    background-color: var(--focus-color);
+    border-color: var(--clear);
+    color: var(--deep-black);
+    transform: translateY(4px);
+    box-shadow: none;
 
 }
 
-.Key h3 {
-    margin: auto;
+.key.disabled {
+    background-color: var(--deep-black);
+    border-color: var(--matte-black);
+    color: var(--matte-black);
+    transform: translateY(4px);
+    box-shadow: none;
+
+}
+
+.key-text {
+    font-weight: 800;
+    width: 100%;
     text-align: center;
     font-size: 24px;
-    font-weight: 300;
 }

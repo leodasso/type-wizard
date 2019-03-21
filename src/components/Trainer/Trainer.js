@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Keyboard from '../Keyboard/Keyboard';
+import GameStage from '../GameStage/GameStage';
+import Header from '../Header/Header';
+import './Trainer.css';
+
 import englishUS from '../../data/keyboard-layouts/english-us';
 import korean from '../../data/keyboard-layouts/korean';
-import GameStage from '../GameStage/GameStage';
 
 class Trainer extends Component {
 
@@ -12,9 +15,9 @@ class Trainer extends Component {
 		return (
 			<div>
 				<div>
-					<h1 >Training!</h1>
+					<Header>Training</Header>
 				</div>
-				<div className="container">
+				<div className="trainer">
 					<Keyboard keyboard={englishUS} ref="keyboard"/>
 					<GameStage />
 				</div>

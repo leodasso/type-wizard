@@ -70,11 +70,11 @@ class Key extends Component{
 
 		// Set CSS class of key based on if it's pressed or not.
 		var keyClass = this.state.keyState !== 'pressed' ? 
-			'Key' : 'Key pressed';
+			'key' : 'key pressed';
 
 		// override class for disabled keys
 		if (!this.isEnabled()) {
-			keyClass = 'Key disabled'
+			keyClass = 'key disabled'
 		}
 
 		return (
@@ -84,9 +84,9 @@ class Key extends Component{
 				onKeyDown={this.keyDown}
 				onKeyUp={this.keyUp}
 			>
-				<h3>{
+				<div className="key-text">{
 					this.props.shifted ? this.props.myKeyData.getShifted() : this.props.myKeyData.key
-				} </h3>
+				} </div>
 			</div>
 		);
 	}

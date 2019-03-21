@@ -2,6 +2,7 @@
     --default-color: rgb(161, 161, 161);
     --primary-color: rgb(255, 79, 187);
     --secondary-color: rgb(194, 194, 194);
+    --focus-color: rgb(66, 146, 119);
 
     --deep-black: rgba(2, 2, 2, 0.719);
     --matte-black: rgb(40, 40, 40);

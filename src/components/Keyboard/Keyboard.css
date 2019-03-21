@@ -1,6 +1,7 @@
 .keyboard-row {
     display: flex;
     flex-direction: row;
+    margin: 8px 4px;
     justify-content: center;
 }
 
@@ -8,8 +9,9 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.568);
+    background-color: var(--deep-black);
     border-radius: 16px;
     width: 100%;
     top: 32px;
+    padding: 24px;
 }

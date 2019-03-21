@@ -56,12 +56,9 @@ class GameStage extends Component {
 	 * the width and height of the canvas's parent container, and sets the canvas
 	 * width and height.. */
 	recalculateCanvasDimensions = () => {
-
 		this.refs.canvas.width = this.refs.canvasContainer.getBoundingClientRect().width;
 		this.refs.canvas.height = this.refs.canvasContainer.getBoundingClientRect().height;
 	}
-
-
 
 	/** This update runs every frame */
 	update = () => {
@@ -69,8 +66,7 @@ class GameStage extends Component {
 		this.getContext().clearRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
 
 		this.updateTimer();
-
-		this.updateLevel();
+		// this.updateLevel();
 
 		// render every game object
 		for (const go of this.gameObjects) {
@@ -88,8 +84,6 @@ class GameStage extends Component {
 	}
 
 	addNewMonster = () => {
-
-		console.log('adding mostner');
 
 		// get a random key
 		const randomIndex = Math.floor(Math.random() * this.props.enabledKeys.length);
