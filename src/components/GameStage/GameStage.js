@@ -18,6 +18,7 @@ class GameStage extends Component {
 	state = {
 		intervalId: 0,
 		ctx: null,
+		keyPresses: 0,
 	}
 
 	componentDidMount = () => {
@@ -25,19 +26,27 @@ class GameStage extends Component {
 		// Add event listener for when the window is resized
 		window.addEventListener('resize', this.onWindowResized);
 
-		// Update based on the FPS
-		let newInterval = setInterval(this.update, 1000 / this.fps);
-		this.setState({intervalId: newInterval});
-
 		// Get and store the canvas context (used for drawing)
 		let canvas = this.refs.canvas;
 		const ctx = canvas.getContext('2d');
 		this.setState({ctx});
 
-		//Set the canvas dimensions
+		// Set the canvas dimensions
 		this.recalculateCanvasDimensions();
 
-		this.timer = this.props.level.duration;
+		this.beginSession();
+	}
+
+	// Begin a new game session
+	beginSession = () => {
+
+		// Reset game events so we don't have the previous 
+		// session's info
+		this.props.dispatch({type: 'CLEAR_GAME_EVENTS'});
+
+		// Update based on the FPS
+		let newInterval = setInterval(this.update, 1000 / this.fps);
+		this.setState({intervalId: newInterval});
 	}
 
 	componentWillUnmount = () => {
@@ -104,11 +113,11 @@ class GameStage extends Component {
 	updateTimer = () => {
 
 		// Update the timer
-		this.timer -= (1 / this.fps);
+		this.timer += (1 / this.fps);
 
 		// Draw a new rect
 		this.getContext().fillStyle = 'red';
-		let newWidth = this.refs.canvas.width * this.progress();
+		let newWidth = this.refs.canvas.width * (1 - this.progress());
 		this.getContext().fillRect(1, 1, newWidth, 10);
 	}
 
@@ -146,18 +155,26 @@ class GameStage extends Component {
 
 		// refresh the prev keys state
 		this.prevPressedKeys = this.props.pressedKeys.map( keyPress => keyPress.id);
-
 	}
 
 	onKeyPressed(keyPress) {
 
+		// send event to redux
+		this.props.dispatch({
+			type: 'ADD_EVENT',
+			payload: {
+				event: 'press',
+				time: this.timer,
+			}
+		})
+
+		// TODO change this to being a function
 		for (const go of this.gameObjects) {
 			if (!go.keyData) continue;
 			if (go.keyData.keyCode === keyPress.id) {
 				go.destroy();
 			}
 		}
-		// console.log("Pressed " + keyPress.id);
 	}
 }
 
