@@ -86,31 +86,3 @@ input {
     height: 100%;
     flex-direction: row;
 }
-
-.body-button {
-    background-color: inherit;
-    font-size: 24px;
-    color: var(--main-color);
-    padding: 6px 20px;
-    margin: 24px;
-    transition: .1s;
-    border-radius: 4px;
-}
-
-.body-button:hover {
-    border-color: var(--primary-color);
-    color: var(--primary-color);
-    transform: translateY(-2px);
-    box-shadow: 0px 8px 5px var(--bg-pink);
-
-}
-
-.body-button:active {
-    transform: translateY(1px);
-    box-shadow: 0px 0px rgb(0, 0, 0);
-
-}
-
-.body-button:focus {
-    outline-width: 0px;
-}

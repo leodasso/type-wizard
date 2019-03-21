@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './LevelCard.css';
 import { withRouter } from 'react-router-dom';
+import BodyButton from '../BodyButton/BodyButton';
 
 class LevelCard extends Component{
 
@@ -42,9 +43,9 @@ class LevelCard extends Component{
 				<div className="dark-card-content">
 					
 					<p>{levelData.level.duration} sec</p>
-					<button 
-						onClick={this.onClickPlay}
-						className="body-button">Play</button>
+					<BodyButton onClick={this.onClickPlay}>
+						Play
+					</BodyButton>
 				</div>
 			</div>
 		);
