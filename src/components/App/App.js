@@ -17,6 +17,7 @@ import AboutPage from '../AboutPage/AboutPage';
 import Stats from '../Stats/Stats';
 import Play from '../Play/Play';
 import Settings from '../Settings/Settings';
+import Trainer from '../Trainer/Trainer';
 
 import './App.css';
 
@@ -52,6 +53,12 @@ class App extends Component {
 								exact
 								path="/play"
 								component={Play}
+							/>
+
+							<ProtectedRoute
+								exact
+								path="/play/stage"
+								component={Trainer}
 							/>
 
 							{/* This works the same as the other protected route, except that if the user is logged in,

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './LevelCard.css';
+import { withRouter } from 'react-router-dom';
 
 class LevelCard extends Component{
 
@@ -8,6 +9,18 @@ class LevelCard extends Component{
 		hovered: false,
 	}
 
+
+	onClickPlay = () => {
+		console.log('Play!');
+
+		// TODO send level data to reducer
+
+		// TODO maybe restructure level data???
+
+		//  redirect
+		this.props.history.push('/play/stage');
+		
+	}
 
 	onMouseEnter = () => this.setState({hovered: true})
 	onMouseExit = () => this.setState({hovered:false})
@@ -29,7 +42,9 @@ class LevelCard extends Component{
 				<div className="dark-card-content">
 					
 					<p>{levelData.level.duration} sec</p>
-					<button className="body-button">Play</button>
+					<button 
+						onClick={this.onClickPlay}
+						className="body-button">Play</button>
 				</div>
 			</div>
 		);
@@ -40,4 +55,4 @@ const mapReduxState = reduxState => {
 	return reduxState;
 }
 
-export default connect(mapReduxState)(LevelCard);
+export default withRouter(connect(mapReduxState)(LevelCard));
