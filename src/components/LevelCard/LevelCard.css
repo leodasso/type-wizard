@@ -26,10 +26,11 @@
 
 .dark-card-title {
     background-color: var(--matte-black);
-    font-weight: 800;
+    font-weight: 500;
+    font-size: 24px;
     color: var(--main-color);
-    padding-top: 24px;
-    padding-bottom: 12px;
+    padding-top: 44px;
+    padding-bottom: 22px;
     text-align: center;
     transition: 200ms;
 }
@@ -37,5 +38,4 @@
 .dark-card-title.hover {
     background-color: var(--bg-pink);
     color: var(--secondary-color);
-    font-weight: 800;
 }
