@@ -11,9 +11,12 @@ class GameStage extends Component {
 	// Timer is intentionally left outside of state so that we aren't
 	// re-rendering every time we count down (i.e like 60 times a second)
 	timer = 0;
-	fps = 60;
-	gameObjects = [];
 	prevPressedKeys = [];
+	stage = {
+		fps: 60,
+		gameObjects: [],
+		gravity: 3,
+	}
 
 	state = {
 		intervalId: 0,
@@ -75,10 +78,10 @@ class GameStage extends Component {
 		this.getContext().clearRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
 
 		this.updateTimer();
-		// this.updateLevel();
+		this.updateLevel();
 
 		// render every game object
-		for (const go of this.gameObjects) {
+		for (const go of this.stage.gameObjects) {
 			if (go.destroyed) continue;
 			go.render(this.getContext());
 		}
@@ -104,7 +107,7 @@ class GameStage extends Component {
 			{x:monsterRect.x, y:monsterRect.y}, 
 			{x: 0, y: 0},
 			 50, 50, 'red', keyInfo.keyData);
-		this.gameObjects.push(newMonster);
+		this.stage.gameObjects.push(newMonster);
 	}
 
 	/** Returns the progress (between 0 and 1) of the current level */
@@ -169,10 +172,12 @@ class GameStage extends Component {
 		})
 
 		// TODO change this to being a function
-		for (const go of this.gameObjects) {
-			if (!go.keyData) continue;
+		for (const go of this.stage.gameObjects) {
+
+			// If the game object doesn't support key presses, just continue
+			if (!go.pressMe) continue;
 			if (go.keyData.keyCode === keyPress.id) {
-				go.destroy();
+				go.pressMe(this.stage);
 			}
 		}
 	}

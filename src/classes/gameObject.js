@@ -1,4 +1,3 @@
-
 export default class GameObject {
 
 	// lets the game update loop know that it can remove this object.
@@ -51,8 +50,14 @@ export default class GameObject {
 		}
 	}
 
-	destroy = () => {
+	/** Destroys this object. Takes in the array of the game stage, and
+	 * removes this object from the array.
+	 */
+	destroy = (stage) => {
 		this.destroyed = true;
+		const deathObject = new GameObject(this.position, this.velocity, 60, 60, 'blue');
+		stage.gameObjects.push(deathObject);
+
 	}
 
 	onCollision = () => {
