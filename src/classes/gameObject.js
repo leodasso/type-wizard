@@ -21,9 +21,7 @@ export default class GameObject {
 		canvasContext.fillRect(this.position.x, this.position.y, this.width, this.height);
 	}
 
-	update = (stage) => {
-
-		// console.log('updating', this);
+	update (stage) {
 
 		// Set an interval so that speeds are consistent no matter the framrate
 		let interval = 1 / stage.fps;

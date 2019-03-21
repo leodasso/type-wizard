@@ -111,8 +111,7 @@ class GameStage extends Component {
 
 		// Convert the element's coords to canvas coords
 		const monsterRect = domToCanvasCoords(this.refs.canvas, keyInfo.element.getBoundingClientRect());
-		const newMonster = prefabs.basicMonster();
-		newMonster.position = {x: monsterRect.x, y:monsterRect.y}
+		const newMonster = prefabs.basicMonster({x: monsterRect.x, y:monsterRect.y});
 		newMonster.keyData = keyInfo.keyData;
 		console.log('addeed new monster', newMonster);
 		this.stage.gameObjects.push(newMonster);

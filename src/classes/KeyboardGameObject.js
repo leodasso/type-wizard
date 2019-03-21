@@ -1,4 +1,5 @@
 import GameObject from "./gameObject";
+import prefabs from '../data/prefabs';
 
 /** Keyboard game object is associated to a specific key. */
 export default class KeyboardGameObject extends GameObject {
@@ -18,7 +19,7 @@ export default class KeyboardGameObject extends GameObject {
 
 	destroy(stage) {
 		super.destroy(stage);
-		const deathObject = new GameObject(this.position, this.velocity, 60, 60, 'blue', 2);
+		const deathObject = prefabs.basicMonsterDeath(this.position);
 		stage.gameObjects.push(deathObject);
 	}
 
