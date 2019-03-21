@@ -1,0 +1,9 @@
+.body-container {
+    position: relative;
+    margin: 34px 60px;
+    padding: 14px 34px;
+    padding-bottom: 80px;
+    min-height: 400px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0),var(--deep-black) );
+    clip-path: polygon(0 0%, 100% 0, 100% 100%, 0% 98%);
+}

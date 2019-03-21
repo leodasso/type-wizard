@@ -79,8 +79,6 @@ class App extends Component {
 							<Route render={() => <h1>404</h1>} />
 						
 					</Switch>
-					<Footer />
-
 					</div>
 				</div>
 			</Router>

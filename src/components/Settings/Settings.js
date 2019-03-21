@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Header from '../Header/Header';
+import BodyContainer from '../BodyContainer/BodyContainer';
 
 class Settings extends Component{
 
@@ -8,7 +10,10 @@ class Settings extends Component{
 
 		return (
 			<div>
-                Hi here's ur Settings
+				<Header>Settings</Header>
+				<BodyContainer>
+					<p>Hi here's ur Settings</p>
+				</BodyContainer>
 			</div>
 		);
 	}

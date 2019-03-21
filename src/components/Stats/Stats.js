@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Header from '../Header/Header';
+import BodyContainer from '../BodyContainer/BodyContainer';
 
 class Stats extends Component{
 
@@ -8,7 +10,10 @@ class Stats extends Component{
 
 		return (
 			<div>
-                Hi here's ur stats
+				<Header>Stats</Header>
+				<BodyContainer>
+                	<p>Hi here's ur stats</p>
+				</BodyContainer>
 			</div>
 		);
 	}

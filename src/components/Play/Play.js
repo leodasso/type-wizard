@@ -4,31 +4,24 @@ import Header from '../Header/Header';
 import levels from '../../data/levels';
 import LevelCard from '../LevelCard/LevelCard';
 import './Play.css';
+import BodyContainer from '../BodyContainer/BodyContainer';
 
 class Play extends Component{
 
 
 	render() {
 
-		// // Create an array from the level data object
-		// const levelArray = [];
-		// for (const key in levels) {
-		// 	const newLevelData = {
-		// 		title: key,
-		// 		level: levels[key],
-		// 	}
-		// 	levelArray.push(newLevelData);
-		// }
-
 		return (
 			<>
-			<Header title="PLAY"/>
-			<div className="level-list">
-				{
-					levels.map( (level, index) => 
-						(<LevelCard key={index} levelData={level}/> ))
-				}
-			</div>
+			<Header>Play</Header>
+			<BodyContainer>
+				<div className="level-list">
+					{
+						levels.map( (level, index) => 
+							(<LevelCard key={index} levelData={level}/> ))
+					}
+				</div>
+			</BodyContainer>
 			</>
 		);
 	}
