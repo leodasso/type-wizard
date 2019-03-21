@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import GameObject from '../../classes/gameObject';
 import './GameStage.css';
 import KeyboardGameObject from '../../classes/KeyboardGameObject';
 
@@ -89,6 +88,9 @@ class GameStage extends Component {
 	}
 
 	addNewMonster = () => {
+
+		console.log('adding mostner');
+
 		// get a random key
 		const randomIndex = Math.floor(Math.random() * this.props.enabledKeys.length);
 		const keyInfo = this.props.enabledKeys[randomIndex];

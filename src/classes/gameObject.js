@@ -17,7 +17,7 @@ export default class GameObject {
 	render = (canvasContext) => {
 
 		canvasContext.fillStyle = this.color;
-		canvasContext.fillRect(this.x, this.y, this.width, this.height);
+		canvasContext.fillRect(this.position.x, this.position.y, this.width, this.height);
 	}
 
 	update = (stage) => {

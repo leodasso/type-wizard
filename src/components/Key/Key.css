@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 8px;
     padding: 12px 12px;
-    background-color: rgb(95, 212, 173);
+    background-color: var(--deep-black);
     width: 60px;
     height: 50px;
     border-radius: 8px;
@@ -26,4 +26,6 @@
 .Key h3 {
     margin: auto;
     text-align: center;
+    font-size: 24px;
+    font-weight: 300;
 }
