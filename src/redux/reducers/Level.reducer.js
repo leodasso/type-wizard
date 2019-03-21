@@ -1,10 +1,7 @@
-import GameLevel from '../../classes/GameLevel';
-
-const defaultLevel = new GameLevel(1, 5, 60);
-defaultLevel.setEnabledKeys([65, 83, 68, 70, 74, 75, 76, 186]);
+import levels from '../../data/levels';
 
 /**Keeps track of the current level. The state is the full level object. */
-const currentLevel = (state = defaultLevel, action) => {
+const currentLevel = (state = levels[0], action) => {
   switch (action.type) {
     case 'SET_LEVEL':
       return action.payload;

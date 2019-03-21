@@ -17,7 +17,7 @@ export default class Firework extends GameObject {
 
 		this.emitDuration -= interval;
 
-		console.log('hi im a firework', this.emitDuration);
+		// console.log('hi im a firework', this.emitDuration);
 	}
 
 }

@@ -17,12 +17,19 @@ class GameStage extends Component {
 		fps: 60,
 		gameObjects: [],
 		gravity: 3,
+		onMonsterKilled:() => {
+			const newPoints = this.state.points + 1;
+			console.log('points is now', newPoints);
+			this.setState({points:newPoints});
+		}
 	}
 
 	state = {
 		intervalId: 0,
 		ctx: null,
 		keyPresses: 0,
+		points: 0,
+		complete: false,
 	}
 
 	componentDidMount = () => {
@@ -39,8 +46,18 @@ class GameStage extends Component {
 		this.recalculateCanvasDimensions();
 
 		this.beginSession();
+	}
 
-		console.log('playing level', this.props.level);
+	componentWillUnmount = () => {
+
+		// Remove the interval
+		clearInterval(this.state.intervalId);
+		// Remove the event listener for resized window
+		window.removeEventListener('resize', this.onWindowResized);
+	}
+
+	uploadSession = () => {
+		console.log('hi im uploading ur session now kthx');
 	}
 
 	// Begin a new game session
@@ -51,16 +68,8 @@ class GameStage extends Component {
 		this.props.dispatch({type: 'CLEAR_GAME_EVENTS'});
 
 		// Update based on the FPS
-		let newInterval = setInterval(this.update, 1000 / this.fps);
+		let newInterval = setInterval(this.update, 1000 / this.stage.fps);
 		this.setState({intervalId: newInterval});
-	}
-
-	componentWillUnmount = () => {
-
-		clearInterval(this.state.intervalId);
-
-		// Remove the event listener for resized window
-		window.removeEventListener('resize', this.onWindowResized);
 	}
 
 	onWindowResized = () => {
@@ -77,11 +86,13 @@ class GameStage extends Component {
 
 	/** This update runs every frame */
 	update = () => {
+
 		// clear the canvas
 		this.getContext().clearRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
 
 		this.updateTimer();
 		this.updateLevel();
+
 
 		// render every game object
 		for (const go of this.stage.gameObjects) {
@@ -90,14 +101,16 @@ class GameStage extends Component {
 			go.update(this.stage);
 		}
 
-		// clear out destroyed gameobjects
+		// clear out destroyed gameobjects from the list
 		this.stage.gameObjects = this.stage.gameObjects.filter(gameObject => !gameObject.destroyed);
 	}
 
 	updateLevel = () => {
 
+		this.checkKeyStrokes();
+
 		// Every frame, there's a random chance that the monster will appear
-		if (Math.random() <= 2 / 500) {
+		if (Math.random() <= this.props.level.difficulty / 100) {
 			console.log('make new mosnter');
 			this.addNewMonster();
 		}
@@ -111,9 +124,10 @@ class GameStage extends Component {
 
 		// Convert the element's coords to canvas coords
 		const monsterRect = domToCanvasCoords(this.refs.canvas, keyInfo.element.getBoundingClientRect());
+
+		// Create a new monster instance, and add it to the stage
 		const newMonster = prefabs.basicMonster({x: monsterRect.x, y:monsterRect.y});
 		newMonster.keyData = keyInfo.keyData;
-		console.log('addeed new monster', newMonster);
 		this.stage.gameObjects.push(newMonster);
 	}
 
@@ -123,12 +137,23 @@ class GameStage extends Component {
 	updateTimer = () => {
 
 		// Update the timer
-		this.timer += (1 / this.fps);
+		this.timer += (1 / this.stage.fps);
 
 		// Draw a new rect
 		this.getContext().fillStyle = 'red';
 		let newWidth = this.refs.canvas.width * (1 - this.progress());
 		this.getContext().fillRect(1, 1, newWidth, 10);
+
+		if (this.timer >= this.props.level.duration) {
+			this.onLevelComplete();
+		}
+	}
+
+	onLevelComplete = () => {
+
+		console.log('hi ur level is done now kthx');
+		clearInterval(this.state.intervalId);
+		this.setState({complete: true});
 	}
 
 	/** Returns the canvas context, which is used to draw on the canvas. The context
@@ -140,8 +165,6 @@ class GameStage extends Component {
 	}
 
 	render() {
-
-		this.checkKeyStrokes();
 
 		return (
 			<div ref="canvasContainer" className="stage-parent" >

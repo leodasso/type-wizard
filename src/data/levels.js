@@ -10,7 +10,7 @@ const allKeys = [81, 87, 69, 82, 84, 89, 85, 73, 79, 80,
 export default [
 	new GameLevel(0, 'Tutorial', 
 			'Learn proper key placement!', 
-			1, 30, beginnerKeys),
+			.6, 30, beginnerKeys),
 
 	new GameLevel(1, 'Beginner', 
 			'Practice using the home row keys', 
