@@ -15,8 +15,11 @@ class LevelCard extends Component{
 		console.log('Play!');
 
 		// TODO send level data to reducer
+		this.props.dispatch({
+			type: 'SET_LEVEL',
+			payload: this.props.levelData,
+		})
 
-		// TODO maybe restructure level data???
 
 		//  redirect
 		this.props.history.push('/play/stage');
@@ -38,12 +41,13 @@ class LevelCard extends Component{
 				onMouseLeave={this.onMouseExit}
 				className={cardClass}>
 				<div className={titleClass}>
-					<div>{levelData.title}</div>
+					<div>{levelData.name}</div>
 				</div>
 				<div className="dark-card-content">
-					
-					<p>{levelData.level.duration} sec</p>
-					<BodyButton onClick={this.onClickPlay}>
+					<p>{levelData.blurb}</p>
+					<p>{levelData.duration} sec</p>
+					<br />
+					<BodyButton onClick={this.onClickPlay} className={"play-button"}>
 						Play
 					</BodyButton>
 				</div>

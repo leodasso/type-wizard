@@ -2,16 +2,20 @@
 
 export default class GameLevel {
 
-    constructor(startDifficulty, endDifficulty, duration, enabled) {
-        this.startDifficulty = startDifficulty;
-        this.endDifficulty = endDifficulty;
-        this.duration = duration;
-    }
+	constructor(id, name, blurb, difficulty, duration, enabledKeys) {
 
-    /** Takes an array of keycodes and sets those as the active
-     * keys for this level.
-     */
-    setEnabledKeys = (keyCodes) => {
-        this.enabledKeys = keyCodes;
-    }
+		this.id = id;
+		this.name = name;
+		this.blurb = blurb;
+		this.difficulty = difficulty;
+		this.duration = duration;
+		this.enabledKeys = enabledKeys;
+	}
+
+	/** Takes an array of keycodes and sets those as the active
+	 * keys for this level.
+	 */
+	setEnabledKeys = (keyCodes) => {
+		this.enabledKeys = keyCodes;
+	}
 }

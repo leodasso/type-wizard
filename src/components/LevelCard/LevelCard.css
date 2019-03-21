@@ -1,5 +1,5 @@
 .dark-card {
-    min-width: 250px;
+    width: 300px;
     min-height: 150px;
     background-color: var(--deep-black);
     margin: 8px;
@@ -21,7 +21,7 @@
 }
 
 .dark-card-content {
-    padding: 12px;
+    padding: 12px 24px;
 }
 
 .dark-card-title {
@@ -33,6 +33,10 @@
     padding-bottom: 22px;
     text-align: center;
     transition: 200ms;
+}
+
+.play-button {
+    width: 100%;
 }
 
 .dark-card-title.hover {

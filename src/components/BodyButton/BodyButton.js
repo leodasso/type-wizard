@@ -3,7 +3,10 @@ import './BodyButton.css';
 
 
 const BodyButton = (props) => (
-  <button className="body-button" onClick={props.onClick}>
+  
+  <button 
+    className={props.className ? "body-button " + props.className : "body-button"} 
+    onClick={props.onClick}>
       {props.children}
   </button>
 );
