@@ -1,7 +1,19 @@
 .keyboard-card {
     background-color: var(--matte-black);
     padding: 0px;
-    margin: 12px;
+    margin: 16px;
+    transition: 500ms;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--clear);
+    box-shadow: 0px 2px 12px var(--deep-black);
+
+}
+
+.keyboard-card.selected {
+    box-shadow: 0px 8px 8px var(--bg-pink);
+    transform: translateY(-8px);
+    border-color: var(--primary-color);
 }
 
 .keyboard-title {
@@ -10,6 +22,12 @@
     font-weight: 300;
     text-align: center;
     margin: 12px auto;
+    transition: 500ms;
+
+}
+
+.keyboard-title.selected {
+    color: var(--primary-color);
 }
 
 .keys-preview-row {

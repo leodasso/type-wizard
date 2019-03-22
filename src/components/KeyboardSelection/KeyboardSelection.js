@@ -10,11 +10,11 @@ import Keyboard from '../Keyboard/Keyboard';
  */
 class KeyboardSelection extends Component {
 
-	selectKeyboard = layout => () => {
-		console.log('selecting ', layout.title);
+	selectKeyboard = () => {
+		console.log('selecting ', this.props.layout.title);
 		this.props.dispatch({
 			type:'SET_LAYOUT',
-			payload: layout,
+			payload: this.props.layout,
 		});
 	}
 
@@ -22,12 +22,20 @@ class KeyboardSelection extends Component {
 
 		const layout = this.props.layout;
 
+		const selectedClass = this.props.keyboard.id === layout.id ?
+			" selected" : "";
 		return (
-			<div className="keyboard-card">
-				<div className="keyboard-title">{layout.title}</div>
+			<div className={"keyboard-card" + selectedClass}>
+
+				<div className={"keyboard-title" + selectedClass}>
+					{layout.title}
+				</div>
+
 				<Keyboard keyboard={layout} preview={true}/>
+
 				<div className="keyboard-card-body">
 					<BodyButton 
+						onClick={this.selectKeyboard}
 						className="select-button">
 						Select
 					</BodyButton>
@@ -39,7 +47,7 @@ class KeyboardSelection extends Component {
 
 const mapReduxState = reduxState => {
 	return {
-		level: reduxState.currentLevel,
+		keyboard: reduxState.keyboard,
 	};
 }
 

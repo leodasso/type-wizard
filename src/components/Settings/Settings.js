@@ -10,16 +10,14 @@ import keyboardLayouts from '../../data/keyboard-layouts/layouts';
 
 class Settings extends Component{
 
-
-
-
 	render() {
 
 		return (
 			<div>
 				<Header>Settings</Header>
 				<BodyContainer>
-					<h3>Select a Keyboard</h3>
+					<h2>Select a Keyboard</h2>
+					<p className="subtitle">Try typing!</p>
 					<div className="keyboard-list">
 						{keyboardLayouts.map(layout => 
 
@@ -29,7 +27,6 @@ class Settings extends Component{
 							/>
 						)}
 					</div>
-					<p>Hi here's ur Settings</p>
 				</BodyContainer>
 			</div>
 		);

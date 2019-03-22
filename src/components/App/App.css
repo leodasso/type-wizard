@@ -19,6 +19,16 @@ body {
     color: var(--secondary-color);
 }
 
+h2 {
+    font-weight: 500;
+    margin-bottom: 6px; 
+}
+
+.subtitle {
+    font-size: 12px;
+    margin-top: 2px;
+}
+
 .alert {
     background-color: #ff4545;
     margin: 50px;
