@@ -132,6 +132,7 @@ class GameStage extends Component {
 		const newMonster = prefabs.basicMonster({x: monsterRect.x, y:monsterRect.y});
 		newMonster.keyData = keyInfo.keyData;
 		this.stage.gameObjects.push(newMonster);
+		console.log('game objects is now', this.stage.gameObjects);
 	}
 
 	/** Returns the progress (between 0 and 1) of the current level */
@@ -172,11 +173,6 @@ class GameStage extends Component {
 	render() {
 
 		if (this.state.complete) {
-
-			const sessionData = {
-
-			}
-
 			return (
 				<Modal
 					open={this.state.complete}

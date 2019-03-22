@@ -8,6 +8,12 @@ import BodyContainer from '../BodyContainer/BodyContainer';
 
 class Play extends Component{
 
+	componentDidMount() {
+		// reset the keys reducer. This contains keys that were set from
+		// the key components, but we want to hard reset it between
+		// play sessions.
+		this.props.dispatch({type:'CLEAR_KEYS'});
+	}
 
 	render() {
 
