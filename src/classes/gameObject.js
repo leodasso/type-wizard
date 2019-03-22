@@ -27,6 +27,7 @@ export default class GameObject {
 		canvasContext.fillRect(this.position.x, this.position.y, this.size.w, this.size.h);
 	}
 
+	/** Updates the movement / physics of this object */
 	update (stage) {
 
 		// Set an interval so that speeds are consistent no matter the framrate
@@ -43,25 +44,26 @@ export default class GameObject {
 
 		// gravity
 		if (this.gravity) {
-			this.vel_y += stage.gravity * interval;
+			this.velocity.z += stage.gravity * interval;
 		}
 
 		// velocity
-		this.x += this.vel_x * interval;
-		this.y += this.vel_y * interval;
+		this.position.x += this.velocity.x * interval;
+		this.position.y += this.velocity.y * interval;
+		this.position.z += this.velocity.z * interval;
 
 
 		if (this.bounce) {
 
 			// bounce x
-			if (this.x + this.size.w > stage.width || this.x < 0) {
-				this.vel_x = -this.vel_x;
+			if (this.position.x + this.size.w > stage.width || this.position.x < 0) {
+				this.velocity.x = -this.velocity.x;
 				this.onCollision();
 			}
 
 			// bounce y
-			if (this.y + this.size.h > stage.height || this.y < 0) {
-				this.vel_y = -this.vel_y;
+			if (this.position.y + this.size.h > stage.height || this.position.y < 0) {
+				this.velocity.y = -this.velocity.y;
 				this.onCollision();
 			}
 		}
@@ -74,7 +76,7 @@ export default class GameObject {
 		this.destroyed = true;
 	}
 
-	onCollision = () => {
+	onCollision() {
 
 	}
 
