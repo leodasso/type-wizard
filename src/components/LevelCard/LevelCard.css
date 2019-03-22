@@ -1,4 +1,4 @@
-.dark-card {
+.level-card {
     width: 300px;
     min-height: 150px;
     background-color: var(--deep-black);
@@ -11,20 +11,20 @@
     transition: 200ms;
 }
 
-.dark-card.hover {
+.level-card.hover {
     border-color: var(--bg-pink);
 }
 
 /* Unskew the inner workings of the card */
-.dark-card-content, .dark-card-title {
+.level-card-content, .level-card-title {
     transform: skewY(4deg) translateY(-10px);
 }
 
-.dark-card-content {
+.level-card-content {
     padding: 12px 24px;
 }
 
-.dark-card-title {
+.level-card-title {
     background-color: var(--matte-black);
     font-weight: 500;
     font-size: 24px;
@@ -39,7 +39,7 @@
     width: 100%;
 }
 
-.dark-card-title.hover {
+.level-card-title.hover {
     background-color: var(--bg-pink);
     color: var(--secondary-color);
 }

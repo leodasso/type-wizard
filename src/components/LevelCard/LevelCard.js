@@ -32,8 +32,8 @@ class LevelCard extends Component{
 	render() {
 
 		const levelData = this.props.levelData;
-		const cardClass = this.state.hovered ? 'dark-card hover' : 'dark-card';
-		const titleClass = this.state.hovered ? 'dark-card-title hover' : 'dark-card-title';
+		const cardClass = this.state.hovered ? 'level-card hover' : 'level-card';
+		const titleClass = this.state.hovered ? 'level-card-title hover' : 'level-card-title';
 
 		return (
 			<div 
@@ -43,7 +43,7 @@ class LevelCard extends Component{
 				<div className={titleClass}>
 					<div>{levelData.name}</div>
 				</div>
-				<div className="dark-card-content">
+				<div className="level-card-content">
 					<p>{levelData.blurb}</p>
 					<p>{levelData.duration} sec</p>
 					<br />
