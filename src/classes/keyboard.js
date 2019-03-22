@@ -7,9 +7,10 @@
  */
 export default class KeyboardData {
 
-    constructor(keyRows, id, title) {
+    constructor(keyRows, id, title, previewKeyRows) {
         this.keyRows = keyRows;
         this.id = id;
         this.title = title;
+        this.previewKeyRows = previewKeyRows;
     }
 }

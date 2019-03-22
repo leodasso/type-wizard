@@ -1,17 +1,40 @@
+/* Key row classes */
 .keyboard-row {
     display: flex;
     flex-direction: row;
-    margin: 8px 4px;
     justify-content: center;
+    flex:none;
+}
+.row-full {
+    margin: 8px 4px;
+}
+.row-preview {
+    transform: translate(-10px, -20px);
+    margin: 2px;
 }
 
+
+
+/* Keyboard classes */
 .keyboard {
-    position: absolute;
     display: flex;
     flex-direction: column;
     background-color: var(--deep-black);
-    border-radius: 16px;
     width: 100%;
+}
+
+.full {
+    border-radius: 16px;
     top: 32px;
     padding: 24px;
+    position: absolute;
+}
+
+.preview {
+    padding: 0px;
+    margin-top: 20px;
+    margin-bottom: 24px;
+    max-width: 250px;
+    height: 100px;
+    clip-path: polygon(0 0%, 100% 0, 100% 100%, 0% 100%);
 }

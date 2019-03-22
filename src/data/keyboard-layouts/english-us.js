@@ -39,4 +39,21 @@ const keyRows = [
 	]
 ]
 
-export default new Keyboard(keyRows, 0, "English-US")
+
+const previewRows = [
+	[
+		new KeyData(81, 'q'),
+		new KeyData(87, 'w'),
+		new KeyData(69, 'e'),
+		new KeyData(82, 'r'),
+		new KeyData(84, 't'),
+	],
+	[	
+		new KeyData(65, 'a'),
+		new KeyData(83, 's'),
+		new KeyData(68, 'd'),
+		new KeyData(70, 'f'),
+	],
+]
+
+export default new Keyboard(keyRows, 0, "English-US", previewRows)

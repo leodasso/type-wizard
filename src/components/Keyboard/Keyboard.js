@@ -11,9 +11,9 @@ class Keyboard extends Component {
 
 	// When the component mounts, add listeners for the keydown and keyup events
 	componentDidMount = () => {
+		// Set up the event listeners for key up/ keydown
 		document.addEventListener('keydown', this.keyDown);
 		document.addEventListener('keyup', this.keyUp);
-
 	}
 
 	// listen for shift keys
@@ -38,14 +38,25 @@ class Keyboard extends Component {
 	}
 
 	render() {
+
+		// Preview is a boolean - sometimes the keyboard is rendered in preview mode,
+		// like for selecting a keyboard layout. In this mode, it is styled differently,
+		// and all the keys are enabled
+		const preview = this.props.preview;
+
+		// which set of keys to use, and which CSS classes are used to style the keyboard.
+		const keyRows = preview ? this.props.keyboard.previewKeyRows : this.props.keyboard.keyRows;
+		const keyboardClass = preview ? "keyboard preview" : "keyboard full";
+		const keyRowClass = preview ? "keyboard-row row-preview" : "keyboard-row row-full";
+
 		return (
-			<div className="keyboard">
+			<div className={keyboardClass}>
 				{
-					this.props.keyboard.keyRows.map((row, rowIndex) => (
-						<div className="keyboard-row" key={rowIndex}>
+					keyRows.map((row, rowIndex) => (
+						<div className={keyRowClass} key={rowIndex}>
 							{
 								row.map((keyData, index) => 
-									<Key key={index} myKeyData={keyData} />
+									<Key key={index} myKeyData={keyData} preview={preview}/>
 								)
 							}
 						</div>

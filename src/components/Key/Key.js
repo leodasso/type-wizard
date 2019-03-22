@@ -36,7 +36,7 @@ class Key extends Component {
 		document.addEventListener('keyup', this.keyUp);
 
 		// dispatch an action for the key being active/inactive
-		if (this.isEnabled()) {
+		if (this.isEnabled() && !this.props.preview) {
 			this.props.dispatch({
 				type: 'ENABLE_KEY',
 				payload: {
@@ -55,7 +55,12 @@ class Key extends Component {
 	}
 
 	keyDown = (event) => {
-		if (!this.eventIsThisKey(event) || !this.isEnabled()) return;
+
+		// Ignore events that don't have to do with this key
+		if ( !this.eventIsThisKey(event) ) 				return;
+		// If the key is enabled or in preview mode, we can continue with the event
+		if ( !this.isEnabled() && !this.props.preview ) return;
+
 		this.setState({ keyState: 'pressed' });
 
 		// dispatch an event with the key info
@@ -94,7 +99,7 @@ class Key extends Component {
 			'key' : 'key pressed';
 
 		// override class for disabled keys
-		if (!this.isEnabled()) {
+		if (!this.isEnabled() && !this.props.preview) {
 			keyClass = 'key disabled'
 		}
 

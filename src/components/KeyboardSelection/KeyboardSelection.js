@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import BodyButton from '../BodyButton/BodyButton';
 import './KeyboardSelection.css';
+import Keyboard from '../Keyboard/Keyboard';
 
 /** This component is for displaying a preview of the keyboard in the 
  * settings screen. Shows a few keys and a button for choosing keyboards.
@@ -23,7 +24,10 @@ class KeyboardSelection extends Component {
 
 		return (
 			<div className="keyboard-card">
-				<h3>{layout.title}</h3>
+				<div>{layout.title}</div>
+				<div className="keys-preview">
+					<Keyboard keyboard={layout} preview={true}/>
+				</div>
 				<BodyButton>Select</BodyButton>
 			</div>
 		);

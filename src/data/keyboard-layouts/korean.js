@@ -39,4 +39,21 @@ const keyRows = [
 	]
 ]
 
-export default new Keyboard(keyRows, 1, "Korean");
+const previewRows = [
+	[
+		new KeyData(81, 'ㅂ', 'ㅃ'),
+		new KeyData(87, 'ㅈ', 'ㅉ'),
+		new KeyData(69, 'ㄷ', 'ㄸ'),
+		new KeyData(82, 'ㄱ', 'ㄲ'),
+		new KeyData(84, 'ㅅ', 'ㅆ'),
+	],
+	[	
+		new KeyData(65, 'ㅁ'),
+		new KeyData(83, 'ㄴ'),
+		new KeyData(68, 'ㅇ'),
+		new KeyData(70, 'ㄹ'),
+	],
+
+]
+
+export default new Keyboard(keyRows, 1, "Korean", previewRows);

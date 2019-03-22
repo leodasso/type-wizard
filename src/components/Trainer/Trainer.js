@@ -15,7 +15,7 @@ class Trainer extends Component {
 					<Header>Training</Header>
 				</div>
 				<div className="trainer">
-					<Keyboard keyboard={this.props.keyboard} ref="keyboard"/>
+					<Keyboard keyboard={this.props.keyboard} ref="keyboard" preview={false}/>
 					<GameStage />
 				</div>
 			</div>

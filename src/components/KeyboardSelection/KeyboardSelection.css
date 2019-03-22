@@ -1,5 +1,14 @@
 .keyboard-card {
     background-color: var(--matte-black);
-    padding: 24px;
+    padding: 0px;
     margin: 12px;
+}
+
+.keys-preview {
+    position: relative;
+}
+
+.keys-preview-row {
+    display: flex;
+    flex-direction: row;
 }
