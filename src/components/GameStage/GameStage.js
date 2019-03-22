@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './GameStage.css';
-import KeyboardGameObject from '../../classes/KeyboardGameObject';
 import prefabs from '../../data/prefabs';
 import calc from '../../data/calc';
 import LevelComplete from '../LevelComplete/LevelComplete';
@@ -60,21 +59,7 @@ class GameStage extends Component {
 		window.removeEventListener('resize', this.onWindowResized);
 	}
 
-	uploadSession = () => {
-		if (this.state.sessionUploaded) return;
 
-		this.setState({sessionUploaded: true});
-
-		const sesion = {
-			levelId: this.props.level.id,
-			duration: this.timer,
-			strokes: this.state.keyPresses,
-			score: this.state.score,
-		}
-
-		// TODO saga with the session stuff
-		console.log('hi im uploading ur session now kthx');
-	}
 
 	// Begin a new game session
 	beginSession = () => {
@@ -169,10 +154,10 @@ class GameStage extends Component {
 
 	onLevelComplete = () => {
 
-		console.log('level complete dawg');
+		// console.log('level complete dawg');
 		clearInterval(this.state.intervalId);
 		this.setState({complete: true});
-		this.uploadSession();
+		// this.uploadSession();
 
 	}
 
@@ -196,7 +181,11 @@ class GameStage extends Component {
 				<Modal
 					open={this.state.complete}
 					>
-					<LevelComplete/>
+					<LevelComplete
+						level={this.props.level}
+						strokes={this.state.keyPresses}
+						score={this.state.score}
+						accuracy={this.getAccuracy()}/>
 				</Modal>
 			)
 		}
@@ -221,6 +210,8 @@ class GameStage extends Component {
 	// Check if any of the keystrokes land on a monster. Store prev key pressed state
 	// so we can determine when to call keydown / keyup events
 	checkKeyStrokes = () => {
+
+		if (this.state.complete) return;
 
 		for (const keyPress of this.props.pressedKeys) {
 
