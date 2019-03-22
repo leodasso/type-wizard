@@ -11,6 +11,7 @@ class LevelComplete extends Component {
 
 	componentDidMount() {
 		console.log('hi level done from levelcomplete thing');
+		this.uploadSession();
 	}
 
 	uploadSession = () => {
@@ -23,8 +24,13 @@ class LevelComplete extends Component {
 			accuracy: this.props.accuracy,
 		}
 
-		// TODO saga with the session stuff
-		console.log('hi im uploading ur session now kthx');
+		axios.post('/api/session', sesion)
+		.then(() => {
+			console.log('yay post worked')
+		})
+		.catch(error => {
+			console.log('Error posting', error)
+		});
 	}
 
 	onClickNext = () => {
