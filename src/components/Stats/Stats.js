@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../Header/Header';
 import BodyContainer from '../BodyContainer/BodyContainer';
+import Session from '../Session/Session';
 
 class Stats extends Component{
 
@@ -13,11 +14,18 @@ class Stats extends Component{
 
 	render() {
 
+		console.log(this.props.sessions);
+
 		return (
 			<div>
 				<Header>Stats</Header>
 				<BodyContainer>
-					<p>Hi here's ur stats</p>
+					<h3>Hi here's ur stats</h3>
+					<div>
+						{
+							this.props.sessions.map(session => <Session />)
+						}
+					</div>
 				</BodyContainer>
 			</div>
 		);
