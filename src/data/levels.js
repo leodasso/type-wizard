@@ -13,7 +13,7 @@ export default [
 		'Tutorial', 
 		'Learn proper key placement!', 
 		.6, 
-		5, 
+		15, 
 		beginnerKeys),
 
 	new GameLevel(
@@ -22,7 +22,8 @@ export default [
 		'Practice using the home row keys', 
 		2, 
 		30, 
-		beginnerKeys),
+		beginnerKeys
+	),
 
 	new GameLevel(
 		100, 
@@ -30,5 +31,15 @@ export default [
 		'Try practicing with new keys!', 
 		3, 
 		60, 
-		middleRowKeys),
+		middleRowKeys
+	),
+
+	new GameLevel(
+		101, 
+		'Journeyman II', 
+		'Wow so many keys!', 
+		1, 
+		60, 
+		allKeys
+	),
 ]

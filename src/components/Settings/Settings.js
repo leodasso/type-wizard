@@ -2,19 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../Header/Header';
 import BodyContainer from '../BodyContainer/BodyContainer';
+import KeyboardSelection from '../KeyboardSelection/KeyboardSelection';
+import './Settings.css';
+
+// The array of keyboards
 import keyboardLayouts from '../../data/keyboard-layouts/layouts';
-import BodyButton from '../BodyButton/BodyButton';
 
 class Settings extends Component{
 
 
-	selectKeyboard = layout => () => {
-		console.log('selecting ', layout.title);
-		this.props.dispatch({
-			type:'SET_LAYOUT',
-			payload: layout,
-		});
-	}
+
 
 	render() {
 
@@ -22,13 +19,16 @@ class Settings extends Component{
 			<div>
 				<Header>Settings</Header>
 				<BodyContainer>
-					{keyboardLayouts.map(layout => 
-						<BodyButton 
-							key={layout.id} 
-							onClick={this.selectKeyboard(layout)}>
-							{layout.title}
-						</BodyButton>)
-					}
+					<h3>Select a Keyboard</h3>
+					<div className="keyboard-list">
+						{keyboardLayouts.map(layout => 
+
+							<KeyboardSelection 
+								key={layout.id}
+								layout={layout}
+							/>
+						)}
+					</div>
 					<p>Hi here's ur Settings</p>
 				</BodyContainer>
 			</div>
