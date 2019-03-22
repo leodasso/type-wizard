@@ -1,16 +1,22 @@
+
+/** GameObject is the base class for any object that shows up on the stage.
+ * It takes care of rendering and motion. Position and Velocity should be 
+ * objects with up to 3 coords {x:25, y:45, z:3}. {x:25, y:45} is also acceptable. 
+ * Size is an object with 2 coords {w:5, h:10}. Color should be a string, example is
+ * 'red' or 'rgb(25, 123, 33)
+ */
 export default class GameObject {
 
 	// lets the game update loop know that it can remove this object.
 	destroyed = false;
 
-	constructor(position, velocity, width, height, color, lifetime, deathObject) {
-		this.position = position;
-		this.velocity = velocity;
-		this.width = width;
-		this.height = height;
-		this.color = color;
-		this.lifetime = lifetime;
-		this.deathObject = deathObject;
+	constructor(position, velocity, size, color, lifetime, deathObject) {
+		this.position 		= position;
+		this.velocity 		= velocity;
+		this.size 			= size;
+		this.color 			= color;
+		this.lifetime 		= lifetime;
+		this.deathObject 	= deathObject;
 	}
 
 	// Draws the game object for this frame. Requires the context of the 
@@ -18,7 +24,7 @@ export default class GameObject {
 	render = (canvasContext) => {
 
 		canvasContext.fillStyle = this.color;
-		canvasContext.fillRect(this.position.x, this.position.y, this.width, this.height);
+		canvasContext.fillRect(this.position.x, this.position.y, this.size.w, this.size.h);
 	}
 
 	update (stage) {
@@ -48,13 +54,13 @@ export default class GameObject {
 		if (this.bounce) {
 
 			// bounce x
-			if (this.x + this.width > stage.width || this.x < 0) {
+			if (this.x + this.size.w > stage.width || this.x < 0) {
 				this.vel_x = -this.vel_x;
 				this.onCollision();
 			}
 
 			// bounce y
-			if (this.y + this.height > stage.height || this.y < 0) {
+			if (this.y + this.size.h > stage.height || this.y < 0) {
 				this.vel_y = -this.vel_y;
 				this.onCollision();
 			}
