@@ -13,7 +13,7 @@ export default [
 		'Tutorial', 
 		'Learn proper key placement!', 
 		.6, 
-		30, 
+		5, 
 		beginnerKeys),
 
 	new GameLevel(

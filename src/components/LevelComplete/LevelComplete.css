@@ -1,0 +1,17 @@
+.card {
+    padding: 24px;
+}
+
+.purple {
+    background-color: var(--bg-pink);
+}
+
+.matte {
+    background-color: var(--matte-black);
+}
+
+.center-modal {
+    margin: 80px auto;
+    max-width: 600px;
+    width: 50%;
+}

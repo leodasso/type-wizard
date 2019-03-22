@@ -4,6 +4,8 @@ import './GameStage.css';
 import KeyboardGameObject from '../../classes/KeyboardGameObject';
 import prefabs from '../../data/prefabs';
 import calc from '../../data/calc';
+import LevelComplete from '../LevelComplete/LevelComplete';
+import Modal from '@material-ui/core/Modal';
 
 /** The Keyboard component takes in a keyboard data class, and renders the keyboard on screen.
  * Keyboard data is keyData divided into rows.
@@ -60,6 +62,17 @@ class GameStage extends Component {
 
 	uploadSession = () => {
 		if (this.state.sessionUploaded) return;
+
+		this.setState({sessionUploaded: true});
+
+		const sesion = {
+			levelId: this.props.level.id,
+			duration: this.timer,
+			strokes: this.state.keyPresses,
+			score: this.state.score,
+		}
+
+		// TODO saga with the session stuff
 		console.log('hi im uploading ur session now kthx');
 	}
 
@@ -83,6 +96,7 @@ class GameStage extends Component {
 	 * the width and height of the canvas's parent container, and sets the canvas
 	 * width and height.. */
 	recalculateCanvasDimensions = () => {
+		if (!this.refs.canvas) return;
 		this.refs.canvas.width = this.refs.canvasContainer.getBoundingClientRect().width;
 		this.refs.canvas.height = this.refs.canvasContainer.getBoundingClientRect().height;
 	}
@@ -114,6 +128,7 @@ class GameStage extends Component {
 	}
 
 	clearCanvas = () => {
+		if (!this.refs.canvas) return;
 		this.getContext().clearRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
 	}
 
@@ -154,9 +169,11 @@ class GameStage extends Component {
 
 	onLevelComplete = () => {
 
-		console.log('hi ur level is done now kthx');
+		console.log('level complete dawg');
 		clearInterval(this.state.intervalId);
 		this.setState({complete: true});
+		this.uploadSession();
+
 	}
 
 	/** Returns the canvas context, which is used to draw on the canvas. The context
@@ -168,6 +185,21 @@ class GameStage extends Component {
 	}
 
 	render() {
+
+		if (this.state.complete) {
+
+			const sessionData = {
+
+			}
+
+			return (
+				<Modal
+					open={this.state.complete}
+					>
+					<LevelComplete/>
+				</Modal>
+			)
+		}
 
 		return (
 			<div>
