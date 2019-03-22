@@ -4,11 +4,23 @@
     margin: 12px;
 }
 
-.keys-preview {
-    position: relative;
+.keyboard-title {
+    width: 100%;
+    font-size: 24px;
+    font-weight: 300;
+    text-align: center;
+    margin: 12px auto;
 }
 
 .keys-preview-row {
     display: flex;
     flex-direction: row;
+}
+
+.select-button {
+    width: 100%;
+}
+
+.keyboard-card-body {
+    margin: 12px;
 }

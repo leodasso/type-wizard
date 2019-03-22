@@ -24,11 +24,14 @@ class KeyboardSelection extends Component {
 
 		return (
 			<div className="keyboard-card">
-				<div>{layout.title}</div>
-				<div className="keys-preview">
-					<Keyboard keyboard={layout} preview={true}/>
+				<div className="keyboard-title">{layout.title}</div>
+				<Keyboard keyboard={layout} preview={true}/>
+				<div className="keyboard-card-body">
+					<BodyButton 
+						className="select-button">
+						Select
+					</BodyButton>
 				</div>
-				<BodyButton>Select</BodyButton>
 			</div>
 		);
 	}
