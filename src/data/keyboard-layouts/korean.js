@@ -39,4 +39,4 @@ const keyRows = [
 	]
 ]
 
-export default new Keyboard(keyRows)
+export default new Keyboard(keyRows, 1, "Korean");

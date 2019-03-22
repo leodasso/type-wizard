@@ -5,9 +5,6 @@ import GameStage from '../GameStage/GameStage';
 import Header from '../Header/Header';
 import './Trainer.css';
 
-import englishUS from '../../data/keyboard-layouts/english-us';
-import korean from '../../data/keyboard-layouts/korean';
-
 class Trainer extends Component {
 
 	render() {
@@ -18,7 +15,7 @@ class Trainer extends Component {
 					<Header>Training</Header>
 				</div>
 				<div className="trainer">
-					<Keyboard keyboard={englishUS} ref="keyboard"/>
+					<Keyboard keyboard={this.props.keyboard} ref="keyboard"/>
 					<GameStage />
 				</div>
 			</div>
@@ -27,8 +24,8 @@ class Trainer extends Component {
 }
 
 const mapStateToProps = state => ({
-	user: state.user,
 	enabledKeys: state.ableKeys,
+	keyboard: state.keyboard,
 });
 
 // this allows us to use <App /> in index.js

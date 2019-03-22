@@ -7,6 +7,7 @@ import shifted from './Shifted.reducer';
 import pressedKeys from './PressedKeys.reducer';
 import currentLevel from './Level.reducer';
 import gameEvents from './GameEvents.reducer';
+import keyboard from './Keyboard.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
 	pressedKeys,	// keep track of which keys are pressed (other than shift)
 	currentLevel,	// The current level's full info
 	gameEvents,		// An array of all the game events for a session
+	keyboard,		// the current keyboard layout
 });
 
 export default rootReducer;
