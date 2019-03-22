@@ -5,6 +5,11 @@ import BodyContainer from '../BodyContainer/BodyContainer';
 
 class Stats extends Component{
 
+	componentDidMount() {
+
+		// fetch the list of sessions
+		this.props.dispatch({type: 'FETCH_SESSIONS'});
+	}
 
 	render() {
 
@@ -12,7 +17,7 @@ class Stats extends Component{
 			<div>
 				<Header>Stats</Header>
 				<BodyContainer>
-                	<p>Hi here's ur stats</p>
+					<p>Hi here's ur stats</p>
 				</BodyContainer>
 			</div>
 		);

@@ -16,7 +16,10 @@ class LevelComplete extends Component {
 
 	uploadSession = () => {
 
+		console.log(this.props.user);
+
 		const sesion = {
+			userId: this.props.user.id,
 			levelId: this.props.level.id,
 			duration: this.props.level.duration,
 			strokes: this.props.strokes,
