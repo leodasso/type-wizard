@@ -101,7 +101,15 @@ class GameStage extends Component {
 			this.addNewMonster();
 		}
 
+		// render game object shadows
+		this.getContext().globalAlpha = .5;
+		for (const go of this.stage.gameObjects) {
+			if (go.destroyed) continue;
+			go.renderShadow(this.getContext());
+		}
+
 		// render every game object
+		this.getContext().globalAlpha = 1;
 		for (const go of this.stage.gameObjects) {
 			if (go.destroyed) continue;
 			go.render(this.getContext());

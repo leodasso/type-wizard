@@ -18,14 +18,15 @@ export default class GameObject {
 		this.lifetime 		= lifetime;
 		this.deathObject 	= deathObject;
 		this.gravity		= true;
-		this.renders		= true;
+		this.isVisible		= true;
+		this.hasShadow		= true;
 	}
 
 	// Draws the game object for this frame. Requires the context of the 
 	// canvas that you want to draw on.
-	render = (canvasContext) => {
+	render = canvasContext => {
 
-		if (!this.renders) return;
+		if (!this.isVisible) return;
 
 		canvasContext.fillStyle = this.color;
 
@@ -33,6 +34,17 @@ export default class GameObject {
 		const z = this.position.z ? this.position.z : 0;
 		const onScreenY = this.position.y - (z/2);
 		canvasContext.fillRect(this.position.x, onScreenY, this.size.w, this.size.h);
+	}
+
+	renderShadow = canvasContext => {
+
+		if (!this.hasShadow || !this.isVisible) return;
+		canvasContext.fillStyle = 'black';
+		canvasContext.fillRect(
+			this.position.x, 
+			this.position.y + this.size.h - this.size.h/3, 
+			this.size.w, 
+			this.size.h / 3);
 	}
 
 	/** Updates the movement / physics of this object */
