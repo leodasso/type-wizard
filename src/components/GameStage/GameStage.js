@@ -18,7 +18,7 @@ class GameStage extends Component {
 	stage = {
 		fps: 60,
 		gameObjects: [],
-		gravity: 3,
+		gravity: 900,
 		onMonsterKilled:() => {
 			const newScore = this.state.score + 1;
 			console.log('points is now', newScore);
@@ -129,10 +129,11 @@ class GameStage extends Component {
 		const monsterRect = calc.domToCanvasCoords(this.refs.canvas, keyInfo.element.getBoundingClientRect());
 
 		// Create a new monster instance, and add it to the stage
-		const newMonster = prefabs.basicMonster({x: monsterRect.x, y:monsterRect.y});
+		const newMonster = prefabs.basicMonster({x: monsterRect.x, y:monsterRect.y, z:100});
+		// give the monster some upward velocity
+		newMonster.velocity = {x: 0, y:0, z:0};
 		newMonster.keyData = keyInfo.keyData;
 		this.stage.gameObjects.push(newMonster);
-		console.log('game objects is now', this.stage.gameObjects);
 	}
 
 	/** Returns the progress (between 0 and 1) of the current level */
@@ -155,11 +156,8 @@ class GameStage extends Component {
 
 	onLevelComplete = () => {
 
-		// console.log('level complete dawg');
 		clearInterval(this.state.intervalId);
 		this.setState({complete: true});
-		// this.uploadSession();
-
 	}
 
 	/** Returns the canvas context, which is used to draw on the canvas. The context

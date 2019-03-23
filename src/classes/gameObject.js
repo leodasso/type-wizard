@@ -11,20 +11,28 @@ export default class GameObject {
 	destroyed = false;
 
 	constructor(position, velocity, size, color, lifetime, deathObject) {
-		this.position 		= position;
-		this.velocity 		= velocity;
+		this.position 		= getSafeVector(position);
+		this.velocity 		= getSafeVector(velocity);
 		this.size 			= size;
 		this.color 			= color;
 		this.lifetime 		= lifetime;
 		this.deathObject 	= deathObject;
+		this.gravity		= true;
+		this.renders		= true;
 	}
 
 	// Draws the game object for this frame. Requires the context of the 
 	// canvas that you want to draw on.
 	render = (canvasContext) => {
 
+		if (!this.renders) return;
+
 		canvasContext.fillStyle = this.color;
-		canvasContext.fillRect(this.position.x, this.position.y, this.size.w, this.size.h);
+
+		// the onscreen y is a combination of y and z coords. The amount we change z is kind of arbitrary.
+		const z = this.position.z ? this.position.z : 0;
+		const onScreenY = this.position.y - (z/2);
+		canvasContext.fillRect(this.position.x, onScreenY, this.size.w, this.size.h);
 	}
 
 	/** Updates the movement / physics of this object */
@@ -44,7 +52,7 @@ export default class GameObject {
 
 		// gravity
 		if (this.gravity) {
-			this.velocity.z += stage.gravity * interval;
+			this.velocity.z -= stage.gravity * interval;
 		}
 
 		// velocity
@@ -52,20 +60,22 @@ export default class GameObject {
 		this.position.y += this.velocity.y * interval;
 		this.position.z += this.velocity.z * interval;
 
+		// bounce x
+		if (this.position.x + this.size.w > stage.width || this.position.x < 0) {
+			this.velocity.x = -this.velocity.x;
+			this.onCollision();
+		}
 
-		if (this.bounce) {
+		// bounce y
+		if (this.position.y + this.size.h > stage.height || this.position.y < 0) {
+			this.velocity.y = -this.velocity.y;
+			this.onCollision();
+		}
 
-			// bounce x
-			if (this.position.x + this.size.w > stage.width || this.position.x < 0) {
-				this.velocity.x = -this.velocity.x;
-				this.onCollision();
-			}
-
-			// bounce y
-			if (this.position.y + this.size.h > stage.height || this.position.y < 0) {
-				this.velocity.y = -this.velocity.y;
-				this.onCollision();
-			}
+		// bounce z - this is the coord perpendicular to the ground plane so it's a bit diff
+		if (this.position.z < 0) {
+			this.velocity.z = Math.abs(this.velocity.z);
+			this.onCollision();
 		}
 	}
 
@@ -79,5 +89,11 @@ export default class GameObject {
 	onCollision() {
 
 	}
-
 }
+
+const getSafeVector = (vector) => (
+	{
+		x: vector.x ? vector.x: 0,
+		y: vector.y ? vector.y: 0,
+		z: vector.z ? vector.z: 0,
+	})
