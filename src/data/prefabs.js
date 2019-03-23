@@ -19,7 +19,11 @@ export default {
 			position, 
 			{x:0, y:0, z:0},
 			{w:50, h:50},
-			'blue', 3, null, 1, 10);
+			'blue',
+			1,
+			0,
+			40,
+			);
 	}
 
 }

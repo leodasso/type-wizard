@@ -140,6 +140,7 @@ class GameStage extends Component {
 		const newMonster = prefabs.basicMonster({x: monsterRect.x, y:monsterRect.y, z:100});
 		// give the monster some upward velocity
 		newMonster.velocity = {x: 0, y:0, z:0};
+		newMonster.deathObjectMethod = prefabs.basicMonsterDeath;
 		newMonster.keyData = keyInfo.keyData;
 		this.stage.gameObjects.push(newMonster);
 	}

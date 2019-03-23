@@ -19,8 +19,6 @@ export default class KeyboardGameObject extends GameObject {
 
 	destroy(stage) {
 		super.destroy(stage);
-		const deathObject = prefabs.basicMonsterDeath(this.position);
-		stage.gameObjects.push(deathObject);
 		stage.onMonsterKilled();
 	}
 
