@@ -1,5 +1,5 @@
 import GameObject from "./gameObject";
-=
+
 /** Keyboard game object is associated to a specific key. */
 export default class KeyboardGameObject extends GameObject {
 

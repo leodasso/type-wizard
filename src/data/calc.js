@@ -16,5 +16,13 @@ export default {
 			width: inputRect.width,
 			height: inputRect.height,
 		}
+	},
+
+	/**Returns a random value between the given min and max values. */
+	randomRange: (min, max) => {
+
+		const range = max - min;
+		const rand = Math.random() * range;
+		return min + rand;
 	}
 }

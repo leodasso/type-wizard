@@ -1,4 +1,5 @@
 import GameObject from './gameObject';
+import Particle from './Particle';
 
 export default class Firework extends GameObject {
 
@@ -13,7 +14,8 @@ export default class Firework extends GameObject {
 
 	init(stage) {
 		super.init(stage);
-		console.log('hi i iniitz');
+
+		// This burst emits many particles in one frame.
 		for (let i = 0; i < this.burstEmits; i++) {
 			this.emit(stage);
 		}
@@ -25,6 +27,7 @@ export default class Firework extends GameObject {
 		// Set an interval so that speeds are consistent no matter the framrate
 		let interval = 1 / stage.fps;
 
+		// For emitting particles over a set interval
 		this.emitTimer += interval;
 		if (this.emitTimer >= this.emitPeriod) {
 			this.emit(stage);
@@ -32,6 +35,7 @@ export default class Firework extends GameObject {
 		}
 	}
 
+	/** Emits a single particle onto the stage */
 	emit(stage) {
 
 		// choose a random position
@@ -42,10 +46,11 @@ export default class Firework extends GameObject {
 		};
 
 		// create a new game object at that position
+		const magnitude = 100;
 		const vel = {
-			x: this.velocity.x + randomRange(100),
-			y: this.velocity.y + randomRange(100),
-			z: this.velocity.z + randomRange(100),
+			x: this.velocity.x + randomRange(magnitude),
+			y: this.velocity.y + randomRange(magnitude),
+			z: this.velocity.z + Math.random() * magnitude * 6,
 		};
 
 		const size = {
@@ -54,7 +59,13 @@ export default class Firework extends GameObject {
 		}
 
 		// create the new particle
-		const newParticle = new GameObject(pos, vel, size, 'cyan', 1, undefined);
+		const newParticle = new Particle(
+			pos, 
+			vel, 
+			size, 
+			'cyan', 
+			{min: .5, max: 1.5},
+			 undefined);
 		stage.gameObjects.push(newParticle);
 	}
 

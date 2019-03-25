@@ -23,11 +23,12 @@ export default class GameObject {
 		this.isVisible		= true;
 		this.hasShadow		= true;
 		this.initialized 	= false;
+		this.startLifetime	= lifetime;		// Memorizes the original lifetime
 	}
 
 	// Draws the game object for this frame. Requires the context of the 
 	// canvas that you want to draw on.
-	render = canvasContext => {
+	render (canvasContext) {
 
 		if (!this.isVisible) return;
 

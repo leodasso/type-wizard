@@ -158,7 +158,7 @@ class GameStage extends Component {
 		const monsterRect = calc.domToCanvasCoords(this.refs.canvas, keyInfo.element.getBoundingClientRect());
 
 		// Create a new monster instance, and add it to the stage
-		const newMonster = prefabs.basicMonster({x: monsterRect.x, y:monsterRect.y, z:20});
+		const newMonster = prefabs.basicMonster({x: monsterRect.x, y:monsterRect.y, z:0});
 		newMonster.deathObjectMethod = prefabs.basicMonsterDeath;
 		newMonster.keyData = keyInfo.keyData;
 		this.stage.gameObjects.push(newMonster);
