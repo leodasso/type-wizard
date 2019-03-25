@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import DarkCard from '../DarkCard/DarkCard';
 import Center from '../Center/Center';
 import BodyButton from '../BodyButton/BodyButton';
+import Warning from '../Warning/Warning';
 
 // Material UI
 import TextField from '@material-ui/core/TextField';
@@ -43,12 +44,9 @@ class RegisterPage extends Component {
 				<DarkCard className="log-in-card">
 
 				{this.props.errors.registrationMessage && (
-					<div
-						className="alert"
-						role="alert"
-					>
+					<Warning>
 						{this.props.errors.registrationMessage}
-					</div>
+					</Warning>
 				)}
 
 				<form onSubmit={this.registerUser}>

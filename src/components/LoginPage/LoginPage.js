@@ -6,6 +6,7 @@ import BodyButton from '../Design/BodyButton/BodyButton';
 
 import TextField from '@material-ui/core/TextField';
 import Neon from '../Design/Neon/Neon';
+import Warning from '../Warning/Warning';
 
 class LoginPage extends Component {
 	state = {
@@ -40,12 +41,9 @@ class LoginPage extends Component {
 			<Center>
 				<DarkCard className="log-in-card">
 					{this.props.errors.loginMessage && (
-						<h2
-							className="alert"
-							role="alert"
-						>
+						<Warning>
 							{this.props.errors.loginMessage}
-						</h2>
+						</Warning>
 					)}
 
 

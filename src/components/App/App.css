@@ -30,11 +30,6 @@ h2 {
     margin-top: 2px;
 }
 
-.alert {
-    background-color: #ff4545;
-    margin: 50px;
-}
-
 .content {
     /* Large left margin to keep the content from being overlapped 
     by the navigation */
