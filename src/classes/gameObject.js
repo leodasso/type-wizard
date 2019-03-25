@@ -100,6 +100,7 @@ export default class GameObject {
 		// bounce z - this is the coord perpendicular to the ground plane so it's a bit diff
 		if (this.position.z < 0) {
 			this.velocity.z = Math.abs(this.velocity.z);
+			this.position.z = 0;
 			this.onCollision();
 		}
 	}

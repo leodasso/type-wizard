@@ -1,6 +1,5 @@
 import GameObject from "./gameObject";
-import prefabs from '../data/prefabs';
-
+=
 /** Keyboard game object is associated to a specific key. */
 export default class KeyboardGameObject extends GameObject {
 
