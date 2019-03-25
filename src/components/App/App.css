@@ -44,15 +44,6 @@ h2 {
     min-height: 600px;
 }
 
-form {
-    background-color: var(--deep-black);
-    width: 30%;
-    height: 250px;
-    margin: 20px auto;
-    padding: 25px;
-    border-radius: 0px 0px 6px 6px;
-}
-
 input {
     margin: 5px;
     margin-bottom: 10px;
@@ -70,6 +61,11 @@ input {
 
 .log-in:hover, .log-out:hover, .register:hover {
   background-color: #008183;
+}
+
+.log-in-card {
+    /* height: 100%; */
+    padding: 24px;
 }
 
 /* This line makes the "Register" and "Login" buttons look like links */
