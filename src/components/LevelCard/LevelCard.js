@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './LevelCard.css';
 import { withRouter } from 'react-router-dom';
-import BodyButton from '../BodyButton/BodyButton';
+import BodyButton from '../Design/BodyButton/BodyButton';
 
 class LevelCard extends Component{
 

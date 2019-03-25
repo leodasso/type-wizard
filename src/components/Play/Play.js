@@ -4,7 +4,7 @@ import Header from '../Header/Header';
 import levels from '../../data/levels';
 import LevelCard from '../LevelCard/LevelCard';
 import './Play.css';
-import BodyContainer from '../BodyContainer/BodyContainer';
+import BodyContainer from '../Design/BodyContainer/BodyContainer';
 
 class Play extends Component{
 

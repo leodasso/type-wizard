@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Center from '../Center/Center';
-import DarkCard from '../DarkCard/DarkCard';
+import Center from '../Design/Center/Center';
+import DarkCard from '../Design/DarkCard/DarkCard';
 import BodyButton from '../Design/BodyButton/BodyButton';
 
 import TextField from '@material-ui/core/TextField';

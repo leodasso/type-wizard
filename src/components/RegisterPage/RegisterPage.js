@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import DarkCard from '../DarkCard/DarkCard';
-import Center from '../Center/Center';
-import BodyButton from '../BodyButton/BodyButton';
+import DarkCard from '../Design/DarkCard/DarkCard';
+import Center from '../Design/Center/Center';
+import BodyButton from '../Design/BodyButton/BodyButton';
 import Warning from '../Warning/Warning';
 
 // Material UI

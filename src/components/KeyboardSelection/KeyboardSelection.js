@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import BodyButton from '../BodyButton/BodyButton';
+import BodyButton from '../Design/BodyButton/BodyButton';
 import './KeyboardSelection.css';
 import Keyboard from '../Keyboard/Keyboard';
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../Header/Header';
-import BodyContainer from '../BodyContainer/BodyContainer';
+import BodyContainer from '../Design/BodyContainer/BodyContainer';
 import Session from '../Session/Session';
 import Chart from 'chart.js';
 import './Stats.css';

@@ -1,6 +1,6 @@
 import React from 'react';
 import './BodyContainer.css'
-import Footer from '../Footer/Footer';
+import Footer from '../../Footer/Footer'
 
 /** This is the container for putting the body of a page into.
  * It rests under the header, and has the correct padding / margins.

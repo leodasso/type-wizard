@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from '../Header/Header';
-import BodyContainer from '../BodyContainer/BodyContainer';
+import BodyContainer from '../Design/BodyContainer/BodyContainer';
 import KeyboardSelection from '../KeyboardSelection/KeyboardSelection';
 import './Settings.css';
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import DarkCard from '../DarkCard/DarkCard';
+import DarkCard from '../Design/DarkCard/DarkCard';
 import './Session.css';
 import levels from '../../data/levels';
 

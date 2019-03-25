@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './LevelComplete.css';
-import BodyButton from '../BodyButton/BodyButton';
+import BodyButton from '../Design/BodyButton/BodyButton';
 import axios from 'axios';
 import {withRouter} from 'react-router-dom';
 
