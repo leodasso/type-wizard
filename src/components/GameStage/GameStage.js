@@ -19,10 +19,14 @@ class GameStage extends Component {
 		fps: 60,
 		gameObjects: [],
 		gravity: 900,
+		occupiedKeys: [],		// Keys that have objects on them
+
 		onMonsterKilled:() => {
 			const newScore = this.state.score + 1;
 			console.log('points is now', newScore);
 			this.setState({score:newScore});
+
+			// TODO clear monster from occupied keys
 		}
 	}
 
@@ -129,9 +133,26 @@ class GameStage extends Component {
 	/** Adds a new monster on a random available key. */
 	addNewMonster = () => {
 
-		// get a random key
-		const randomIndex = Math.floor(Math.random() * this.props.enabledKeys.length);
-		const keyInfo = this.props.enabledKeys[randomIndex];
+		// Check which keys don't have monster on them
+		let possibleKeys = [];
+		for (let key of this.props.enabledKeys) {
+
+			// We don't want to consider keys for spawning if they already
+			// have a monster/some other object on them
+			if (this.stage.occupiedKeys.includes(key.keyCode)) continue;
+
+			possibleKeys.push(key);
+		}
+
+		// If there are no keys available for spawning, we can just stop here.
+		if (possibleKeys.length <= 1) return;
+
+		const randomIndex = Math.floor(Math.random() * possibleKeys.length);
+		const keyInfo = possibleKeys[randomIndex];
+
+		// We now have the key that the monster will be placed on. 
+		// we need to mark it as occupied
+		this.markKeyOccupied(keyInfo.keyCode);
 
 		// Convert the element's coords to canvas coords
 		const monsterRect = calc.domToCanvasCoords(this.refs.canvas, keyInfo.element.getBoundingClientRect());
@@ -208,6 +229,14 @@ class GameStage extends Component {
 	getAccuracy = () => {
 		if (this.state.keyPresses <= 0) return 0;
 		return ((this.state.score / this.state.keyPresses) * 100).toFixed(2);
+	}
+
+	markKeyOccupied = keycode => {
+
+		// prevent duplicate keycodes 
+		if (this.stage.occupiedKeys.includes(keycode)) return;
+
+		this.stage.occupiedKeys.push(keycode);
 	}
 
 	// Check if any of the keystrokes land on a monster. Store prev key pressed state
