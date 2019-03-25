@@ -2,3 +2,7 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+.chart-container {
+    max-height: 300px;
+}
