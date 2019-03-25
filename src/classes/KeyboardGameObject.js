@@ -19,7 +19,7 @@ export default class KeyboardGameObject extends GameObject {
 
 	destroy(stage) {
 		super.destroy(stage);
-		stage.onMonsterKilled();
+		stage.onMonsterKilled(this.keyData);
 	}
 
 }

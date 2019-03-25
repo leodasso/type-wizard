@@ -21,12 +21,12 @@ class GameStage extends Component {
 		gravity: 900,
 		occupiedKeys: [],		// Keys that have objects on them
 
-		onMonsterKilled:() => {
+		onMonsterKilled:(keyData) => {
 			const newScore = this.state.score + 1;
-			console.log('points is now', newScore);
 			this.setState({score:newScore});
 
-			// TODO clear monster from occupied keys
+			// clear monster from occupied keys
+			this.stage.occupiedKeys = this.stage.occupiedKeys.filter(key => key != keyData.keyCode);
 		}
 	}
 
@@ -158,9 +158,7 @@ class GameStage extends Component {
 		const monsterRect = calc.domToCanvasCoords(this.refs.canvas, keyInfo.element.getBoundingClientRect());
 
 		// Create a new monster instance, and add it to the stage
-		const newMonster = prefabs.basicMonster({x: monsterRect.x, y:monsterRect.y, z:100});
-		// give the monster some upward velocity
-		newMonster.velocity = {x: 0, y:0, z:0};
+		const newMonster = prefabs.basicMonster({x: monsterRect.x, y:monsterRect.y, z:20});
 		newMonster.deathObjectMethod = prefabs.basicMonsterDeath;
 		newMonster.keyData = keyInfo.keyData;
 		this.stage.gameObjects.push(newMonster);
