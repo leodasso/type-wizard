@@ -42,12 +42,12 @@ class RegisterPage extends Component {
 				<DarkCard className="log-in-card">
 
 				{this.props.errors.registrationMessage && (
-					<h2
+					<div
 						className="alert"
 						role="alert"
 					>
 						{this.props.errors.registrationMessage}
-					</h2>
+					</div>
 				)}
 
 				<form onSubmit={this.registerUser}>
@@ -55,7 +55,7 @@ class RegisterPage extends Component {
 					<div>
 							<TextField
 								type="text"
-								name="username"
+								label="username"
 								fullWidth
 								value={this.state.username}
 								onChange={this.handleInputChangeFor('username')}
@@ -64,7 +64,7 @@ class RegisterPage extends Component {
 					<div>
 							<TextField
 								type="password"
-								name="password"
+								label="password"
 								fullWidth
 								value={this.state.password}
 								onChange={this.handleInputChangeFor('password')}
