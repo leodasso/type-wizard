@@ -1,5 +1,6 @@
 import GameObject from './gameObject';
 import Particle from './Particle';
+import calc from '../data/calc';
 
 export default class Firework extends GameObject {
 
@@ -46,10 +47,10 @@ export default class Firework extends GameObject {
 		};
 
 		// create a new game object at that position
-		const magnitude = 100;
+		const magnitude = 50;
 		const vel = {
-			x: this.velocity.x + randomRange(magnitude),
-			y: this.velocity.y + randomRange(magnitude),
+			x: this.velocity.x + calc.randomRange(-magnitude, magnitude),
+			y: this.velocity.y + calc.randomRange(-magnitude, magnitude),
 			z: this.velocity.z + Math.random() * magnitude * 6,
 		};
 
@@ -69,8 +70,4 @@ export default class Firework extends GameObject {
 		stage.gameObjects.push(newParticle);
 	}
 
-}
-
-function randomRange(size) {
-	return Math.random() * size - (size/2);
 }

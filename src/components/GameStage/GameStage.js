@@ -113,6 +113,8 @@ class GameStage extends Component {
 		}
 
 		// render every game object
+		// Sort the objects by height so that higher up objects render on top of others
+		this.stage.gameObjects.sort((a, b) => a.position.z - b.position.z);
 		this.getContext().globalAlpha = 1;
 		for (const go of this.stage.gameObjects) {
 			if (go.destroyed) continue;
