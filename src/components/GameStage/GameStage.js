@@ -118,8 +118,9 @@ class GameStage extends Component {
 		this.getContext().globalAlpha = 1;
 		for (const go of this.stage.gameObjects) {
 			if (go.destroyed) continue;
-			go.render(this.getContext());
+			
 			go.update(this.stage);
+			go.render(this.getContext());
 		}
 
 		// clear out destroyed gameobjects from the list
