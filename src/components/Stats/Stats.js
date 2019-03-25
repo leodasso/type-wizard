@@ -20,19 +20,22 @@ const options = {
 				color: '#502146',
 			}
 		}]
-	}
+	},
 }
 
 Chart.defaults.global.elements.point.hitRadius = 2;
 Chart.defaults.global.elements.point.pointStyle = 'rectRounded';
+Chart.defaults.global.defaultFontFamily = `'Raleway', sans-serif`;
 
 
 class Stats extends Component{
 
+	// The canvas context used for drawing
 	ctx;
 	chart;
 
 	componentDidMount() {
+
 		// fetch the list of sessions
 		this.props.dispatch({type: 'FETCH_SESSIONS'});
 		this.ctx = this.refs.chart;
@@ -40,7 +43,9 @@ class Stats extends Component{
 		this.chart = new Chart(this.ctx, {
 			type: 'line',
 
-			data: {},
+			data: [{
+				borderColor: ['rgb(255, 79, 187)'],
+			}],
 
 			options: options,
 		});
@@ -62,15 +67,14 @@ class Stats extends Component{
 			labels: [],
 			datasets: [{
 				pointHoverRadius: 20,
-				pointRadius: 2,
-
-				pointBackgroundColor: 'rgb(255, 79, 187)',
+				pointBackgroundColor: '#502146',
 				pointBorderColor: 'rgb(255, 79, 187)',
 				label: 'Accuracy',
 				showLine: true,
+				sessionIds: [],
 				data: [],
 				borderColor: ['rgb(255, 79, 187)'],
-				borderWidth: 4
+				borderWidth: 2,
 			}],
 
 		}
@@ -78,22 +82,32 @@ class Stats extends Component{
 		// accuracy dataset is the first dataset being rendered
 		const accSet = newData.datasets[0];
 
+		// Add a point for each session
 		for (let i = 0; i < this.props.sessions.length; i++) {
-			const session = this.props.sessions[i];
 
-			newData.labels.push('Session ' + i);
+			const session = this.props.sessions[i];
+			newData.labels.push(i);
 			accSet.data.push(session.accuracy);
-			accSet.borderColor.push('rgb(255, 79, 187)');
+			accSet.sessionIds.push(session.id);
 		}
 
+		// Update the chart with new data
 		this.chart.data = newData;
 		this.chart.update({
 			duration: 400,
 		});
-
-
-		
 	}
+
+	// canvasClicked = event => {
+	// 	const activePoints = this.chart.getElementsAtEvent(event);
+	// 	console.log('clicked', activePoints);
+
+	// 	// get the dataset of the clicked point
+	// 	console.log(this.chart);
+	// 	const dataset = this.chart.datasets[activePoints[0].datasetIndex];
+
+	// 	console.log(dataset.label);
+	// }
 
 	render() {
 
@@ -104,7 +118,7 @@ class Stats extends Component{
 				<Header>Stats</Header>
 				<BodyContainer>
 					<h3>Statistics</h3>
-					<canvas ref="chart"/>
+					<canvas ref="chart" onClick={this.canvasClicked}/>
 					{/* <div className="stats-list">
 						{
 							this.props.sessions.map(session => 
