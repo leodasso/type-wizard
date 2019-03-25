@@ -53,7 +53,7 @@ class RegisterPage extends Component {
 
 				<form onSubmit={this.registerUser}>
 					<Neon>Sign Up</Neon>
-					<div>
+					<div className="log-in-input">
 							<TextField
 								type="text"
 								label="username"
@@ -62,7 +62,7 @@ class RegisterPage extends Component {
 								onChange={this.handleInputChangeFor('username')}
 							/>
 					</div>
-					<div>
+					<div className="log-in-input">
 							<TextField
 								type="password"
 								label="password"
@@ -71,8 +71,7 @@ class RegisterPage extends Component {
 								onChange={this.handleInputChangeFor('password')}
 							/>
 					</div>
-					<div>
-						<br/>
+					<div className="log-in-input">
 						<center>
 							<BodyButton>
 								Register
