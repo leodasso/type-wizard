@@ -6,6 +6,7 @@ import BodyButton from '../BodyButton/BodyButton';
 
 // Material UI
 import TextField from '@material-ui/core/TextField';
+import Neon from '../Design/Neon/Neon';
 
 
 class RegisterPage extends Component {
@@ -51,7 +52,7 @@ class RegisterPage extends Component {
 				)}
 
 				<form onSubmit={this.registerUser}>
-					<h1>Register User</h1>
+					<Neon>Sign Up</Neon>
 					<div>
 							<TextField
 								type="text"

@@ -5,6 +5,7 @@ import DarkCard from '../DarkCard/DarkCard';
 import BodyButton from '../Design/BodyButton/BodyButton';
 
 import TextField from '@material-ui/core/TextField';
+import Neon from '../Design/Neon/Neon';
 
 class LoginPage extends Component {
 	state = {
@@ -49,7 +50,7 @@ class LoginPage extends Component {
 
 
 					<form onSubmit={this.login}>
-						<h1>Login</h1>
+						<Neon>Welcome Back!</Neon>
 						<div>
 							<TextField
 									type="text"
