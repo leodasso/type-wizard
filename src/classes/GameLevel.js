@@ -44,7 +44,13 @@ export default class GameLevel {
 	}
 
 	getCurrentChapter = () => {
-		return this.chapters[this.currentChapterIndex];
+		let chapterIndex = this.currentChapterIndex;
+		if (chapterIndex < 0) 
+			chapterIndex = 0;
+		if (chapterIndex >= this.chapters.length)
+			chapterIndex = this.chapters.length - 1;
+
+		return this.chapters[chapterIndex];
 	}
 
 	/** If the current chapter has no keys set, just returns the level's enabled keys.

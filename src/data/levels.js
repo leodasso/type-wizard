@@ -34,8 +34,6 @@ export default [
 			new TutorialChapter((<FindBump1/>), homeKeys1, homeKeys1),
 			new TutorialChapter((<FindBump2/>), homeKeys2, homeKeys2),
 			new TutorialChapter((<HomeRow/>), beginnerKeys, beginnerKeys),
-
-			new LevelChapter(defaultTutorial, beginnerKeys),
 		]
 	)
 ]

@@ -119,12 +119,19 @@ class GameStage extends Component {
 	}
 
 	/** This update runs every frame */
-	update = () => {
+	update = () => {		
 
 		// clear the canvas
 		this.clearCanvas();
 
+		// Update the current level
 		this.props.level.update(this.stage);
+
+		// check if the current level is complete
+		if (this.props.level.complete) {
+			this.onLevelComplete();
+			return;
+		}
 
 		// this.updateTimer();
 		this.checkKeyStrokes();
@@ -209,9 +216,9 @@ class GameStage extends Component {
 		let newWidth = this.refs.canvas.width * (1 - this.progress());
 		this.getContext().fillRect(1, 1, newWidth, 10);
 
-		if (this.timer >= this.props.level.duration) {
-			this.onLevelComplete();
-		}
+		// if (this.timer >= this.props.level.duration) {
+		// 	this.onLevelComplete();
+		// }
 	}
 
 	onLevelComplete = () => {
