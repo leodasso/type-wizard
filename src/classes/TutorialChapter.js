@@ -24,6 +24,7 @@ export default class TutorialChapter extends LevelChapter {
 	processEvent(event) {
 		super.processEvent(event);
 
+		// Process key presses
 		if (event.type === 'press') {
 
 			if (this.anyKeyToContinue) {
@@ -41,11 +42,8 @@ export default class TutorialChapter extends LevelChapter {
 				}
 			}
 		}
-
-		
 	}
 
-	
 
 	finishChapter(stage) {
 		super.finishChapter(stage);
