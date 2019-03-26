@@ -18,7 +18,7 @@ class Keyboard extends Component {
 
 	// listen for shift keys
 	keyDown = (event) => {
-		if (event.keyCode == 16){
+		if (event.keyCode === 16){
 			this.props.dispatch({
 				type:'SET_SHIFTED', 
 				delta: 1,
@@ -29,7 +29,7 @@ class Keyboard extends Component {
 
 	// still listening for shift keys
 	keyUp = (event) => {
-		if (event.keyCode == 16){
+		if (event.keyCode === 16){
 			this.props.dispatch({
 				type:'SET_SHIFTED', 
 				delta: -1,

@@ -35,7 +35,7 @@ export default class TutorialChapter extends LevelChapter {
 
 				// Mark the key off from the 'keys to continue' list. 
 				// When there's no keys left to press, finish the chapter.
-				this.keysToContinue = this.keysToContinue.filter(key => key != event.key.id);
+				this.keysToContinue = this.keysToContinue.filter(key => key !== event.key.id);
 				if (this.keysToContinue.length < 1) {
 					this.finishChapter();
 				}

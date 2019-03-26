@@ -27,7 +27,7 @@ class GameStage extends Component {
 			this.setState({score:newScore});
 
 			// clear monster from occupied keys
-			this.stage.occupiedKeys = this.stage.occupiedKeys.filter(key => key != keyData.keyCode);
+			this.stage.occupiedKeys = this.stage.occupiedKeys.filter(key => key !== keyData.keyCode);
 		},
 
 		// Dispatches an event with a payload of the tutorial component.
