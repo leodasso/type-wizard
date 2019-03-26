@@ -65,10 +65,7 @@ export default class GameLevel {
 	gotoNextChapter() {
 
 		this.currentChapterIndex++;
-
-		console.log('going to next chapter! Current chapter is now ', this.getCurrentChapter());
-
-
+		
 		// If this was the last chapter, wrap up
 		if (this.currentChapterIndex >= this.chapters.length) {
 			this.complete = true;

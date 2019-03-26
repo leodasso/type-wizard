@@ -42,8 +42,6 @@ class GameStage extends Component {
 
 		beginLevelChapter: chapter => {
 
-			console.log('beginning level chapter ', chapter);
-
 			// dispatch action for setting which keys are enabled
 			this.props.dispatch({
 				type: 'SET_KEYS',

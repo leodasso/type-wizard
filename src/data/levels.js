@@ -1,7 +1,13 @@
+import React from 'react';
+
 import GameLevel from '../classes/GameLevel';
 import LevelChapter from '../classes/LevelChapter';
+
+// Importing level chapters
 import FindBump1 from '../components/Tutorials/FindBump1/FindBump1';
-import React from 'react';
+import FindBump2 from '../components/Tutorials/FindBump2/FindBump2';
+import HomeRow from '../components/Tutorials/HomeRow/HomeRow';
+
 import TutorialChapter from '../classes/TutorialChapter';
 
 const homeKeys1 = [70];
@@ -26,6 +32,9 @@ export default [
 		beginnerKeys,
 		[
 			new TutorialChapter((<FindBump1/>), homeKeys1, homeKeys1),
+			new TutorialChapter((<FindBump2/>), homeKeys2, homeKeys2),
+			new TutorialChapter((<HomeRow/>), beginnerKeys, beginnerKeys),
+
 			new LevelChapter(defaultTutorial, beginnerKeys),
 		]
 	)

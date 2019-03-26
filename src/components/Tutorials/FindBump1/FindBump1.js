@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class LevelCard extends Component{
+class FindBump1 extends Component{
 
 
 	render() {
@@ -19,4 +19,4 @@ const mapReduxState = reduxState => {
 	return reduxState;
 }
 
-export default connect(mapReduxState)(LevelCard);
+export default connect(mapReduxState)(FindBump1);
