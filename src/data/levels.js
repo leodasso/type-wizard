@@ -59,6 +59,11 @@ export default [
 				// Init spawns
 				[
 					prefabs.basicMonster,
+					prefabs.basicMonster,
+					prefabs.basicMonster,
+					prefabs.basicMonster,
+					prefabs.basicMonster,
+
 				],
 				2,
 			)

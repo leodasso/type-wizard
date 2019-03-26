@@ -16,7 +16,10 @@ export default class InitSpawnChapter extends LevelChapter {
 	start(stage) {
 		super.start(stage);
 
-		stage.addObjectToRandomKey(this.spawns[0]);
+		for (const spawn of this.spawns) {
+			console.log('stage spawning');
+			stage.addObjectToRandomKey(spawn);
+		}
 	}
 
 	processEvent(event) {

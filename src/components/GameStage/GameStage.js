@@ -52,21 +52,27 @@ class GameStage extends Component {
 		/** Adds a new monster on a random available key. */
 		addObjectToRandomKey: (spawnFunction) => {
 
+			console.log('hi spawning', spawnFunction);
+
 			// Check which keys don't have monster on them
 			let possibleKeys = [];
+			console.log(this.props.enabledKeys);
 			for (let key of this.props.enabledKeys) {
 
 				// We don't want to consider keys for spawning if they already
-				// have a monster/some other object on them
-				if (this.stage.occupiedKeys.includes(key.keyCode)) continue;
-
-				// TODO add another reducer for enabled key divs
+				// have a monster/some other object on them. We do this by checking 
+				// if the occupied keys array includes the enabled key. If it doesnt,
+				// then we add the key to possibleKeys.
+				if (this.stage.occupiedKeys.includes(key)) continue;
 
 				possibleKeys.push(key);
 			}
 
 			// If there are no keys available for spawning, we can just stop here.
-			if (possibleKeys.length <= 1) return;
+			if (possibleKeys.length <= 1) {
+				console.log('no keys left to spawn on');
+				return;
+			}
 
 			// Now we're selecting a random index of the possible keys. Keep in mind,
 			// This will still just be a numeric keycode.
