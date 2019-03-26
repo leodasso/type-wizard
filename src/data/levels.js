@@ -9,6 +9,8 @@ import FindBump2 from '../components/Tutorials/FindBump2/FindBump2';
 import HomeRow from '../components/Tutorials/HomeRow/HomeRow';
 
 import TutorialChapter from '../classes/TutorialChapter';
+import InitSpawnChapter from '../classes/InitSpawnChapter';
+import prefabs from './prefabs';
 
 const homeKeys1 = [70];
 const homeKeys2 = [74];
@@ -25,15 +27,39 @@ const defaultTutorial = (<div></div>);
  * sessions.
  */
 export default [
+
+	// The tutorial level
 	() => new GameLevel(
 		0,
 		'Beginner',
 		'Learn proper key placement!',
 		beginnerKeys,
+
+		// Chapters
 		[
 			new TutorialChapter((<FindBump1/>), homeKeys1, homeKeys1),
 			new TutorialChapter((<FindBump2/>), homeKeys2, homeKeys2),
 			new TutorialChapter((<HomeRow/>), beginnerKeys, beginnerKeys),
+		]
+	),
+
+	// Introduction to monsters
+	() => new GameLevel(
+		1,
+		'Keymons',
+		'Keymons attack!',
+		beginnerKeys,
+
+		// Chapters
+		[
+			new InitSpawnChapter(
+				defaultTutorial, 
+				beginnerKeys, 
+				// Init spawns
+				[
+					prefabs.basicMonster,
+				]
+			)
 		]
 	)
 ]
