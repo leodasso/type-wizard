@@ -16,6 +16,17 @@ export default class KeyboardGameObject extends GameObject {
 		this.destroy(stage);
 	}
 
+	render(ctx) {
+		super.render(ctx);
+
+		// render the keypress for this monster
+		ctx.font = '28px Raleway';
+		ctx.textAlign = 'center';
+		ctx.fillStyle = 'white';
+		const center = this.getCenter();
+		ctx.fillText(this.keyData.key, center.x, center.y + 14);
+	}
+
 	destroy(stage) {
 		super.destroy(stage);
 		stage.onMonsterKilled(this.keyData);

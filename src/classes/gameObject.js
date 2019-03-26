@@ -26,6 +26,12 @@ export default class GameObject {
 		this.startLifetime	= lifetime;		// Memorizes the original lifetime
 	}
 
+	// Returns the center coord of this rect
+	getCenter = () => ({
+		x: this.position.x + this.size.w/2,
+		y: this.position.y + this.size.h/2,
+	});
+
 	// Draws the game object for this frame. Requires the context of the 
 	// canvas that you want to draw on.
 	render (canvasContext) {

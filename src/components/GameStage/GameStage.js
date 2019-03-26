@@ -6,9 +6,7 @@ import calc from '../../data/calc';
 import LevelComplete from '../LevelComplete/LevelComplete';
 import Modal from '@material-ui/core/Modal';
 
-/** The Keyboard component takes in a keyboard data class, and renders the keyboard on screen.
- * Keyboard data is keyData divided into rows.
- */
+/**The game stage renders all game objects onto an html canvas */
 class GameStage extends Component {
 
 	// Timer is intentionally left outside of state so that we aren't
