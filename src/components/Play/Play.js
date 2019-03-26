@@ -24,7 +24,7 @@ class Play extends Component{
 				<div className="level-list">
 					{
 						levels.map( (level, index) => 
-							(<LevelCard key={index} levelData={level}/> ))
+							(<LevelCard key={index} levelData={level()}/> ))
 					}
 				</div>
 			</BodyContainer>

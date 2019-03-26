@@ -13,6 +13,9 @@ class GameStage extends Component {
 	// re-rendering every time we count down (i.e like 60 times a second)
 	timer = 0;
 	prevPressedKeys = [];
+
+	// Stage is passed to level & game object, and mutated by them.
+	// It's intentionally left out of state, because it is updated every frame.
 	stage = {
 		fps: 60,
 		gameObjects: [],
@@ -25,6 +28,15 @@ class GameStage extends Component {
 
 			// clear monster from occupied keys
 			this.stage.occupiedKeys = this.stage.occupiedKeys.filter(key => key != keyData.keyCode);
+		},
+
+		addTutorialComponent:(tutorial) => {
+
+			this.props.dispatch({
+				type: 'SET_TUTORIAL',
+				payload: tutorial,
+			});
+			console.log('hi im adding a tutorial component mkay?', tutorial);
 		}
 	}
 
@@ -94,14 +106,16 @@ class GameStage extends Component {
 		// clear the canvas
 		this.clearCanvas();
 
-		this.updateTimer();
+		this.props.level.update(this.stage);
+
+		// this.updateTimer();
 		this.checkKeyStrokes();
 
-		// Every frame, there's a random chance that the monster will appear
-		if (Math.random() <= this.props.level.difficulty / 100) {
-			console.log('make new mosnter');
-			this.addNewMonster();
-		}
+		// // Every frame, there's a random chance that the monster will appear
+		// if (Math.random() <= this.props.level.difficulty / 100) {
+		// 	console.log('make new mosnter');
+		// 	this.addNewMonster();
+		// }
 
 		// render game object shadows
 		this.getContext().globalAlpha = .5;
@@ -169,7 +183,6 @@ class GameStage extends Component {
 	progress = () => this.timer / this.props.level.duration;
 
 	updateTimer = () => {
-
 		// Update the timer
 		this.timer += (1 / this.stage.fps);
 
@@ -231,7 +244,6 @@ class GameStage extends Component {
 
 		// prevent duplicate keycodes 
 		if (this.stage.occupiedKeys.includes(keycode)) return;
-
 		this.stage.occupiedKeys.push(keycode);
 	}
 
@@ -254,8 +266,12 @@ class GameStage extends Component {
 		this.prevPressedKeys = this.props.pressedKeys.map( keyPress => keyPress.id);
 	}
 
+	/**
+	 * Called when a key is pressed - Dispatches press event, and calls
+	 * press on gameobjects which are listening for this press's keycode
+	 * @param {Object} keyPress The object which contains the data for the pressed key
+	 */
 	onKeyPressed(keyPress) {
-
 		// send event to redux
 		this.props.dispatch({
 			type: 'ADD_EVENT',

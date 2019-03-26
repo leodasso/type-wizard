@@ -9,6 +9,7 @@ import currentLevel from './Level.reducer';
 import gameEvents from './GameEvents.reducer';
 import keyboard from './Keyboard.reducer';
 import sessions from './Sessions.reducer'
+import currentTutorial from './Tutorial.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
 	gameEvents,		// An array of all the game events for a session
 	keyboard,		// the current keyboard layout
 	sessions,		// the user's play sessions history
+	currentTutorial,
 });
 
 export default rootReducer;

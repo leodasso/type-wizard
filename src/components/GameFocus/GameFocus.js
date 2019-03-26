@@ -8,14 +8,15 @@ class GameFocus extends Component{
 
 		return (
 			<div className="game-focus">
-                Hi i help u with thing
+                {this.props.tutorial}
 			</div>
 		);
 	}
 }
 
-const mapReduxState = reduxState => {
-	return reduxState;
-}
+const mapReduxState = reduxState => (
+{
+	tutorial: reduxState.currentTutorial,
+})
 
 export default connect(mapReduxState)(GameFocus);
