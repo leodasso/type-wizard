@@ -7,6 +7,7 @@ import LevelChapter from '../classes/LevelChapter';
 import FindBump1 from '../components/Tutorials/FindBump1/FindBump1';
 import FindBump2 from '../components/Tutorials/FindBump2/FindBump2';
 import HomeRow from '../components/Tutorials/HomeRow/HomeRow';
+import Keymons from '../components/Tutorials/Keymons/Keymons';
 
 import TutorialChapter from '../classes/TutorialChapter';
 import InitSpawnChapter from '../classes/InitSpawnChapter';
@@ -53,12 +54,13 @@ export default [
 		// Chapters
 		[
 			new InitSpawnChapter(
-				defaultTutorial, 
+				<Keymons/>, 
 				beginnerKeys, 
 				// Init spawns
 				[
 					prefabs.basicMonster,
-				]
+				],
+				2,
 			)
 		]
 	)

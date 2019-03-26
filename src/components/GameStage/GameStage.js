@@ -47,9 +47,62 @@ class GameStage extends Component {
 				type: 'SET_KEYS',
 				payload: this.props.level.getEnabledKeys(),
 			});
+		},
+
+		/** Adds a new monster on a random available key. */
+		addObjectToRandomKey: (spawnFunction) => {
+
+			// Check which keys don't have monster on them
+			let possibleKeys = [];
+			for (let key of this.props.enabledKeys) {
+
+				// We don't want to consider keys for spawning if they already
+				// have a monster/some other object on them
+				if (this.stage.occupiedKeys.includes(key.keyCode)) continue;
+
+				// TODO add another reducer for enabled key divs
+
+				possibleKeys.push(key);
+			}
+
+			// If there are no keys available for spawning, we can just stop here.
+			if (possibleKeys.length <= 1) return;
+
+			// Now we're selecting a random index of the possible keys. Keep in mind,
+			// This will still just be a numeric keycode.
+			const randomIndex = Math.floor(Math.random() * possibleKeys.length);
+			const selectedKeyCode = possibleKeys[randomIndex];
+
+			// We have the numeric keycode we want. It's time to find the keyDiv
+			// that matches that keycode, so we can use it to place the monster.
+			let keyInfo = undefined;
+
+			for (const keyDiv of this.props.keyDivs) {
+				if (keyDiv.id === selectedKeyCode) {
+					keyInfo = keyDiv;
+					break;
+				}
+			}
+
+			// console.log(keyInfo);
+			// return;
+
+			// We now have the key that the monster will be placed on. 
+			// we need to mark it as occupied
+			this.markKeyOccupied(keyInfo.keyCode);
+
+			// Convert the element's coords to canvas coords
+			const spawnRect = calc.domToCanvasCoords(this.refs.canvas, keyInfo.div.getBoundingClientRect());
+
+			// Create a new monster instance, and add it to the stage
+			const instance = spawnFunction({x: spawnRect.x, y:spawnRect.y, z:0});
+			console.log(instance);
+			instance.deathObjectMethod = prefabs.basicMonsterDeath;
+			instance.keyData = keyInfo.keyData;
+			this.stage.gameObjects.push(instance);
+
+			console.log(this.stage.gameObjects);
 		}
-
-
 	}
 
 	state = {
@@ -170,39 +223,7 @@ class GameStage extends Component {
 	}
 
 
-	/** Adds a new monster on a random available key. */
-	addNewMonster = () => {
 
-		// Check which keys don't have monster on them
-		let possibleKeys = [];
-		for (let key of this.props.enabledKeys) {
-
-			// We don't want to consider keys for spawning if they already
-			// have a monster/some other object on them
-			if (this.stage.occupiedKeys.includes(key.keyCode)) continue;
-
-			possibleKeys.push(key);
-		}
-
-		// If there are no keys available for spawning, we can just stop here.
-		if (possibleKeys.length <= 1) return;
-
-		const randomIndex = Math.floor(Math.random() * possibleKeys.length);
-		const keyInfo = possibleKeys[randomIndex];
-
-		// We now have the key that the monster will be placed on. 
-		// we need to mark it as occupied
-		this.markKeyOccupied(keyInfo.keyCode);
-
-		// Convert the element's coords to canvas coords
-		const monsterRect = calc.domToCanvasCoords(this.refs.canvas, keyInfo.element.getBoundingClientRect());
-
-		// Create a new monster instance, and add it to the stage
-		const newMonster = prefabs.basicMonster({x: monsterRect.x, y:monsterRect.y, z:0});
-		newMonster.deathObjectMethod = prefabs.basicMonsterDeath;
-		newMonster.keyData = keyInfo.keyData;
-		this.stage.gameObjects.push(newMonster);
-	}
 
 	/** Returns the progress (between 0 and 1) of the current level */
 	progress = () => this.timer / this.props.level.duration;
@@ -335,6 +356,7 @@ const mapReduxState = reduxState => {
 		pressedKeys: reduxState.pressedKeys,
 		level: reduxState.currentLevel,
 		enabledKeys: reduxState.ableKeys,
+		keyDivs: reduxState.keyDivs,
 	}
 }
 

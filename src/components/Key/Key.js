@@ -75,7 +75,32 @@ class Key extends Component {
 
 
 	isEnabled() {
+		// console.log(this.props.enabledKeys, this.props.myKeyData.keyCode);
 		return this.props.enabledKeys.includes(this.props.myKeyData.keyCode);
+	}
+
+	updateKeydivReducer = () => {
+
+		if (this.isEnabled()) {
+			// Dispatch an event with this key's data.
+			// This is so the game stage has the coordinates of this key
+			// and can place monsters on it.
+			this.props.dispatch({
+				type:'ENABLE_KEY_DIV',
+				payload: {
+					id: this.props.myKeyData.keyCode,
+					keyData: this.props.myKeyData,
+					div: this.keyDiv,
+				},
+			})
+
+		}else {
+			this.props.dispatch({
+				type:'DISABLE_KEY_DIV',
+				keyCode: this.props.myKeyData.keyCode,
+			});
+		}
+
 	}
 
 	render() {
