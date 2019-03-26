@@ -23,8 +23,8 @@
 }
 
 .full {
-    border-radius: 16px;
-    top: 32px;
+    border-radius: 0px 0px 16px 16px;
+    top: 6px;
     left: 8px;
     right: 8px;
     padding: 24px;

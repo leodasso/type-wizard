@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 class FindBump1 extends Component{
 
 
 	render() {
 		return (
-			<div>
+			<div className="fade-in-panel">
                 <h2>Let's Get Started!</h2>
                 <p>Find the left-most key with a bump on it.</p>
 				<p>Place your left index finger on it. Press to continue!</p>
@@ -15,8 +14,4 @@ class FindBump1 extends Component{
 	}
 }
 
-const mapReduxState = reduxState => {
-	return reduxState;
-}
-
-export default connect(mapReduxState)(FindBump1);
+export default FindBump1;

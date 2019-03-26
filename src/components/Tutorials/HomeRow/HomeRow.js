@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
 class HomeRow extends Component{
 
 
 	render() {
 		return (
-			<div>
+			<div className="fade-in-panel">
                 <h2>Fantastic!</h2>
                 <p>With those two fingers in place, lay the rest of your fingers down in a row.</p>
 				<p>Press all the keys to continue (not at the same time)!</p>
@@ -15,8 +14,4 @@ class HomeRow extends Component{
 	}
 }
 
-const mapReduxState = reduxState => {
-	return reduxState;
-}
-
-export default connect(mapReduxState)(HomeRow);
+export default HomeRow;

@@ -1,4 +1,6 @@
 .game-focus {
     height: 20vmin;
     background-color: var(--deep-black);
+    padding: 24px;
+    margin: 2px;
 }
