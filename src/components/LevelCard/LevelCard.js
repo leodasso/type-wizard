@@ -14,7 +14,10 @@ class LevelCard extends Component{
 	onClickPlay = () => {
 		console.log('Play!');
 
-		// TODO send level data to reducer
+		// clear key divs
+		this.props.dispatch({type: 'CLEAR_KEY_DIVS'});
+
+		// send level data to reducer
 		this.props.dispatch({
 			type: 'SET_LEVEL',
 			payload: this.props.levelData,

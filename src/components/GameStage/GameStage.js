@@ -84,7 +84,7 @@ class GameStage extends Component {
 				}
 			}
 
-			// console.log(keyInfo);
+			console.log(keyInfo);
 			// return;
 
 			// We now have the key that the monster will be placed on. 
