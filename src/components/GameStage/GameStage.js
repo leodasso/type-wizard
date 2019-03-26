@@ -30,14 +30,28 @@ class GameStage extends Component {
 			this.stage.occupiedKeys = this.stage.occupiedKeys.filter(key => key != keyData.keyCode);
 		},
 
+		// Dispatches an event with a payload of the tutorial component.
+		// The GameFocus component will display the tutorial.
 		addTutorialComponent:(tutorial) => {
 
 			this.props.dispatch({
 				type: 'SET_TUTORIAL',
 				payload: tutorial,
 			});
-			console.log('hi im adding a tutorial component mkay?', tutorial);
+		},
+
+		beginLevelChapter: chapter => {
+
+			console.log('beginning level chapter ', chapter);
+
+			// dispatch action for setting which keys are enabled
+			this.props.dispatch({
+				type: 'SET_KEYS',
+				payload: this.props.level.getEnabledKeys(),
+			});
 		}
+
+
 	}
 
 	state = {
@@ -85,6 +99,12 @@ class GameStage extends Component {
 		// Update based on the FPS
 		let newInterval = setInterval(this.update, 1000 / this.stage.fps);
 		this.setState({intervalId: newInterval});
+
+		// dispatch action for setting which keys are enabled
+		this.props.dispatch({
+			type: 'SET_KEYS',
+			payload: this.props.level.getEnabledKeys(),
+		});
 	}
 
 	onWindowResized = () => {
@@ -280,6 +300,12 @@ class GameStage extends Component {
 				time: this.timer,
 			}
 		})
+
+		// Create the event object and send it to the level for processing
+		this.props.level.processEvent({
+			type: 'press',
+			key: keyPress,
+		});
 
 		// count the key press
 		const newCount = this.state.keyPresses + 1;

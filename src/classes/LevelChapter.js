@@ -6,20 +6,29 @@
 
     /**
      * @param {Component} component The react component to mount while this chapter is showing.
+     * @param {Array} allowedKeys Optional - limit the allowed keys on this chapter
      */
-    constructor(component) {
+    constructor(component, allowedKeys) {
         this.component = component;
         this.complete = false;
-
+        this.limitsKeys = allowedKeys ? true : false;
+        this.allowedKeys = allowedKeys;
         this.init = false;
     }
 
     start(stage) {
 
+        console.log('beginning chapter', this);
         this.init = true;
+
+        stage.beginLevelChapter(this);
+
         if (this.component)
             stage.addTutorialComponent(this.component);
+    }
 
+    processEvent(event) {
+        // console.log('got event', event);
     }
 
     update(stage, ctx) {
@@ -28,12 +37,9 @@
             this.start(stage);
             return;
         }
-        console.log('lol im updating k')
-
     }
 
-    complete(stage) {
+    finishChapter(stage) {
         this.complete = true;
     }
-
 }

@@ -23,13 +23,6 @@ export default class GameLevel {
 		this.currentChapterIndex = 0;
 	}
 
-	/** Takes an array of keycodes and sets those as the active
-	 * keys for this level.
-	 */
-	setEnabledKeys = (keyCodes) => {
-		this.enabledKeys = keyCodes;
-	}
-
 	update = (stage, ctx) => {
 
 		// If there's no chapters for some reason, just exit the function.
@@ -42,17 +35,39 @@ export default class GameLevel {
 		if (this.complete) return;
 
 		// get the current chapter and update it
-		const currentChapter = this.chapters[this.currentChapterIndex];
-		if (currentChapter.complete) {
+		if (this.getCurrentChapter().complete) {
 			this.gotoNextChapter();
 		}
 
 		// Update the current chapter
-		currentChapter.update(stage, ctx);
+		this.getCurrentChapter().update(stage, ctx);
+	}
+
+	getCurrentChapter = () => {
+		return this.chapters[this.currentChapterIndex];
+	}
+
+	/** If the current chapter has no keys set, just returns the level's enabled keys.
+	 * Otherwise, returns the keys of the current chapter.
+	 */
+	getEnabledKeys = () => {
+		if (!this.getCurrentChapter()) return this.enabledKeys;
+
+		if (!this.getCurrentChapter().limitsKeys) return this.enabledKeys;
+		return this.getCurrentChapter().allowedKeys;
+	}
+
+	processEvent = event => {
+		if (!this.getCurrentChapter()) return;
+		this.getCurrentChapter().processEvent(event);
 	}
 
 	gotoNextChapter() {
+
 		this.currentChapterIndex++;
+
+		console.log('going to next chapter! Current chapter is now ', this.getCurrentChapter());
+
 
 		// If this was the last chapter, wrap up
 		if (this.currentChapterIndex >= this.chapters.length) {

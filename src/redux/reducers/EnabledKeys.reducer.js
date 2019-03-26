@@ -5,6 +5,8 @@ const enabledKeys = (state = [], action) => {
   switch (action.type) {
 
     case 'CLEAR_KEYS': return [];
+
+    case 'SET_KEYS': return action.payload;
     // For enabling a key, if it's already in the state, we just 
     // ignore the action. Otherwise, we add the newly enabled key to the state.
     case 'ENABLE_KEY':

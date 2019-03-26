@@ -34,22 +34,9 @@ class Key extends Component {
 	componentDidMount = () => {
 		document.addEventListener('keydown', this.keyDown);
 		document.addEventListener('keyup', this.keyUp);
-
-		// dispatch an action for the key being active/inactive
-		if (this.isEnabled() && !this.props.preview) {
-			this.props.dispatch({
-				type: 'ENABLE_KEY',
-				payload: {
-					keyCode: this.props.myKeyData.keyCode,
-					keyData: this.props.myKeyData,
-					element: this.keyDiv,
-				}
-			})
-		}
 	}
 
 	componentWillUnmount = () => {
-
 		document.removeEventListener('keydown', this.keyDown);
 		document.removeEventListener('keyup', this.keyUp);
 	}
@@ -72,7 +59,6 @@ class Key extends Component {
 				rect: this.keyDiv.getBoundingClientRect(),
 			},
 		})
-
 	}
 
 
@@ -89,7 +75,7 @@ class Key extends Component {
 
 
 	isEnabled() {
-		return this.props.level.enabledKeys.includes(this.props.myKeyData.keyCode);
+		return this.props.enabledKeys.includes(this.props.myKeyData.keyCode);
 	}
 
 	render() {
@@ -122,6 +108,7 @@ const mapReduxState = reduxState => {
 	return {
 		level: reduxState.currentLevel,
 		shifted: reduxState.shifted,
+		enabledKeys: reduxState.ableKeys,
 	};
 }
 
