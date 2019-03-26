@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Keyboard from '../Keyboard/Keyboard';
 import GameStage from '../GameStage/GameStage';
 import Header from '../Header/Header';
+import GameFocus from '../GameFocus/GameFocus';
 import './Trainer.css';
 
 class Trainer extends Component {
@@ -14,9 +15,13 @@ class Trainer extends Component {
 				<div>
 					<Header>Training</Header>
 				</div>
+				
 				<div className="trainer">
-					<Keyboard keyboard={this.props.keyboard} ref="keyboard" preview={false}/>
-					<GameStage />
+					<GameFocus />
+					<div className="stage-parent">
+						<Keyboard keyboard={this.props.keyboard} ref="keyboard" preview={false}/>
+						<GameStage />
+					</div>
 				</div>
 			</div>
 		)

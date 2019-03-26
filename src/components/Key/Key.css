@@ -1,10 +1,10 @@
 .key {
     box-sizing: border-box;
-    margin: 8px;
+    margin: 4px;
     padding: 12px 12px;
     background-color: var(--matte-black);
-    width: 60px;
-    height: 50px;
+    width: 50px;
+    height: 45px;
     border-radius: 8px;
     border-style: solid;
     border-width: 1px;

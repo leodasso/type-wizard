@@ -1,6 +1,9 @@
 .trainer {
-    position: relative;
     max-width: 800px;
     width: 90%;
     margin: 12px auto;
+}
+
+.stage-parent {
+    position: relative;
 }

@@ -201,21 +201,17 @@ class GameStage extends Component {
 
 	render() {
 
-		if (this.state.complete) {
-			return (
-				<Modal
-					open={this.state.complete}
-					>
-					<LevelComplete
-						level={this.props.level}
-						strokes={this.state.keyPresses}
-						score={this.state.score}
-						accuracy={this.getAccuracy()}/>
-				</Modal>
-			)
-		}
-
 		return (
+			<>
+			<Modal
+				open={this.state.complete}
+				>
+				<LevelComplete
+					level={this.props.level}
+					strokes={this.state.keyPresses}
+					score={this.state.score}
+					accuracy={this.getAccuracy()}/>
+			</Modal>
 			<div>
 				<div ref="canvasContainer" className="stage-parent" >
 					<canvas ref="canvas" className="canvas"/>
@@ -224,6 +220,7 @@ class GameStage extends Component {
 				<p>Key Presses: {this.state.keyPresses}</p>
 				<p>Accuracy: {this.getAccuracy() + '%'}</p>
 			</div>
+			</>
 		)
 	}
 
