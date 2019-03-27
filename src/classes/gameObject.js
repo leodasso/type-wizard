@@ -127,9 +127,10 @@ export default class GameObject {
 	destroy(stage) {
 
 		this.destroyed = true;
-		// create the death object
+
 		if (this.deathObjectMethod) {
-			// console.log(this.deathObjectMethod);
+			// using the death object method, spawn a new instance of the
+			// death object. (i.e. an explosion, particle, etc)
 			const deathObject = this.deathObjectMethod(this.position);
 			stage.gameObjects.push(deathObject);
 		}

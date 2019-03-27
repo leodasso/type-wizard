@@ -39,6 +39,13 @@ export default class KeyboardGameObject extends GameObject {
 
 	destroy(stage) {
 		super.destroy(stage);
+
+		// send an event to the stage that this was destroyed
+		stage.newEvent({
+			type: 'death',
+			payload: this,
+		})
+		
 		stage.onMonsterKilled(this.keyData);
 	}
 

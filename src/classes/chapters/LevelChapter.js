@@ -28,7 +28,7 @@
     }
 
     processEvent(event) {
-        // console.log('got event', event);
+        console.log('got event', event);
     }
 
     update(stage, ctx) {

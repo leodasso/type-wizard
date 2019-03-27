@@ -109,6 +109,10 @@ class GameStage extends Component {
 			instance.keyData = keyInfo.keyData;
 
 			this.stage.gameObjects.push(instance);
+		},
+
+		newEvent: event => {
+			this.props.level.processEvent(event);
 		}
 	}
 
@@ -195,12 +199,6 @@ class GameStage extends Component {
 
 		// this.updateTimer();
 		this.checkKeyStrokes();
-
-		// // Every frame, there's a random chance that the monster will appear
-		// if (Math.random() <= this.props.level.difficulty / 100) {
-		// 	console.log('make new mosnter');
-		// 	this.addNewMonster();
-		// }
 
 		// render game object shadows
 		this.getContext().globalAlpha = .5;
