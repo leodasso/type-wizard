@@ -66,7 +66,43 @@ export default [
 					basicMonster,
 					basicMonster,
 				],
-				2,
+			),
+
+			new InitSpawnChapter(
+				defaultTutorial, 
+				beginnerKeys, 
+				// Init spawns
+				[
+					basicMonster,
+					basicMonster,
+					basicMonster,
+					basicMonster,
+					basicMonster,
+				],
+			),
+
+			new InitSpawnChapter(
+				defaultTutorial, 
+				beginnerKeys, 
+				// Init spawns
+				[
+					basicMonster,
+					basicMonster,
+					basicMonster,
+					basicMonster,
+				],
+			),
+
+			new InitSpawnChapter(
+				defaultTutorial, 
+				beginnerKeys, 
+				// Init spawns
+				[
+					basicMonster,
+					basicMonster,
+					basicMonster,
+					basicMonster,
+				],
 			)
 		]
 	)

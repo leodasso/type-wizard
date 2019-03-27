@@ -11,19 +11,31 @@ export default class InitSpawnChapter extends LevelChapter {
 	constructor(component, allowedKeys, spawns) {
 		super(component, allowedKeys);
 		this.spawns = spawns;
+		this.spawnInstances = [];
 	}
 
 	start(stage) {
 		super.start(stage);
 
 		for (const spawn of this.spawns) {
-			console.log('stage spawning');
-			stage.addObjectToRandomKey(spawn);
+			const newInstance = stage.addObjectToRandomKey(spawn);
+			this.spawnInstances.push(newInstance);
 		}
 	}
 
 	processEvent(event) {
 		super.processEvent(event);
+
+		// For death events, check if the killed monster was part of my spawns.
+		// if it was, then remove it from the spawn instances list. When all of my spawns
+		// have been killed, finish this chapter.
+		if (event.type === 'death') {
+			this.spawnInstances = this.spawnInstances.filter(monster => 
+				monster !== event.payload);
+			if (this.spawnInstances.length < 1) {
+				this.finishChapter();
+			}
+		}
 	}
 
 

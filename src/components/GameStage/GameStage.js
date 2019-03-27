@@ -145,10 +145,6 @@ class GameStage extends Component {
 		this.getContext().fillStyle = 'red';
 		let newWidth = this.refs.canvas.width * (1 - this.progress());
 		this.getContext().fillRect(1, 1, newWidth, 10);
-
-		// if (this.timer >= this.props.level.duration) {
-		// 	this.onLevelComplete();
-		// }
 	}
 
 	onLevelComplete = () => {

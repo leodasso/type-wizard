@@ -48,12 +48,13 @@ export default class StageInfo {
 		});
 	}
 
-	/** Adds a new monster on a random available key. */
+	/** Adds a new monster on a random available key. 
+	 * @returns ref to the new instance that was created
+	*/
 	addObjectToRandomKey = (spawnFunction) => {
 
 		// Check which keys don't have monster on them
 		let possibleKeys = [];
-		console.log(this.gameStageComponent.props.enabledKeys);
 		for (let key of this.gameStageComponent.props.enabledKeys) {
 
 			// We don't want to consider keys for spawning if they already
@@ -61,7 +62,6 @@ export default class StageInfo {
 			// if the occupied keys array includes the enabled key. If it doesnt,
 			// then we add the key to possibleKeys.
 			if (this.occupiedKeys.includes(key)) continue;
-
 			possibleKeys.push(key);
 		}
 
@@ -75,7 +75,7 @@ export default class StageInfo {
 		// This will still just be a numeric keycode.
 		const randomIndex = Math.floor(Math.random() * possibleKeys.length);
 		const selectedKeyCode = possibleKeys[randomIndex];
-		this.addObjectOnKey(selectedKeyCode, spawnFunction);
+		return this.addObjectOnKey(selectedKeyCode, spawnFunction);
 	}
 
 
@@ -111,6 +111,7 @@ export default class StageInfo {
 		instance.keyData = keyInfo.keyData;
 
 		this.gameObjects.push(instance);
+		return instance;
 	}
 
 	newEvent = event => {
