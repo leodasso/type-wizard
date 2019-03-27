@@ -7,7 +7,7 @@ import {defaultTutorial} from './shared';
 import InitSpawnChapter from '../../classes/chapters/InitSpawnChapter';
 
 import basicMonster from '../basicMonster';
-import { beginnerKeys } from '../keysets';
+import { beginnerKeys, tutorialKeys1 } from '../keysets';
 
 // tutorial
 import Keymons from '../../components/Tutorials/Keymons/Keymons';
@@ -23,16 +23,16 @@ export default () => new GameLevel(
     [
         new InitSpawnChapter(
             <Keymons/>, 
-            beginnerKeys, 
+            tutorialKeys1, 
             // Init spawns
-            [basicMonster, basicMonster, basicMonster, basicMonster, basicMonster,],
+            [basicMonster, basicMonster, basicMonster,],
         ),
 
         new InitSpawnChapter(
             defaultTutorial, 
-            beginnerKeys, 
+            tutorialKeys1, 
             // Init spawns
-            [basicMonster, basicMonster, basicMonster, basicMonster,],
+            [basicMonster, basicMonster, ],
 
         ),
 
