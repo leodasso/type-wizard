@@ -1,7 +1,7 @@
 import React from 'react';
 
 import GameLevel from '../classes/GameLevel';
-import LevelChapter from '../classes/LevelChapter';
+import LevelChapter from '../classes/chapters/LevelChapter';
 
 // Importing level chapters
 import FindBump1 from '../components/Tutorials/FindBump1/FindBump1';
@@ -10,8 +10,8 @@ import HomeRow from '../components/Tutorials/HomeRow/HomeRow';
 import Keymons from '../components/Tutorials/Keymons/Keymons';
 
 // Import chapter types
-import TutorialChapter from '../classes/TutorialChapter';
-import InitSpawnChapter from '../classes/InitSpawnChapter';
+import TutorialChapter from '../classes/chapters/TutorialChapter';
+import InitSpawnChapter from '../classes/chapters/InitSpawnChapter';
 
 import basicMonster from '../data/basicMonster';
 
