@@ -33,13 +33,13 @@ export default class TimedChapter extends LevelChapter {
 		
 		// Update the timer
 		this.elapsed += (1 / stage.fps);
-		this.timeSinceSpawn += (1 / stage.fps);
+		this.timeSinceSpawn += (1 / stage.fps * this.difficulty);
 
 
 		// Spawn monsters - but not at the very end of the stage.
 		if (this.progress() < .9) {
 			// The more time it's been since a spawn, the more likely it should be
-			if (Math.random()*this.difficulty < .02 * this.timeSinceSpawn) {
+			if (Math.random()< .02 * this.timeSinceSpawn) {
 				this.timeSinceSpawn = 0;
 
 				// Choose a random monster from the spawns array
