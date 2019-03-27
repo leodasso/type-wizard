@@ -51,8 +51,6 @@ class GameStage extends Component {
 		/** Adds a new monster on a random available key. */
 		addObjectToRandomKey: (spawnFunction) => {
 
-			console.log('hi spawning', spawnFunction);
-
 			// Check which keys don't have monster on them
 			let possibleKeys = [];
 			console.log(this.props.enabledKeys);
@@ -77,35 +75,40 @@ class GameStage extends Component {
 			// This will still just be a numeric keycode.
 			const randomIndex = Math.floor(Math.random() * possibleKeys.length);
 			const selectedKeyCode = possibleKeys[randomIndex];
+			this.stage.addObjectOnKey(selectedKeyCode, spawnFunction);
+		},
+
+		addObjectOnKey: (keyCode, spawnFunction) => {
+
+			// We now have the key that the monster will be placed on. 
+			// we need to mark it as occupied
+			if (!this.stage.occupiedKeys.includes(keyCode)) {
+				this.stage.occupiedKeys.push(keyCode);
+			}
+			else{
+				// if the keycode was already occupied
+				console.log("can't spawn on keycode ", keyCode, "it is already occupied");
+				return;
+			}
 
 			// We have the numeric keycode we want. It's time to find the keyDiv
 			// that matches that keycode, so we can use it to place the monster.
 			let keyInfo = undefined;
-
 			for (const keyDiv of this.props.keyDivs) {
-				if (keyDiv.id === selectedKeyCode) {
+				if (keyDiv.id === keyCode) {
 					keyInfo = keyDiv;
 					break;
 				}
 			}
-
-			console.log(keyInfo);
-			// return;
-
-			// We now have the key that the monster will be placed on. 
-			// we need to mark it as occupied
-			this.markKeyOccupied(keyInfo.keyCode);
 
 			// Convert the element's coords to canvas coords
 			const spawnRect = calc.domToCanvasCoords(this.refs.canvas, keyInfo.div.getBoundingClientRect());
 
 			// Create a new monster instance, and add it to the stage
 			const instance = spawnFunction({x: spawnRect.x, y:spawnRect.y, z:0});
-			console.log(instance);
 			instance.keyData = keyInfo.keyData;
-			this.stage.gameObjects.push(instance);
 
-			console.log(this.stage.gameObjects);
+			this.stage.gameObjects.push(instance);
 		}
 	}
 
@@ -288,13 +291,6 @@ class GameStage extends Component {
 	getAccuracy = () => {
 		if (this.state.keyPresses <= 0) return 0;
 		return ((this.state.score / this.state.keyPresses) * 100).toFixed(2);
-	}
-
-	markKeyOccupied = keycode => {
-
-		// prevent duplicate keycodes 
-		if (this.stage.occupiedKeys.includes(keycode)) return;
-		this.stage.occupiedKeys.push(keycode);
 	}
 
 	// Check if any of the keystrokes land on a monster. Store prev key pressed state
