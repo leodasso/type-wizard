@@ -75,8 +75,8 @@ export default class Firework extends GameObject {
 			pos, 
 			vel, 
 			size, 
-			'cyan', 
-			{min: .5, max: 1.5},
+			this.color, 
+			{min: .2, max: 1},
 			 undefined);
 		stage.gameObjects.push(newParticle);
 	}
