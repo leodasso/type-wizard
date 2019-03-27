@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import DarkCard from '../Design/DarkCard/DarkCard';
 import './Session.css';
-import levels from '../../data/levels';
+import levels from '../../data/levels/levels';
 
 class Session extends Component{
 

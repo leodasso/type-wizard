@@ -131,22 +131,6 @@ class GameStage extends Component {
 		this.getContext().clearRect(0, 0, this.refs.canvas.width, this.refs.canvas.height);
 	}
 
-
-
-
-	/** Returns the progress (between 0 and 1) of the current level */
-	progress = () => this.timer / this.props.level.duration;
-
-	updateTimer = () => {
-		// Update the timer
-		this.timer += (1 / this.stage.fps);
-
-		// Draw a new rect
-		this.getContext().fillStyle = 'red';
-		let newWidth = this.refs.canvas.width * (1 - this.progress());
-		this.getContext().fillRect(1, 1, newWidth, 10);
-	}
-
 	onLevelComplete = () => {
 
 		clearInterval(this.state.intervalId);

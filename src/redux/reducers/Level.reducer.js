@@ -1,4 +1,4 @@
-import levels from '../../data/levels';
+import levels from '../../data/levels/levels'
 
 /**Keeps track of the current level. The state is the full level object. */
 const currentLevel = (state = levels[0](), action) => {
