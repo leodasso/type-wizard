@@ -9,9 +9,11 @@ import FindBump2 from '../components/Tutorials/FindBump2/FindBump2';
 import HomeRow from '../components/Tutorials/HomeRow/HomeRow';
 import Keymons from '../components/Tutorials/Keymons/Keymons';
 
+// Import chapter types
 import TutorialChapter from '../classes/TutorialChapter';
 import InitSpawnChapter from '../classes/InitSpawnChapter';
-import prefabs from './prefabs';
+
+import basicMonster from '../data/basicMonster';
 
 const homeKeys1 = [70];
 const homeKeys2 = [74];
@@ -58,12 +60,11 @@ export default [
 				beginnerKeys, 
 				// Init spawns
 				[
-					prefabs.basicMonster,
-					prefabs.basicMonster,
-					prefabs.basicMonster,
-					prefabs.basicMonster,
-					prefabs.basicMonster,
-
+					basicMonster,
+					basicMonster,
+					basicMonster,
+					basicMonster,
+					basicMonster,
 				],
 				2,
 			)

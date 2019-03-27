@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './GameStage.css';
-import prefabs from '../../data/prefabs';
 import calc from '../../data/calc';
 import LevelComplete from '../LevelComplete/LevelComplete';
 import Modal from '@material-ui/core/Modal';
@@ -103,7 +102,6 @@ class GameStage extends Component {
 			// Create a new monster instance, and add it to the stage
 			const instance = spawnFunction({x: spawnRect.x, y:spawnRect.y, z:0});
 			console.log(instance);
-			instance.deathObjectMethod = prefabs.basicMonsterDeath;
 			instance.keyData = keyInfo.keyData;
 			this.stage.gameObjects.push(instance);
 

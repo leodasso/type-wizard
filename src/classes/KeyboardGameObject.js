@@ -3,8 +3,18 @@ import GameObject from "./gameObject";
 /** Keyboard game object is associated to a specific key. */
 export default class KeyboardGameObject extends GameObject {
 
-	constructor(position, velocity, width, height, color, keyData, lifetime) {
-		super(position, velocity, width, height, color, lifetime);
+	/**
+	 * 
+	 * @param {object} position object with x, y, z
+	 * @param {object} velocity object with x, y, z - pixels per second.
+	 * @param {object} size object with w, h width and height size
+	 * @param {string} color color string 'red' or 'rgb(5, 2, 6), etc
+	 * @param {Number} lifetime lifetime in seconds
+	 * @param {function} deathObjectMethod Method which returns a new instance of the death object
+	 * @param {object} keyData The data for the key that this monster is sitting on
+	 */
+	constructor(position, velocity, size, color, lifetime, deathObjectMethod, keyData ) {
+		super(position, velocity, size, color, lifetime, deathObjectMethod);
 		this.keyData = keyData;
 	}
 

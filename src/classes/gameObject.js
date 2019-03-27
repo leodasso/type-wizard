@@ -12,6 +12,15 @@ export default class GameObject {
 	// lets the game update loop know that it can remove this object.
 	destroyed = false;
 
+	/**
+	 * 
+	 * @param {object} position object with x, y, z
+	 * @param {object} velocity object with x, y, z - pixels per second.
+	 * @param {object} size object with w, h width and height size
+	 * @param {string} color color string 'red' or 'rgb(5, 2, 6), etc
+	 * @param {Number} lifetime lifetime in seconds
+	 * @param {function} deathObjectMethod Method which returns a new instance of the death object
+	 */
 	constructor(position, velocity, size, color, lifetime, deathObjectMethod) {
 		this.position 		= getSafeVector(position);
 		this.velocity 		= getSafeVector(velocity);
