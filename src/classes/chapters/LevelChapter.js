@@ -4,42 +4,38 @@
  */
  export default class LevelChapter {
 
-    /**
-     * @param {Component} component The react component to mount while this chapter is showing.
-     * @param {Array} allowedKeys Optional - limit the allowed keys on this chapter
-     */
-    constructor(component, allowedKeys) {
-        this.component = component;
-        this.complete = false;
-        this.limitsKeys = allowedKeys ? true : false;
-        this.allowedKeys = allowedKeys;
-        this.init = false;
-    }
+	/**
+	 * @param {Component} component The react component to mount while this chapter is showing.
+	 * @param {Array} allowedKeys Optional - limit the allowed keys on this chapter
+	 */
+	constructor(component, allowedKeys) {
+		this.component = component;
+		this.complete = false;
+		this.limitsKeys = allowedKeys ? true : false;
+		this.allowedKeys = allowedKeys;
+		this.init = false;
+	}
 
-    start(stage) {
+	start(stage) {
+		this.init = true;
+		stage.beginLevelChapter(this);
+		if (this.component)
+			stage.addTutorialComponent(this.component);
+	}
 
-        console.log('beginning chapter', this);
-        this.init = true;
+	processEvent(event) {
+		// console.log('got event', event);
+	}
 
-        stage.beginLevelChapter(this);
+	update(stage, ctx) {
 
-        if (this.component)
-            stage.addTutorialComponent(this.component);
-    }
+		if (!this.init) {
+			this.start(stage);
+			return;
+		}
+	}
 
-    processEvent(event) {
-        console.log('got event', event);
-    }
-
-    update(stage, ctx) {
-
-        if (!this.init) {
-            this.start(stage);
-            return;
-        }
-    }
-
-    finishChapter(stage) {
-        this.complete = true;
-    }
+	finishChapter(stage) {
+		this.complete = true;
+	}
 }

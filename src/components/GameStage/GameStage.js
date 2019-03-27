@@ -93,7 +93,7 @@ class GameStage extends Component {
 		this.clearCanvas();
 
 		// Update the current level
-		this.props.level.update(this.stage);
+		this.props.level.update(this.stage, this.getContext());
 
 		// check if the current level is complete
 		if (this.props.level.complete) {
@@ -101,7 +101,6 @@ class GameStage extends Component {
 			return;
 		}
 
-		// this.updateTimer();
 		this.checkKeyStrokes();
 
 		// render game object shadows

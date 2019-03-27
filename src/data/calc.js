@@ -24,5 +24,11 @@ export default {
 		const range = max - min;
 		const rand = Math.random() * range;
 		return min + rand;
+	},
+
+	randomElementFromArray: (array) => {
+
+		const random = Math.random() * array.length;
+		return array[Math.floor(random)];
 	}
 }

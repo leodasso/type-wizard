@@ -24,6 +24,8 @@ export default class GameLevel {
 
 	update = (stage, ctx) => {
 
+		// console.log('hi updating level', ctx);
+
 		// If there's no chapters for some reason, just exit the function.
 		if (this.chapters.length < 1) {
 			this.complete = true;

@@ -1,4 +1,5 @@
 import LevelChapter from "./LevelChapter";
+import calc from '../../data/calc';
 
 // This chapter can spawn a variety of things at the beginning 
 export default class TimedChapter extends LevelChapter {
@@ -7,22 +8,20 @@ export default class TimedChapter extends LevelChapter {
 	 * @param {React.Component} component The component this chapter will display 
 	 * @param {Array} allowedKeys Array of keys that this chapter allows
 	 * @param {Array} spawns Array of the possible spawns
+	 * @param {Number} duration Duration in seconds for this chapter
 	 */
-	constructor(component, allowedKeys, spawns, duration) {
+	constructor(component, allowedKeys, spawns, duration, difficulty = 1) {
 		super(component, allowedKeys);
 		this.spawns = spawns;
 		this.spawnInstances = [];
 		this.duration = duration;
 		this.elapsed = 0;
+		this.timeSinceSpawn = 0;
+		this.difficulty = difficulty;
 	}
 
 	start(stage) {
 		super.start(stage);
-
-		for (const spawn of this.spawns) {
-			const newInstance = stage.addObjectToRandomKey(spawn);
-			this.spawnInstances.push(newInstance);
-		}
 	}
 
 	/** Returns the progress (between 0 and 1) of the current level */
@@ -34,13 +33,34 @@ export default class TimedChapter extends LevelChapter {
 		
 		// Update the timer
 		this.elapsed += (1 / stage.fps);
+		this.timeSinceSpawn += (1 / stage.fps);
 
+
+		// Spawn monsters - but not at the very end of the stage.
+		if (this.progress() < .9) {
+			// The more time it's been since a spawn, the more likely it should be
+			if (Math.random()*this.difficulty < .02 * this.timeSinceSpawn) {
+				this.timeSinceSpawn = 0;
+
+				// Choose a random monster from the spawns array
+				const monster = calc.randomElementFromArray(this.spawns);
+				stage.addObjectToRandomKey(monster);
+			}
+		}
+
+		if (this.elapsed >= this.duration) {
+			this.finishChapter(stage);
+			return;
+		}
+
+		if (!ctx) return;
 		// Draw a new rect
-		ctx.fillStyle = 'red';
-		let newWidth = stage.canvas.width * (1 - this.progress());
-		this.getContext().fillRect(1, 1, newWidth, 10);
+		ctx.fillStyle = 'rgb(66, 146, 119)';
+		let newWidth = stage.canvas.width * (this.progress());
+		ctx.fillRect(1, 1, newWidth, 4);
+	}
+	
 
-    }
 
 	processEvent(event) {
 		super.processEvent(event);
