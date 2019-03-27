@@ -4,13 +4,25 @@ import calc from '../data/calc';
 
 export default class Firework extends GameObject {
 
-	constructor(position, velocity, size, color, lifetime, emitPerSecond, burstEmits) {
+	/**
+	 * 
+	 * @param {object} position object with {x:nummber, y:number, z:number}
+	 * @param {object} velocity  object with {x:nummber, y:number, z:number}
+	 * @param {object} size  object with {w:number, h:number}
+	 * @param {string} color example: 'red', 'rgb(3, 52, 13)'
+	 * @param {number} lifetime 
+	 * @param {number} emitPerSecond 
+	 * @param {number} burstEmits 
+	 * @param {object} emissionVelocity object with {x:nummber, y:number, z:number}. max velocity of emitted particles
+	 */
+	constructor(position, velocity, size, color, lifetime, emitPerSecond, burstEmits, emissionVelocity) {
 			super(position, velocity, size, color, lifetime, undefined);
 			this.emitPerSecond = emitPerSecond;
 			this.burstEmits = burstEmits;
 			this.isVisible = false;
 			this.emitTimer = 0;
 			this.emitPeriod = 1 / emitPerSecond;
+			this.emissionVelocity = emissionVelocity;
 		}
 
 	init(stage) {
@@ -47,11 +59,10 @@ export default class Firework extends GameObject {
 		};
 
 		// create a new game object at that position
-		const magnitude = 50;
 		const vel = {
-			x: this.velocity.x + calc.randomRange(-magnitude, magnitude),
-			y: this.velocity.y + calc.randomRange(-magnitude, magnitude),
-			z: this.velocity.z + Math.random() * magnitude * 6,
+			x: this.velocity.x + calc.randomRange(-this.emissionVelocity.x, this.emissionVelocity.x),
+			y: this.velocity.y + calc.randomRange(-this.emissionVelocity.y, this.emissionVelocity.y),
+			z: this.velocity.z + Math.random() * this.emissionVelocity.z,
 		};
 
 		const size = {

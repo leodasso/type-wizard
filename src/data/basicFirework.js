@@ -10,5 +10,6 @@ export default (position = {x:50, y:50, z:0}) => {
         1,
         0,
         40,
+        {x:60, y:60, z:500}
         );
 }
