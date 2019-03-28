@@ -5,18 +5,18 @@ import {defaultTutorial} from './shared';
 
 // import chapter classes
 import InitSpawnChapter from '../../classes/chapters/InitSpawnChapter';
-
-import basicMonster from '../basicMonster';
 import { beginnerKeys, tutorialKeys1 } from '../keysets';
 
 // tutorial
 import Keymons from '../../components/Tutorials/Keymons/Keymons';
 
+import smallDragon from '../smallDragon';
+
 
 export default () => new GameLevel(
     1,
-    'Keymons',
-    'Keymons attack!',
+    'Small Dragon',
+    'Can you defeat the Phrase Dragon?',
     beginnerKeys,
 
     // Chapters
@@ -25,30 +25,7 @@ export default () => new GameLevel(
             <Keymons/>, 
             tutorialKeys1, 
             // Init spawns
-            [basicMonster, basicMonster, basicMonster,],
+            [smallDragon],
         ),
-
-        new InitSpawnChapter(
-            defaultTutorial, 
-            tutorialKeys1, 
-            // Init spawns
-            [basicMonster, basicMonster, ],
-
-        ),
-
-        new InitSpawnChapter(
-            defaultTutorial, 
-            beginnerKeys, 
-            // Init spawns
-            [basicMonster, basicMonster, basicMonster, basicMonster,],
-
-        ),
-
-        new InitSpawnChapter(
-            defaultTutorial, 
-            beginnerKeys, 
-            // Init spawns
-            [basicMonster, basicMonster,  basicMonster,],
-        )
     ]
 )

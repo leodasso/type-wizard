@@ -1,4 +1,5 @@
 import GameObject from "./gameObject";
+import TextRenderer from "./textRenderer";
 
 /** Keyboard game object is associated to a specific key. */
 export default class WordDragon extends GameObject {
@@ -11,33 +12,40 @@ export default class WordDragon extends GameObject {
 	 * @param {string} color color string 'red' or 'rgb(5, 2, 6), etc
 	 * @param {Number} lifetime lifetime in seconds
 	 * @param {function} deathObjectMethod Method which returns a new instance of the death object
+	 * @param {function} spriteConstructor Method which returns a new instance of the sprite renderer
 	 * @param {string} phrase The phrase on this dragon
 	 */
-	constructor(position, velocity, size, color, lifetime, deathObjectMethod, phrase ) {
-		super(position, velocity, size, color, lifetime, deathObjectMethod);
-		this.keyData = keyData;
+	constructor(position, velocity, size, color, lifetime, deathObjectMethod, spriteConstructor, phrase ) {
+		super(position, velocity, size, color, lifetime, deathObjectMethod, spriteConstructor);
 		this.gravity = false;
+		this.phrase = phrase;
+		this.growIn = true;
+		this.text = new TextRenderer(true);
 	}
 
 	/**  If the player presses the key that this object is sitting on,
 	 * this function will be called. The stage is passed into this function
 	 * so other objects can be added/removed
 	 * */
-	pressMe = (stage) => {
+	newKeyPress = (stage, keyData) => {
 
-		// TODO
-		//this.destroy(stage);
+		// TODO eventually I want this to drop bombs on the stage if the player makes
+		// an incorrect input, damaging the keyboard. For now there's no punishment
+		// for making a mistake.
+
+		console.log('lol u typed to a dragon');
 	}
 
 	render(ctx) {
 		super.render(ctx);
 
-		// render the keypress for this monster
-		ctx.font = '28px Raleway';
-		ctx.textAlign = 'center';
-		ctx.fillStyle = 'white';
-		const center = this.getCenter();
-		ctx.fillText(this.phrase, center.x, center.y + 14);
+		// render the text for this monster
+		const center = this.screenSpacePosition();
+		let fontSize = Math.round(32 * this.globalScale);
+		const textCoords = { x: center.x, y: center.y + 12 }
+
+		this.text.render(ctx, this.phrase, textCoords, fontSize, 'white' );
+		
 	}
 
 	destroy(stage) {
