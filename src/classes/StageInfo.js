@@ -15,6 +15,11 @@ export default class StageInfo {
 		this.canvas = canvas;
 	}
 
+	getSize = () => ({
+		w: this.canvas.width,
+		h: this.canvas.height,
+	})
+
 
 	/**This function is called whenever a monster is killed.
 	 * It handles keeping track of score and which keys are occupied.

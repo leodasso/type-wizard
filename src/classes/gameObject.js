@@ -139,14 +139,16 @@ export default class GameObject {
 		this.position.y += this.velocity.y * interval;
 		this.position.z += this.velocity.z * interval;
 
+		const stageSize = stage.getSize();
+
 		// bounce x
-		if (this.position.x + this.size.w > stage.width || this.position.x < 0) {
+		if (this.position.x + this.size.w/2 > stageSize.w || this.position.x - this.size.w/2< 0) {
 			this.velocity.x = -this.velocity.x;
 			this.onCollision();
 		}
 
 		// bounce y
-		if (this.position.y + this.size.h > stage.height || this.position.y < 0) {
+		if (this.position.y + this.size.h/2 > stageSize.h || this.position.y - this.size.h/2< 0) {
 			this.velocity.y = -this.velocity.y;
 			this.onCollision();
 		}
