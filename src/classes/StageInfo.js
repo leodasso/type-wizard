@@ -13,6 +13,7 @@ export default class StageInfo {
 		this.gameObjects = [];
 		this.gameStageComponent = gameStageComponent;
 		this.canvas = canvas;
+		this.wordset = words;
 	}
 
 	getSize = () => ({
@@ -21,15 +22,15 @@ export default class StageInfo {
 	})
 
 
-	/**This function is called whenever a monster is killed.
-	 * It handles keeping track of score and which keys are occupied.
-	 */
 	onMonsterKilled =(keyData) => {
-		const newScore = this.gameStageComponent.state.score + 1;
-		this.gameStageComponent.setState({score:newScore});
 
 		// clear monster from occupied keys
 		this.occupiedKeys = this.occupiedKeys.filter(key => key !== keyData.keyCode);
+	}
+
+	onSuccessfulPress = () => {
+		const newScore = this.gameStageComponent.state.score + 1;
+		this.gameStageComponent.setState({score:newScore});
 	}
 
 
@@ -117,6 +118,9 @@ export default class StageInfo {
 		const instance = spawnFunction({x:x, y:y, z:0});
 		instance.keyData = keyInfo.keyData;
 
+		// some gameobjects need to do some randomization stuff, that happens here
+		instance.randomize && instance.randomize(this);
+
 		this.gameObjects.push(instance);
 		return instance;
 	}
@@ -125,3 +129,22 @@ export default class StageInfo {
 		this.gameStageComponent.props.level.processEvent(event);
 	}
 }
+
+const words = [
+	"hello",
+	"gravely",
+	"sticky",
+	"bread",
+	"cups",
+	"tacos",
+	"chair",
+	"table",
+	"magazine",
+	"window",
+	"keyboard",
+	"wine",
+	"shoes",
+	"timely",
+	"strange",
+	"orange",
+]

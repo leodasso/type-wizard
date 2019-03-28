@@ -174,6 +174,7 @@ export default class GameObject {
 			// using the death object method, spawn a new instance of the
 			// death object. (i.e. an explosion, particle, etc)
 			const deathObject = this.deathObjectMethod(this.position);
+			deathObject.size = this.size;
 			stage.gameObjects.push(deathObject);
 		}
 	}

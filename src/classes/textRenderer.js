@@ -9,7 +9,7 @@ export default class TextRenderer {
 		this.textOffset = {x: 0, y:0};
 	}
 
-	render(ctx, text, coordsOnCanvas, fontSize, color) {
+	render(ctx, text, coordsOnCanvas, fontSize, color, align='center') {
 
 		// make the text jiggle every few frames
 		if (this.jiggle) {
@@ -25,7 +25,7 @@ export default class TextRenderer {
 
 		// render the text on the canvas
 		ctx.font =  fontSize + 'px Raleway';
-		ctx.textAlign = 'center';
+		ctx.textAlign = align;
 		ctx.fillStyle = color;
 		ctx.fillText(text, coordsOnCanvas.x + this.textOffset.x, coordsOnCanvas.y + this.textOffset.y);
 	}

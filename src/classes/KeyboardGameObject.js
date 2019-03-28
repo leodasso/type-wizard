@@ -50,6 +50,7 @@ export default class KeyboardGameObject extends GameObject {
 			payload: this,
 		})
 		
+		stage.onSuccessfulPress();
 		stage.onMonsterKilled(this.keyData);
 	}
 

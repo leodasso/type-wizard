@@ -1,5 +1,6 @@
 import GameObject from "./gameObject";
 import TextRenderer from "./textRenderer";
+import calc from "../data/calc";
 
 /** Keyboard game object is associated to a specific key. */
 export default class WordDragon extends GameObject {
@@ -27,13 +28,30 @@ export default class WordDragon extends GameObject {
 	 * this function will be called. The stage is passed into this function
 	 * so other objects can be added/removed
 	 * */
-	newKeyPress = (stage, keyData) => {
+	newKeyPress = (stage, keyPress) => {
 
 		// TODO eventually I want this to drop bombs on the stage if the player makes
 		// an incorrect input, damaging the keyboard. For now there's no punishment
 		// for making a mistake.
 
-		console.log('lol u typed to a dragon');
+		// compoare the keydata with my current letter
+		const letterToCheck = this.phrase[0];
+
+		// Check if the press was successful
+		if (keyPress.keyData.key === letterToCheck) {
+
+			stage.onSuccessfulPress();
+
+			// Remove the first letter from the phrase.
+			this.phrase = this.phrase.substring(1);
+			if (this.phrase.length < 1) {
+				this.destroy(stage);
+			}
+		}
+	}
+
+	randomize(stage) {
+		this.phrase = calc.randomElementFromArray(stage.wordset);
 	}
 
 	render(ctx) {
@@ -56,8 +74,5 @@ export default class WordDragon extends GameObject {
 			type: 'death',
 			payload: this,
 		})
-		
-		stage.onMonsterKilled(this.keyData);
 	}
-
 }

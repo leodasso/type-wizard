@@ -221,9 +221,12 @@ class GameStage extends Component {
 		// Send relevant key presses to the game objects - some of them are listening
 		// for key press events!
 		for (const go of this.stage.gameObjects) {
-			// If the game object doesn't support key presses, just continue
-			if (!go.pressMe) continue;
-			if (go.keyData.keyCode === keyPress.id) {
+
+			// tell game objects listening for all key presses
+			go.newKeyPress && go.newKeyPress(this.stage, keyPress);
+
+			// Tell game objects listening for presses of specific keys
+			if (go.pressMe && go.keyData.keyCode === keyPress.id) {
 				go.pressMe(this.stage);
 			}
 		}
