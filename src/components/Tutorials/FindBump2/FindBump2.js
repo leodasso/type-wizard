@@ -1,15 +1,31 @@
 import React, { Component } from 'react';
 
+import ImageAnimation from '../ImageAnimation';
+import tut1Frame1 from '../../../art/tutorial_1_frame_1.png';
+import tut1Frame2 from '../../../art/tutorial_1_frame_2.png';
+import tut1Frame3 from '../../../art/tutorial_1_frame_3.png';
+import tut1Frame4 from '../../../art/tutorial_1_frame_4.png';
+
+import '../Tutorials.css';
+import TutorialTemplate from '../TutorialTemplate';
+
+const images = [tut1Frame1, tut1Frame2, tut1Frame3, tut1Frame4, tut1Frame4, tut1Frame4];
+
+
 class FindBump2 extends Component{
 
 
 	render() {
 		return (
-			<div className="fade-in-panel">
-                <h2>Great!</h2>
-                <p>Now with your right hand, find the other bump.</p>
-				<p>Place your right index finger on it. Press to continue!</p>
-			</div>
+
+			<TutorialTemplate 
+				title={"Great!"}
+				bodyDiv={<>
+					<p>Now with your right hand, find the other bump.</p>
+					<p>Place your right index finger on it. Press to continue!</p>
+					</>}
+				mediaDiv={<ImageAnimation className="tutorial-image flip-image" images={images} interval={300} />}
+			/>
 		);
 	}
 }
