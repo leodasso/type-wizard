@@ -19,3 +19,7 @@
 .tutorial p {
     font-size: 12px;
 }
+
+.flip-image {
+    transform: scaleX(-1);
+}

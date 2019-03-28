@@ -31,7 +31,7 @@ class ImageAnimation extends Component{
 	render() {
 		return (
             <img  
-                className="tutorial-image" src={this.props.images[this.state.imageIndex]}/>
+                className={this.props.className} src={this.props.images[this.state.imageIndex]}/>
 		);
 	}
 }

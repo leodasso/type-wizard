@@ -6,6 +6,7 @@ import tut1Frame3 from '../../../art/tutorial_1_frame_3.png';
 import tut1Frame4 from '../../../art/tutorial_1_frame_4.png';
 
 import '../Tutorials.css';
+import TutorialTemplate from '../TutorialTemplate';
 
 const images = [tut1Frame1, tut1Frame2, tut1Frame3, tut1Frame4, tut1Frame4, tut1Frame4];
 
@@ -14,14 +15,15 @@ class FindBump1 extends Component{
 
 	render() {
 		return (
-			<div className="fade-in-panel tutorial">
-				<div className="tutorial-info">
-					<h2>Let's Get Started!</h2>	
+
+			<TutorialTemplate 
+				title={"Let's get started!"}
+				bodyDiv={<>
 					<p>Find the left-most key with a bump on it.</p>
 					<p>Place your left index finger on it. Press to continue!</p>
-				</div>
-				<ImageAnimation images={images} interval={300} />
-			</div>
+					</>}
+				mediaDiv={<ImageAnimation className="tutorial-image" images={images} interval={300} />}
+			/>
 		);
 	}
 }
