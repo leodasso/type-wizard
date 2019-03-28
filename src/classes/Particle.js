@@ -3,10 +3,10 @@ import calc from "../data/calc";
 
 export default class Particle extends GameObject{
 
-	constructor(position, velocity, size, color, lifetimeRange, deathObjectMethod) {
+	constructor(position, velocity, size, color, lifetimeRange, deathObjectMethod, spriteConstructor) {
 
 		const newLifetime = calc.randomRange(lifetimeRange.min, lifetimeRange.max);
-		super(position, velocity, size, color, newLifetime, deathObjectMethod);
+		super(position, velocity, size, color, newLifetime, deathObjectMethod, spriteConstructor);
 		this.initSize = {...size};
 
 	}

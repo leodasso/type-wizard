@@ -1,5 +1,4 @@
 import GameObject from "./gameObject";
-import {spriteAnim, frame2, frame3, frame4} from '../data/MonsterSprites';
 import calc from "../data/calc";
 
 /** Keyboard game object is associated to a specific key. */
@@ -15,10 +14,9 @@ export default class KeyboardGameObject extends GameObject {
 	 * @param {function} deathObjectMethod Method which returns a new instance of the death object
 	 * @param {object} keyData The data for the key that this monster is sitting on
 	 */
-	constructor(position, velocity, size, color, lifetime, deathObjectMethod, keyData ) {
-		super(position, velocity, size, color, lifetime, deathObjectMethod);
+	constructor(position, velocity, size, color, lifetime, deathObjectMethod, keyData, spriteConstructor) {
+		super(position, velocity, size, color, lifetime, deathObjectMethod, spriteConstructor);
 		this.keyData = keyData;
-		this.spriteAnim = spriteAnim();
 		this.textOffset = {x: 0, y:0};
 		this.textOffsetFrames = 0;
 		this.growIn = true;
@@ -38,7 +36,7 @@ export default class KeyboardGameObject extends GameObject {
 		// render the monster sprite
 		const rect = this.renderRect();
 		const pos = {x: rect.x, y: rect.y};
-		this.spriteAnim.render(ctx, pos, this.getTotalSize());
+		this.sprite && this.sprite.render(ctx, pos, this.getTotalSize());
 
 		// render the text for this monster
 		// make the text jiggle every few frames

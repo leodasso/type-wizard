@@ -21,8 +21,9 @@ export default class GameObject {
 	 * @param {string} color color string 'red' or 'rgb(5, 2, 6), etc
 	 * @param {Number} lifetime lifetime in seconds
 	 * @param {function} deathObjectMethod Method which returns a new instance of the death object
+	 * @param {function} spriteConstructor function which creates a new instance of a sprite or sprite animation
 	 */
-	constructor(position, velocity, size, color, lifetime, deathObjectMethod) {
+	constructor(position, velocity, size, color, lifetime, deathObjectMethod, spriteConstructor) {
 		this.position 		= getSafeVector(position);
 		this.velocity 		= getSafeVector(velocity);
 		this.size 			= size;
@@ -36,6 +37,9 @@ export default class GameObject {
 		this.startLifetime	= lifetime;		// Memorizes the original lifetime
 		this.growIn			= false;			// Start small and grow in to fullsize
 		this.globalScale	= 1;
+		if (spriteConstructor) {
+			this.sprite			= spriteConstructor();
+		}
 	}
 
 
