@@ -51,10 +51,13 @@ export default class Firework extends GameObject {
 	/** Emits a single particle onto the stage */
 	emit(stage) {
 
+		const width = this.size.w;
+		const height = this.size.h;
+
 		// choose a random position
 		const pos = {
-			x: this.position.x + Math.random()*this.size.w,
-			y: this.position.y + Math.random()*this.size.h,
+			x: calc.randomRange(this.position.x - width/2, this.position.x + width/2),
+			y: calc.randomRange(this.position.y - height/2, this.position.y + height/2),
 			z: this.position.z,
 		};
 

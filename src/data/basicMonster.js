@@ -6,7 +6,7 @@ export default (position = {x:50, y:50, z:0}) => {
     return new KeyboardGameObject(
         position, 
         {x:0, y:0, z:0},
-        {w:120, h:120},
+        {w:80, h:80},
         null,
         null, 
         basicFirework

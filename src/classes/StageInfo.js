@@ -7,9 +7,9 @@ import calc from '../data/calc';
 export default class StageInfo {
 
 	constructor (fps, gravity, gameStageComponent, canvas) {
-		this.fps = fps; // default 60
-		this.gravity = gravity; // default 900
-		this.occupiedKeys = [];	// Keys that have objects on them
+		this.fps = fps; 				// default 60
+		this.gravity = gravity; 		// default 900
+		this.occupiedKeys = [];			// Keys that have objects on them
 		this.gameObjects = [];
 		this.gameStageComponent = gameStageComponent;
 		this.canvas = canvas;
@@ -17,7 +17,7 @@ export default class StageInfo {
 
 
 	/**This function is called whenever a monster is killed.
-	 * It handles keeping trck of score and which keys are occupied.
+	 * It handles keeping track of score and which keys are occupied.
 	 */
 	onMonsterKilled =(keyData) => {
 		const newScore = this.gameStageComponent.state.score + 1;
@@ -105,9 +105,11 @@ export default class StageInfo {
 
 		// Convert the element's coords to canvas coords
 		const spawnRect = calc.domToCanvasCoords(this.canvas, keyInfo.div.getBoundingClientRect());
+		const x = spawnRect.x + spawnRect.width / 2;
+		const y = spawnRect.y + spawnRect.height / 2;
 
 		// Create a new monster instance, and add it to the stage
-		const instance = spawnFunction({x: spawnRect.x, y:spawnRect.y, z:0});
+		const instance = spawnFunction({x:x, y:y, z:0});
 		instance.keyData = keyInfo.keyData;
 
 		this.gameObjects.push(instance);
