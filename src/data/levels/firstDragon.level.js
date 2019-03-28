@@ -10,7 +10,7 @@ import { beginnerKeys, tutorialKeys1 } from '../keysets';
 // tutorial
 import Keymons from '../../components/Tutorials/Keymons/Keymons';
 
-import smallDragon from '../smallDragon';
+import {smallDragon} from '../dragons';
 
 
 export default () => new GameLevel(

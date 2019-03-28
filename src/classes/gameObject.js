@@ -86,12 +86,14 @@ export default class GameObject {
 	renderShadow = canvasContext => {
 
 		if (!this.hasShadow || !this.isVisible) return;
+
+		const size = this.getTotalSize();
 		canvasContext.fillStyle = 'black';
 		canvasContext.fillRect(
-			this.position.x, 
-			this.position.y + this.size.h - this.size.h/3, 
-			this.size.w, 
-			this.size.h / 3);
+			this.position.x - size.w / 2, 
+			this.position.y + size.h - size.h / 3, 
+			size.w, 
+			size.h / 3);
 	}
 
 	/** Runs once on object creation */

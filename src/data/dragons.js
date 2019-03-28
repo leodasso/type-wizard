@@ -1,8 +1,8 @@
 import basicFirework from "./basicFirework";
-import {spriteAnim} from './MonsterSprites';
+import {spriteAnim} from './DragonSprites';
 import WordDragon from "../classes/WordDragon";
 
-export default (position = {x:0, y:50, z:0}, phrase = "hello") => {
+const smallDragon = (position = {x:0, y:20, z:150}, phrase = "hello") => {
 
     return new WordDragon(
         position, 
@@ -15,3 +15,5 @@ export default (position = {x:0, y:50, z:0}, phrase = "hello") => {
         phrase
         )
 }
+
+export { smallDragon}
