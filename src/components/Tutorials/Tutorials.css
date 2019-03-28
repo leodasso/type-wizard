@@ -1,0 +1,16 @@
+.tutorial-image {
+    max-height: 150px;
+    width: 100%;
+    object-fit: cover;
+    flex-grow: 2;
+}
+
+.tutorial {
+    max-height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.tutorial p {
+    font-size: 12px;
+}
