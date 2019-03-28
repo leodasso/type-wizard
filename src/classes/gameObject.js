@@ -45,15 +45,21 @@ export default class GameObject {
 
 	// Draws the game object for this frame. Requires the context of the 
 	// canvas that you want to draw on.
-	render (canvasContext) {
+	render (ctx) {
 
 		if (!this.isVisible) return;
 
 		if (this.color) {
-			canvasContext.fillStyle = this.color;
+			ctx.fillStyle = this.color;
 			const renderRect = this.renderRect();
-			canvasContext.fillRect(renderRect.x, renderRect.y, renderRect.w * this.globalScale, renderRect.h * this.globalScale);
+			ctx.fillRect(renderRect.x, renderRect.y, renderRect.w * this.globalScale, renderRect.h * this.globalScale);
 		}
+
+		// render the monster sprite
+		const rect = this.renderRect();
+		const pos = {x: rect.x, y: rect.y};
+		this.sprite && this.sprite.render(ctx, pos, this.getTotalSize());
+		
 	}
 
 	/**Returns a rect where the screenSpacePosition is the center of the rect, and it extends all directions

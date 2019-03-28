@@ -33,11 +33,6 @@ export default class KeyboardGameObject extends GameObject {
 	render(ctx) {
 		super.render(ctx);
 
-		// render the monster sprite
-		const rect = this.renderRect();
-		const pos = {x: rect.x, y: rect.y};
-		this.sprite && this.sprite.render(ctx, pos, this.getTotalSize());
-
 		// render the text for this monster
 		// make the text jiggle every few frames
 		this.textOffsetFrames++;
