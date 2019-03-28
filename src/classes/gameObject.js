@@ -35,11 +35,6 @@ export default class GameObject {
 		this.startLifetime	= lifetime;		// Memorizes the original lifetime
 	}
 
-	// Returns the center coord of this rect
-	getCenter = () => ({
-		x: this.position.x + this.size.w/2,
-		y: this.position.y + this.size.h/2,
-	});
 
 	// Draws the game object for this frame. Requires the context of the 
 	// canvas that you want to draw on.
@@ -47,12 +42,31 @@ export default class GameObject {
 
 		if (!this.isVisible) return;
 
-		canvasContext.fillStyle = this.color;
+		if (this.color) {
+			canvasContext.fillStyle = this.color;
+			const renderRect = this.renderRect();
+			canvasContext.fillRect(renderRect.x, renderRect.y, renderRect.w, renderRect.h);
+		}
+	}
 
-		// the onscreen y is a combination of y and z coords. The amount we change z is kind of arbitrary.
+	/**Returns a rect where the screenSpacePosition is the center of the rect, and it extends all directions
+	 * equally.
+	 */
+	renderRect() {
+		const pos = this.screenSpacePosition();
+		return {
+			x: pos.x - this.size.w / 2,
+			y: pos.y - this.size.h / 2,
+			w: this.size.w,
+			h: this.size.h,
+		}
+	}
+
+	screenSpacePosition() {
+		// the onscreen y is a combination of y and z coords. The amount we multiply z by 
+		// is kind of arbitrary, but gives the illusion of angle changing
 		const z = this.position.z ? this.position.z : 0;
-		const onScreenY = this.position.y - (z/2);
-		canvasContext.fillRect(this.position.x, onScreenY, this.size.w, this.size.h);
+		return {x: this.position.x, y: this.position.y - (z/2) };
 	}
 
 	renderShadow = canvasContext => {

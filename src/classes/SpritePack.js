@@ -62,7 +62,7 @@ class SpriteAnimation {
 	update = (ctx, coordsOnCanvas, sizeOnCanvas) => {
 
 		this.frame++;
-		if (this.frame >= framesPerSprite) {
+		if (this.frame >= this.framesPerSprite) {
 
 			this.frame = 0;
 

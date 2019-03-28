@@ -1,4 +1,5 @@
 import GameObject from "./gameObject";
+import {frame1} from '../data/MonsterSprites';
 
 /** Keyboard game object is associated to a specific key. */
 export default class KeyboardGameObject extends GameObject {
@@ -29,12 +30,17 @@ export default class KeyboardGameObject extends GameObject {
 	render(ctx) {
 		super.render(ctx);
 
+		// render the monster sprite
+		const rect = this.renderRect();
+		const pos = {x: rect.x, y: rect.y};
+		frame1.render(ctx, pos, this.size);
+
 		// render the keypress for this monster
+		const center = this.screenSpacePosition();
 		ctx.font = '28px Raleway';
 		ctx.textAlign = 'center';
 		ctx.fillStyle = 'white';
-		const center = this.getCenter();
-		ctx.fillText(this.keyData.key, center.x, center.y + 14);
+		ctx.fillText(this.keyData.key, center.x, center.y + 12);
 	}
 
 	destroy(stage) {
