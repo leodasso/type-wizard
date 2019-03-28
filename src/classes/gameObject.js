@@ -1,3 +1,4 @@
+import calc from "../data/calc";
 
 /** GameObject is the base class for any object that shows up on the stage.
  * It takes care of rendering and motion. Position and Velocity should be 
@@ -33,6 +34,8 @@ export default class GameObject {
 		this.hasShadow		= true;
 		this.initialized 	= false;
 		this.startLifetime	= lifetime;		// Memorizes the original lifetime
+		this.growIn			= false;			// Start small and grow in to fullsize
+		this.globalScale	= 1;
 	}
 
 
@@ -45,7 +48,7 @@ export default class GameObject {
 		if (this.color) {
 			canvasContext.fillStyle = this.color;
 			const renderRect = this.renderRect();
-			canvasContext.fillRect(renderRect.x, renderRect.y, renderRect.w, renderRect.h);
+			canvasContext.fillRect(renderRect.x, renderRect.y, renderRect.w * this.globalScale, renderRect.h * this.globalScale);
 		}
 	}
 
@@ -54,11 +57,12 @@ export default class GameObject {
 	 */
 	renderRect() {
 		const pos = this.screenSpacePosition();
+		const size = this.getTotalSize();
 		return {
-			x: pos.x - this.size.w / 2,
-			y: pos.y - this.size.h / 2,
-			w: this.size.w,
-			h: this.size.h,
+			x: pos.x - size.w / 2,
+			y: pos.y - size.h / 2,
+			w: size.w,
+			h: size.h,
 		}
 	}
 
@@ -83,7 +87,13 @@ export default class GameObject {
 	/** Runs once on object creation */
 	init (stage) {
 		this.initialized = true;
+		if (this.growIn) {
+			this.globalScale = 0;
+		}
+	}
 
+	getTotalSize() {
+		return {w: this.size.w * this.globalScale, h: this.size.h * this.globalScale}
 	}
 
 	/** Updates the movement / physics of this object */
@@ -91,6 +101,10 @@ export default class GameObject {
 
 		if (!this.initialized) {
 			this.init(stage);
+		}
+
+		if (this.growIn) {
+			this.globalScale = calc.lerp(this.globalScale, 1, .1);
 		}
 
 		// Set an interval so that speeds are consistent no matter the framrate

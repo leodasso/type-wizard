@@ -30,5 +30,10 @@ export default {
 
 		const random = Math.random() * array.length;
 		return array[Math.floor(random)];
+	},
+
+	lerp: (start, end, progress) => {
+		let range = end - start;
+		return start + (range * progress);
 	}
 }

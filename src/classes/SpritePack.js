@@ -50,16 +50,17 @@ class SpriteAnimation {
 	 * @param {Number} framesPerSprite Frames per second each sprite will show
 	 * @param {boolean} loop Loop the animation?
 	 */
-	constructor(spriteArray, framesPerSprite, loop=true) {
+	constructor(spriteArray, framesPerSprite, loop=true, frameOffset=0) {
 		this.spriteArray = spriteArray;
 		this.framesPerSprite = framesPerSprite;
 		this.loop = loop;
-		this.frame = 0;
+		this.frame = frameOffset;
 		this.spriteIndex = 0;
 	}
 
+
 	/**Updates the sprite animation. This should be called every frame. */
-	update = (ctx, coordsOnCanvas, sizeOnCanvas) => {
+	render = (ctx, coordsOnCanvas, sizeOnCanvas) => {
 
 		this.frame++;
 		if (this.frame >= this.framesPerSprite) {

@@ -1,5 +1,6 @@
 import GameObject from "./gameObject";
-import {frame1} from '../data/MonsterSprites';
+import {spriteAnim, frame2, frame3, frame4} from '../data/MonsterSprites';
+import calc from "../data/calc";
 
 /** Keyboard game object is associated to a specific key. */
 export default class KeyboardGameObject extends GameObject {
@@ -17,6 +18,10 @@ export default class KeyboardGameObject extends GameObject {
 	constructor(position, velocity, size, color, lifetime, deathObjectMethod, keyData ) {
 		super(position, velocity, size, color, lifetime, deathObjectMethod);
 		this.keyData = keyData;
+		this.spriteAnim = spriteAnim();
+		this.textOffset = {x: 0, y:0};
+		this.textOffsetFrames = 0;
+		this.growIn = true;
 	}
 
 	/**  If the player presses the key that this object is sitting on,
@@ -33,14 +38,25 @@ export default class KeyboardGameObject extends GameObject {
 		// render the monster sprite
 		const rect = this.renderRect();
 		const pos = {x: rect.x, y: rect.y};
-		frame1.render(ctx, pos, this.size);
+		this.spriteAnim.render(ctx, pos, this.getTotalSize());
 
-		// render the keypress for this monster
+		// render the text for this monster
+		// make the text jiggle every few frames
+		this.textOffsetFrames++;
+		if (this.textOffsetFrames > calc.randomRange(7, 15)){
+			this.textOffset = {
+				x: calc.randomRange(-2, 2),
+				y: calc.randomRange(-2, 2),
+			};
+			this.textOffsetFrames = 0;
+		}
+
 		const center = this.screenSpacePosition();
-		ctx.font = '28px Raleway';
+		let fontSize = Math.round(28 * this.globalScale);
+		ctx.font =  fontSize + 'px Raleway';
 		ctx.textAlign = 'center';
 		ctx.fillStyle = 'white';
-		ctx.fillText(this.keyData.key, center.x, center.y + 12);
+		ctx.fillText(this.keyData.key, center.x + this.textOffset.x, center.y + 12 + this.textOffset.y);
 	}
 
 	destroy(stage) {
