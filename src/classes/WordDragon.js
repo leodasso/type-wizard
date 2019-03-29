@@ -1,6 +1,7 @@
 import GameObject from "./gameObject";
 import TextRenderer from "./textRenderer";
 import calc from "../data/calc";
+import Hangul from 'hangul-js';
 
 /** Keyboard game object is associated to a specific key. */
 export default class WordDragon extends GameObject {
@@ -19,9 +20,16 @@ export default class WordDragon extends GameObject {
 	constructor(position, velocity, size, color, lifetime, deathObjectMethod, spriteConstructor, phrase ) {
 		super(position, velocity, size, color, lifetime, deathObjectMethod, spriteConstructor);
 		this.gravity = false;
-		this.phrase = phrase;
+		this.setPhrase(phrase);
 		this.growIn = true;
 		this.text = new TextRenderer(true);
+		this.storedInput =  '';
+	}
+
+	setPhrase(phrase) {
+		this.phrase = phrase;
+		this.disassembledPhrase = Hangul.disassemble(phrase);
+		console.log('disassembled phrase:', this.disassembledPhrase);
 	}
 
 	/**  If the player presses the key that this object is sitting on,
@@ -35,7 +43,15 @@ export default class WordDragon extends GameObject {
 		// for making a mistake.
 
 		// compoare the keydata with my current letter
-		const letterToCheck = this.phrase[0];
+		const letterToCheck = this.disassembledPhrase[0];
+		
+		console.log(keyPress, keyPress.shifted);
+
+		if (keyPress.shifted) {
+			console.log(keyPress.keyData.getShifted());
+		}else {
+			console.log(keyPress.keyData.key);
+		}
 
 		// Check if the press was successful
 		if (keyPress.keyData.key === letterToCheck) {
@@ -43,15 +59,16 @@ export default class WordDragon extends GameObject {
 			stage.onSuccessfulPress();
 
 			// Remove the first letter from the phrase.
-			this.phrase = this.phrase.substring(1);
-			if (this.phrase.length < 1) {
+			this.disassembledPhrase.shift();
+			this.phrase = Hangul.assemble(this.disassembledPhrase);
+			if (this.disassembledPhrase.length < 1) {
 				this.destroy(stage);
 			}
 		}
 	}
 
 	randomize(stage) {
-		this.phrase = calc.randomElementFromArray(stage.wordset);
+		this.setPhrase(calc.randomElementFromArray(stage.wordset));
 	}
 
 	render(ctx) {

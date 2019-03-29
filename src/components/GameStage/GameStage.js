@@ -199,6 +199,7 @@ class GameStage extends Component {
 	 * @param {Object} keyPress The object which contains the data for the pressed key
 	 */
 	onKeyPressed(keyPress) {
+
 		// send event to redux
 		this.props.dispatch({
 			type: 'ADD_EVENT',
@@ -208,11 +209,14 @@ class GameStage extends Component {
 			}
 		})
 
-		// Create the event object and send it to the level for processing
-		this.props.level.processEvent({
+		const keyPressEvent = {
+			...keyPress,
 			type: 'press',
-			key: keyPress,
-		});
+			shifted: this.props.shifted !== 0,
+		}
+
+		// Create the event object and send it to the level for processing
+		this.props.level.processEvent(keyPressEvent);
 
 		// count the key press
 		const newCount = this.state.keyPresses + 1;
@@ -223,7 +227,7 @@ class GameStage extends Component {
 		for (const go of this.stage.gameObjects) {
 
 			// tell game objects listening for all key presses
-			go.newKeyPress && go.newKeyPress(this.stage, keyPress);
+			go.newKeyPress && go.newKeyPress(this.stage, keyPressEvent);
 
 			// Tell game objects listening for presses of specific keys
 			if (go.pressMe && go.keyData.keyCode === keyPress.id) {
@@ -242,6 +246,7 @@ const mapReduxState = reduxState => {
 		enabledKeys: reduxState.ableKeys,
 		keyDivs: reduxState.keyDivs,
 		keyboard: reduxState.keyboard,
+		shifted: reduxState.shifted,
 	}
 }
 
