@@ -62,6 +62,7 @@ export default class TimedChapter extends LevelChapter {
 
 	spawnsAreDestroyed() {
 		for (const spawn of this.spawnInstances) {
+			if (!spawn) continue;
 			if (!spawn.destroyed) {
 				return false;
 			}

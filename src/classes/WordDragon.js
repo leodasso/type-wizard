@@ -45,16 +45,10 @@ export default class WordDragon extends GameObject {
 		// compoare the keydata with my current letter
 		const letterToCheck = this.disassembledPhrase[0];
 		
-		console.log(keyPress, keyPress.shifted);
-
-		if (keyPress.shifted) {
-			console.log(keyPress.keyData.getShifted());
-		}else {
-			console.log(keyPress.keyData.key);
-		}
+		const newInput = keyPress.shifted ? keyPress.keyData.getShifted() : keyPress.keyData.key;
 
 		// Check if the press was successful
-		if (keyPress.keyData.key === letterToCheck) {
+		if (newInput === letterToCheck) {
 
 			stage.onSuccessfulPress();
 

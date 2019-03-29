@@ -40,6 +40,7 @@
 
 		// clear out the spawned instances
 		for (const instance of this.spawnInstances) {
+			if (!instance) continue;
 			instance.destroy && instance.destroy(stage);
 		}
 		this.complete = true;
