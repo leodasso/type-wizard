@@ -48,7 +48,7 @@ export default class TimedChapter extends LevelChapter {
 			}
 		}
 
-		if (this.elapsed >= this.duration) {
+		if (this.elapsed >= this.duration && this.spawnsAreDestroyed()) {
 			this.finishChapter(stage);
 			return;
 		}
@@ -58,6 +58,15 @@ export default class TimedChapter extends LevelChapter {
 		ctx.fillStyle = 'rgb(66, 146, 119)';
 		let newWidth = stage.canvas.width * (this.progress());
 		ctx.fillRect(1, 1, newWidth, 4);
+	}
+
+	spawnsAreDestroyed() {
+		for (const spawn of this.spawnInstances) {
+			if (!spawn.destroyed) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 

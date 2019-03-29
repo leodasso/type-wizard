@@ -37,6 +37,7 @@ export default class GameObject {
 		this.startLifetime	= lifetime;		// Memorizes the original lifetime
 		this.growIn			= false;			// Start small and grow in to fullsize
 		this.globalScale	= 1;
+		this.destroyed		= false;
 		if (spriteConstructor) {
 			this.sprite			= spriteConstructor();
 		}
@@ -168,6 +169,7 @@ export default class GameObject {
 	 */
 	destroy(stage) {
 
+		if (this.destroyed) return;
 		this.destroyed = true;
 
 		if (this.deathObjectMethod) {
