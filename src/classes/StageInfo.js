@@ -6,14 +6,14 @@ import calc from '../data/calc';
  */
 export default class StageInfo {
 
-	constructor (fps, gravity, gameStageComponent, canvas) {
+	constructor (fps, gravity, gameStageComponent, canvas, wordset) {
 		this.fps = fps; 				// default 60
 		this.gravity = gravity; 		// default 900
 		this.occupiedKeys = [];			// Keys that have objects on them
 		this.gameObjects = [];
 		this.gameStageComponent = gameStageComponent;
 		this.canvas = canvas;
-		this.wordset = words;
+		this.wordset = wordset;
 	}
 
 	getSize = () => ({
@@ -129,22 +129,3 @@ export default class StageInfo {
 		this.gameStageComponent.props.level.processEvent(event);
 	}
 }
-
-const words = [
-	"hello",
-	"gravely",
-	"sticky",
-	"bread",
-	"cups",
-	"tacos",
-	"chair",
-	"table",
-	"magazine",
-	"window",
-	"keyboard",
-	"wine",
-	"shoes",
-	"timely",
-	"strange",
-	"orange",
-]

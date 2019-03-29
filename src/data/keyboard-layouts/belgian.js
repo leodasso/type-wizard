@@ -1,5 +1,7 @@
 import Keyboard from '../../classes/keyboard';
 import KeyData from '../../classes/keyData';
+import EnglishWords from '../english.words';
+import englishWords from '../english.words';
 
 const keyRows = [
 	[
@@ -57,4 +59,4 @@ const previewRows = [
 	],
 ]
 
-export default new Keyboard(keyRows, 5, "Belgian", previewRows)
+export default new Keyboard(keyRows, 5, "Belgian", previewRows, englishWords)

@@ -1,5 +1,6 @@
 import Keyboard from '../../classes/keyboard';
 import KeyData from '../../classes/keyData';
+import koreanWords from '../korean.words';
 
 const keyRows = [
 	[
@@ -56,4 +57,4 @@ const previewRows = [
 
 ]
 
-export default new Keyboard(keyRows, 1, "Korean", previewRows);
+export default new Keyboard(keyRows, 1, "Korean", previewRows, koreanWords);

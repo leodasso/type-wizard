@@ -56,7 +56,7 @@ class GameStage extends Component {
 	// Begin a new game session
 	beginSession = () => {
 
-		this.stage = new StageInfo(60, 900, this, this.refs.canvas);
+		this.stage = new StageInfo(60, 900, this, this.refs.canvas, this.props.keyboard.wordList);
 
 		// Reset game events so we don't have the previous 
 		// session's info
@@ -241,6 +241,7 @@ const mapReduxState = reduxState => {
 		level: reduxState.currentLevel,
 		enabledKeys: reduxState.ableKeys,
 		keyDivs: reduxState.keyDivs,
+		keyboard: reduxState.keyboard,
 	}
 }
 
