@@ -11,7 +11,6 @@ export default class InitSpawnChapter extends LevelChapter {
 	constructor(component, allowedKeys, spawns) {
 		super(component, allowedKeys);
 		this.spawns = spawns;
-		this.spawnInstances = [];
 	}
 
 	start(stage) {

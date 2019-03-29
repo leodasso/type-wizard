@@ -14,6 +14,7 @@
 		this.limitsKeys = allowedKeys ? true : false;
 		this.allowedKeys = allowedKeys;
 		this.init = false;
+		this.spawnInstances = [];
 	}
 
 	start(stage) {
@@ -36,6 +37,11 @@
 	}
 
 	finishChapter(stage) {
+
+		// clear out the spawned instances
+		for (const instance of this.spawnInstances) {
+			instance.destroy && instance.destroy(stage);
+		}
 		this.complete = true;
 	}
 }

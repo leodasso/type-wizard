@@ -13,7 +13,6 @@ export default class TimedChapter extends LevelChapter {
 	constructor(component, allowedKeys, spawns, duration, difficulty = 1) {
 		super(component, allowedKeys);
 		this.spawns = spawns;
-		this.spawnInstances = [];
 		this.duration = duration;
 		this.elapsed = 0;
 		this.timeSinceSpawn = 0;
@@ -44,7 +43,8 @@ export default class TimedChapter extends LevelChapter {
 
 				// Choose a random monster from the spawns array
 				const monster = calc.randomElementFromArray(this.spawns);
-				stage.addObjectToRandomKey(monster);
+				const newInstance = stage.addObjectToRandomKey(monster);
+				this.spawnInstances.push(newInstance);
 			}
 		}
 
