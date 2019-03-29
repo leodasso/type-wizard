@@ -1,8 +1,8 @@
-import basicFirework from "./basicFirework";
 import {spriteAnim} from './DragonSprites';
 import WordDragon from "../classes/WordDragon";
+import bigFirework from "./bigFirework";
 
-const smallDragon = (position = {x:0, y:20, z:150}, phrase = "hello") => {
+const smallDragon = (position = {x:0, y:20, z:400}, phrase = "hello") => {
 
     return new WordDragon(
         position, 
@@ -10,7 +10,7 @@ const smallDragon = (position = {x:0, y:20, z:150}, phrase = "hello") => {
         {w:260, h:100},
         null,
         null,
-        basicFirework,
+        bigFirework,
         spriteAnim,
         phrase
         )

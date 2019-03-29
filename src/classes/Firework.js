@@ -15,7 +15,7 @@ export default class Firework extends GameObject {
 	 * @param {number} burstEmits 
 	 * @param {object} emissionVelocity object with {x:nummber, y:number, z:number}. max velocity of emitted particles
 	 */
-	constructor(position, velocity, size, color, lifetime, emitPerSecond, burstEmits, emissionVelocity) {
+	constructor(position, velocity, size, color, lifetime, emitPerSecond, burstEmits, emissionVelocity, particleParams) {
 			super(position, velocity, size, color, lifetime, undefined);
 			this.emitPerSecond = emitPerSecond;
 			this.burstEmits = burstEmits;
@@ -23,6 +23,7 @@ export default class Firework extends GameObject {
 			this.emitTimer = 0;
 			this.emitPeriod = 1 / emitPerSecond;
 			this.emissionVelocity = emissionVelocity;
+			this.particleParams = particleParams;
 		}
 
 	init(stage) {
@@ -68,18 +69,19 @@ export default class Firework extends GameObject {
 			z: this.velocity.z + Math.random() * this.emissionVelocity.z,
 		};
 
+		const scale = calc.randomRange(this.particleParams.minSize, this.particleParams.maxSize);
 		const size = {
-			w: 6,
-			h: 6,
+			w: scale,
+			h: scale,
 		}
 
 		// create the new particle
 		const newParticle = new Particle(
 			pos, 
 			vel, 
-			size, 
+			size,
 			this.color, 
-			{min: .2, max: 1},
+			{min: this.particleParams.minLifetime, max: this.particleParams.maxLifetime},
 			 undefined);
 		stage.gameObjects.push(newParticle);
 	}

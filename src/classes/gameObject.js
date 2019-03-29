@@ -35,9 +35,10 @@ export default class GameObject {
 		this.hasShadow		= true;
 		this.initialized 	= false;
 		this.startLifetime	= lifetime;		// Memorizes the original lifetime
-		this.growIn			= false;			// Start small and grow in to fullsize
+		this.growIn			= false;		// Start small and grow in to fullsize
 		this.globalScale	= 1;
 		this.destroyed		= false;
+		this.bounceFactor	= .5			// How much velocity is retained after a bounce
 		if (spriteConstructor) {
 			this.sprite			= spriteConstructor();
 		}
@@ -92,7 +93,7 @@ export default class GameObject {
 		canvasContext.fillStyle = 'black';
 		canvasContext.fillRect(
 			this.position.x - size.w / 2, 
-			this.position.y + size.h - size.h / 3, 
+			this.position.y , 
 			size.w, 
 			size.h / 3);
 	}
@@ -158,7 +159,7 @@ export default class GameObject {
 
 		// bounce z - this is the coord perpendicular to the ground plane so it's a bit diff
 		if (this.position.z < 0) {
-			this.velocity.z = Math.abs(this.velocity.z);
+			this.velocity.z = Math.abs(this.velocity.z)  * this.bounceFactor;
 			this.position.z = 0;
 			this.onCollision();
 		}

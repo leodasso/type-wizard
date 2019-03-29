@@ -29,7 +29,7 @@ export default class WordDragon extends GameObject {
 	setPhrase(phrase) {
 		this.phrase = phrase;
 		this.disassembledPhrase = Hangul.disassemble(phrase);
-		console.log('disassembled phrase:', this.disassembledPhrase);
+		// console.log('disassembled phrase:', this.disassembledPhrase);
 	}
 
 	/**  If the player presses the key that this object is sitting on,
@@ -63,6 +63,7 @@ export default class WordDragon extends GameObject {
 
 	randomize(stage) {
 		this.setPhrase(calc.randomElementFromArray(stage.wordset));
+		this.position.z = calc.randomRange(20, 200);
 	}
 
 	render(ctx) {

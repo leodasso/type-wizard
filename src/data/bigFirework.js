@@ -14,10 +14,10 @@ export default (position = {x:50, y:50, z:0}) => {
 
         // Particle params
         {
-            minSize: 1,
-            maxSize: 10,
-            minLifetime: .2,
-            maxLifetime: .7,
+            minSize: 5,
+            maxSize: 12,
+            minLifetime: .5,
+            maxLifetime: 1.5,
         },
         );
 }
