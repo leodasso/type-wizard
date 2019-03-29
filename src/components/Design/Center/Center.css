@@ -1,12 +1,11 @@
 .center-grid {
     display: grid;
     grid-template-columns: auto 50vmin auto;
-    grid-template-rows: 30% 600px 30%;
+    grid-template-rows: 15% 500px 30%;
 
 }
 
 .center-area {
-    /* background-color: red; */
     grid-column: 2 / 3;
     grid-row: 2 / 3;
 }
