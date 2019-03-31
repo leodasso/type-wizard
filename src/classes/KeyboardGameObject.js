@@ -41,6 +41,7 @@ export default class KeyboardGameObject extends GameObject {
 		this.text.render(ctx, this.keyData.key, textCoords, fontSize, 'white' );
 	}
 
+
 	destroy(stage) {
 		super.destroy(stage);
 

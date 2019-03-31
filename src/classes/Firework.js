@@ -85,5 +85,4 @@ export default class Firework extends GameObject {
 			 undefined);
 		stage.gameObjects.push(newParticle);
 	}
-
 }

@@ -15,7 +15,7 @@ function* fetchSessions() {
 
 		const response = yield axios.get('api/session', config);
 
-		console.log(response.data);
+		// console.log(response.data);
 		yield put({type: 'SET_SESSIONS', payload:response.data})
 
 	} catch (error) {
