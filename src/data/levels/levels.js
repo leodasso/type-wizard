@@ -5,6 +5,7 @@ import level2 from './keymonsIntro.level';
 import level3 from './keymonChallenge.level';
 import level4 from './speedDemon.level';
 import level5 from './firstDragon.level';
+import level6 from './easyDragon.level';
 
 /**Levels array is an array of functions. That way, every time we call for this level,
  * it creates a new instance. This is to prevent the data from persisting between play
@@ -21,6 +22,7 @@ export default [
 	level3,
 
 	level4,
+	level6,
 	level5,
 ]
 

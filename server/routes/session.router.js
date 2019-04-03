@@ -13,7 +13,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 	// Select all the sessions from the current user
 	pool.query(`
 		SELECT * FROM "session"
-		WHERE "user_id" = $1;`, [req.user.id])
+		WHERE "user_id" = $1
+		ORDER BY "id";`, [req.user.id])
 	.then(response => res.send(response.rows))
 	.catch(error => console.log('error getting sessions', error));
   });

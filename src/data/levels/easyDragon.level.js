@@ -24,18 +24,12 @@ export default () => new GameLevel(
 			[smallDragon],
 		),
 
-		new InitSpawnChapter(
-			defaultTutorial, 
-			undefined, 
-			[smallDragon],
-		),
-
 		new TimedChapter(
 			defaultTutorial, 
 			undefined, 
 			[basicMonster],
 			15,
-			2
+			1.3
 		),
 
 		new InitSpawnChapter(
