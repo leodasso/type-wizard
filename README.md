@@ -6,8 +6,24 @@ with a Hangul keyboard layout.
 Simply put, TypeWizard is a keyboarding practice app with the option to choose different keyboard layouts.
 
 ## Screenshots
-[destroying a hotdog](blob:https://imgur.com/4e18984e-1548-43b6-865d-b347b6b1d0ec)
-[Selecting a language](blob:https://imgur.com/037e55ce-fc4c-454e-b2dc-9d15695c256e)
+![keyboarding tutorial](https://github.com/leodasso/type-wizard/blob/master/readme/tw_play_1.gif?raw=true)
+
+Step by step tutorial on finger placement!
+
+
+![destroying a hotdog](https://github.com/leodasso/type-wizard/blob/master/readme/tw_play_2.gif?raw=true)
+
+Minigames and challenges
+
+
+![Previewing keyboards](https://github.com/leodasso/type-wizard/blob/master/readme/tw_selection_1.gif?raw=true)
+![Selecting a language](https://github.com/leodasso/type-wizard/blob/master/readme/tw_selection_2.gif?raw=true)
+
+Preview and select keyboards of different languages (only English and Korean are fully supported right now. More to come soon!)
+
+
+![Choosing a stage](https://github.com/leodasso/type-wizard/blob/master/readme/tw_play_selection.gif?raw=true)
+
 
 ## Prerequisites
 Before you get started, make sure you have the following software installed on your computer:
