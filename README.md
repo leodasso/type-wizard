@@ -6,7 +6,8 @@ with a Hangul keyboard layout.
 Simply put, TypeWizard is a keyboarding practice app with the option to choose different keyboard layouts.
 
 ## Screenshots
-[Selecting a language](https://i.imgur.com/lnqc3yH.mp4)
+[destroying a hotdog](blob:https://imgur.com/4e18984e-1548-43b6-865d-b347b6b1d0ec)
+[Selecting a language](blob:https://imgur.com/037e55ce-fc4c-454e-b2dc-9d15695c256e)
 
 ## Prerequisites
 Before you get started, make sure you have the following software installed on your computer:
