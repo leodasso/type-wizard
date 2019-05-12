@@ -17,6 +17,10 @@ class Settings extends Component{
 				<Header>Settings</Header>
 				<BodyContainer>
 					<h2>Select a Keyboard</h2>
+					<p className="subtitle">
+						This isn't your physical keyboard, but the keyboard layout that you would like to
+						practice learning. It will appear in the on-screen virtual keyboard.
+					</p>
 					<p className="subtitle">Try typing!</p>
 					<div className="keyboard-list">
 						{keyboardLayouts.map(layout => 
