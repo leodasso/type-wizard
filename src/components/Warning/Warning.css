@@ -1,12 +1,13 @@
 .warning {
+
     background-color: #ff4564;
     color: var(--deep-black);
     padding: 30px;
-    margin: 24px 50px;
+    margin: 8px 18px;
     border-radius: 4px;
     box-shadow: 0px 4px 8px var(--deep-black);
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .warning-element {

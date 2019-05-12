@@ -1,4 +1,7 @@
-[] fix styling on login page 
-[] remove incomplete languages 
+[x] fix styling on login page 
+[x] remove incomplete languages 
+[] add robust password checker
+[] add google oAuth
 [] unlock levels
 [] play w/o logging in
+[] store progress with cookies ( when not logged in)
