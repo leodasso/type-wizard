@@ -1,0 +1,4 @@
+[] fix styling on login page 
+[] remove incomplete languages 
+[] unlock levels
+[] play w/o logging in
