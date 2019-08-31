@@ -22,24 +22,19 @@ class KeyboardSelection extends Component {
 
 		const layout = this.props.layout;
 
-		const selectedClass = this.props.keyboard.id === layout.id ?
-			" selected" : "";
-		return (
-			<div className={"keyboard-card" + selectedClass}>
+		const selectedClass = this.props.keyboard.id === layout.id ? " selected" : "";
 
+		return (
+			
+			<div 
+				className={"keyboard-card" + selectedClass}
+				onClick={this.selectKeyboard}>
+					
 				<div className={"keyboard-title" + selectedClass}>
 					{layout.title}
 				</div>
 
 				<Keyboard keyboard={layout} preview={true}/>
-
-				<div className="keyboard-card-body">
-					<BodyButton 
-						onClick={this.selectKeyboard}
-						className="select-button">
-						Select
-					</BodyButton>
-				</div>
 			</div>
 		);
 	}

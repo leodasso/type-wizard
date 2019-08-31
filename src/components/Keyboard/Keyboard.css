@@ -19,19 +19,23 @@
 .keyboard {
     display: flex;
     flex-direction: column;
-    background-color: var(--deep-black);
+    background-color: var(--lightest);
+    border-style: dashed;
+    border-width: 2px;
+    border-color: var(--dark2);
 }
 
 .full {
-    border-radius: 0px 0px 16px 16px;
-    top: 6px;
-    left: 8px;
-    right: 8px;
+    border-radius: 0 0 2rem 2rem;
+    top: 0px;
+    left: 0px;
+    right: 0px;
     padding: 24px;
     position: absolute;
 }
 
 .preview {
+    border-style: none;
     padding: 0px;
     margin-top: 20px;
     margin-bottom: 24px;

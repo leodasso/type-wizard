@@ -1,27 +1,41 @@
 .keyboard-card {
-    background-color: var(--matte-black);
     padding: 0px;
     margin: 16px;
-    transition: 500ms;
-    border-style: solid;
-    border-width: 1px;
-    border-color: var(--clear);
-    box-shadow: 0px 2px 12px var(--deep-black);
-
+    transition: 200ms;
+    border-style: dashed;
+    border-width: 3px;
+    border-color: var(--light2);
+    border-radius: 2rem;
+    opacity: 0.8;
+    cursor: pointer;
 }
 
 .keyboard-card.selected {
-    box-shadow: 0px 8px 8px var(--bg-pink);
+    box-shadow: 0px 8px 12px var(--light2);
     transform: translateY(-8px);
     border-color: var(--primary-color);
+    opacity: 1;
+}
+
+.keyboard-card:hover, .keyboard-card:focus {
+    opacity: 1;
+    transform: translateY(-4px);
+    box-shadow: 0px 8px 12px var(--light1);
+}
+
+.keyboard-card:active {
+    transform: translateY(0);
+    box-shadow: 0px 8px 12px var(--clear);
+    background-color: var(--light2);
 }
 
 .keyboard-title {
     width: 100%;
-    font-size: 24px;
-    font-weight: 300;
+    font-size: 2rem;
+    font-family: 'Amatic SC', sans-serif;
     text-align: center;
     margin: 12px auto;
+    margin-bottom: 4px;
     transition: 500ms;
 
 }

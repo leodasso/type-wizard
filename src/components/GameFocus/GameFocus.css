@@ -1,6 +1,7 @@
 .game-focus {
     height: 20vmin;
-    background-color: var(--deep-black);
+    background-color: var(--dark2);
+    color: var(--lightest);
+    border-radius: 2rem 2rem 0 0;
     padding: 24px;
-    margin: 2px;
 }

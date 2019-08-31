@@ -12,6 +12,7 @@
     border-width: 2px;
     border-style: dashed;
     text-transform: uppercase;
+    cursor: pointer;
 }
 
 .body-button:hover, .body-button:focus {
