@@ -5,6 +5,7 @@ class DarkCard extends Component{
 
 	render() {
 
+		// Handle adding more custom classes to this component
 		const classes = this.props.className ? "dark-card " + this.props.className : "dark-card";
 
 		return (

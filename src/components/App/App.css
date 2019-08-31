@@ -6,16 +6,19 @@
     --light2: rgb(183, 203, 211);
     --light3: rgb(162, 177, 179);
 
-    --default-color: rgb(161, 161, 161);
-    --primary-color: rgb(214, 52, 152);
+    --dark3: rgb(143, 132, 130);
+    --dark2: rgb(133, 113, 110);
+    --dark1: rgb(102, 58, 58);
+    --darkest: rgb(70, 25, 25);
+
+    --primary-color: rgb(238, 111, 8);
     --secondary-color: rgb(194, 194, 194);
     --focus-color: rgb(66, 146, 119);
 
     --deep-black: rgba(2, 2, 2, 0.719);
-    --matte-black: rgb(104, 96, 94);
     --bg-pink:   #502146;
     --clear: rgba(0, 0, 0, 0);
-    --error: rgb(204, 13, 39);
+    --error: rgb(236, 87, 107);
 
 }
 
@@ -24,7 +27,7 @@ body {
     margin: 0px;
     box-sizing: border-box;
     background-color: var(--lightest);
-    color: var(--matte-black);
+    color: var(--dark2);
 }
 
 h2 {
@@ -57,7 +60,7 @@ input {
 .log-in, .log-out, .register {
   background-color: #00acb0;
   border-radius: 4px;
-  color: #f8f8f8;
+  /* color: #f8f8f8; */
   min-height: 50px;
   min-width: 100px;
   outline:0;

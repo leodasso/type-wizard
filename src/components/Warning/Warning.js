@@ -13,10 +13,6 @@ class Warning extends Component{
 				role="alert"
 			>
 				<div className="warning-element">
-					{warning}
-				</div>
-
-				<div className="warning-element">
 					{this.props.children}
 				</div>
 			</div>

@@ -9,7 +9,7 @@
 
 .hero-button {
     background-color: inherit;
-    color: inherit;
+    color: var(--primary-color);
     font-size: 3rem;
     font-family: 'Amatic SC', sans-serif;
     padding: 1rem 1.5rem;
@@ -18,7 +18,8 @@
     border-radius: 2rem;
     border-style: solid;
     border-color: white;
-    border-width: 3px;
+    border-width: 2px;
+    border-style: dashed;
 }
 
 .hero-button:hover {

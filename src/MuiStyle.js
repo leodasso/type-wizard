@@ -4,15 +4,15 @@ const theme = createMuiTheme({
 
 	typography: {
 		fontFamily: [
-			'Raleway',
+			'Schoolbell',
 			'sans-serif'
 		].join(','),
 	},
 	palette: {
-		type: 'dark',
+		type: 'light',
 		primary: {
 			// light: will be calculated from palette.primary.main,
-			main: 'rgb(255, 79, 187)',
+			main: 'rgb(238, 111, 8)',
 		},
 
 		secondary: {
