@@ -1,26 +1,21 @@
 .level-card {
     width: 300px;
     min-height: 150px;
-    background-color: var(--deep-black);
     margin: 8px;
-    padding: 0px 0px 20px 0px;
-    clip-path: polygon(0 0%, 100% 0, 100% 100%, 0% 100%);
-    border-style: solid;
-    border-color: var(--clear);
-    border-width: 1px;
-    transition: 200ms;
+    padding: 1.5rem;
+    border-color: var(--light2);
+    transition: 400ms;
+    border-radius: 2rem;
+    border-style: dashed;
 
     animation-name: fade-in;
     animation-duration:500ms;
 }
 
 .level-card.hover {
-    border-color: var(--bg-pink);
-}
-
-/* Unskew the inner workings of the card */
-.level-card-content, .level-card-title {
-    transform: skewY(4deg) translateY(-10px);
+    background-color: var(--light1);
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 12px var(--light1);
 }
 
 .level-card-content {
@@ -28,22 +23,18 @@
 }
 
 .level-card-title {
-    background-color: var(--matte-black);
-    font-weight: 500;
-    font-size: 24px;
+    font-size: 2rem;
+    font-family: 'Amatic SC', sans-serif;
     color: var(--main-color);
-    padding-top: 44px;
-    padding-bottom: 22px;
+    padding-top: 1rem;
+    padding-bottom: 1px;
     text-align: center;
-    transition: 200ms;
+}
+
+.level-card-title.hover {
+    color: var(--primary-color);
 }
 
 .play-button {
     width: 100%;
 }
-
-.level-card-title.hover {
-    background-color: var(--bg-pink);
-    color: var(--secondary-color);
-}
-

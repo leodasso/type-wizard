@@ -1,17 +1,16 @@
 .header {
     margin-bottom: 12px;
-    background-color: var(--deep-black);
-    color: var(--secondary-color);
+    background-color: var(--light1);
+    color: var(--primary-color);
+    font-family: 'Amatic SC', sans-serif;
     padding: 60px 12px;
 
-    letter-spacing: 3px;
-    font-size: 50px;
-    font-weight: 300;
+    font-size: 4rem;
     text-align: center;
-    transform: skewY(-4deg) translateY(-30px);
-    text-shadow: 0px 4px 12px var(--primary-color);
+    transform: skewY(-2deg) translateY(-30px);
+    text-shadow: 0px 6px 16px var(--dark3);
 }
 
 .header-content {
-    transform: skewY(4deg) translateY(10px);
+    transform: skewY(2deg) translateY(10px);
 }

@@ -1,6 +1,6 @@
 .nav-title {
-    font-size: 24px;
-    font-weight: 300;
+    font-size: 2rem;
+    font-family: 'Amatic SC', sans-serif;
     display: inline-block;
     color: var(--primary-color);
     margin-top: 40px;
@@ -8,24 +8,25 @@
 }
 
 .nav {
-  background-image: linear-gradient(var(--deep-black), var(--deep-black), rgba(0, 0, 0, 0));
+  background-image: linear-gradient(var(--light1), var(--light1), rgba(0, 0, 0, 0));
   display: flex;
   flex-direction: column;
-  position:sticky;
   top: 0px;
+  position: sticky;
   position: -webkit-sticky;
   height: 450px;
-  width: 160px;
+  width: 12rem;
 }
 
 .nav-link {
   background-color: inherit;
-  color: #f2f2f2;
+  color: inherit;
   text-align: left;
   padding: 12px 20px;
   text-decoration: none;
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 1rem;
+  transform: scale(1);
+  transition: .1s;
 
   /* these last two make the logout button in
   the nav bar look like another link */
@@ -35,5 +36,5 @@
 }
 
 .nav-link:hover {
-  background-color: var(--bg-pink);
+  transform: scale(1.1) translateX(.7rem);
 }
