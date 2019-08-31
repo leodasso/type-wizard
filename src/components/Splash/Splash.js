@@ -17,12 +17,15 @@ class Splash extends Component{
 					your typing skill for any keyboard layout</p>
 
 				
-				<button onClick={this.handleClick('SET_TO_REGISTER_MODE')} 
-				className="hero-button">
+				<button 
+					onClick={this.handleClick('SET_TO_REGISTER_MODE')} 
+					className="hero-button">
 					Sign Up
 				</button>
 				<br/>
-				<button className="link-button" onClick={this.handleClick('SET_TO_LOGIN_MODE')}>
+				<button 
+					className="link-button" 
+					onClick={this.handleClick('SET_TO_LOGIN_MODE')}>
 					Already have an account? Log in.
 				</button>
 			</div>

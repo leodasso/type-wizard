@@ -3,25 +3,28 @@
     margin: 80px auto;
     padding: 60px 35px;
     width: 70%;
-    background-color: var(--deep-black);
-    border-radius: 8px;
+    background-color: var(--light1);
+    border-radius: 1.5rem;
 }
 
 .hero-button {
     background-color: inherit;
-    font-size: 36px;
-    color: var(--main-color);
-    padding: 12px 18px;
-    margin: 24px;
+    color: inherit;
+    font-size: 3rem;
+    font-family: 'Amatic SC', sans-serif;
+    padding: 1rem 1.5rem;
+    margin: 2rem;
     transition: .1s;
-    border-radius: 4px;
+    border-radius: 2rem;
+    border-style: solid;
+    border-color: white;
+    border-width: 3px;
 }
 
 .hero-button:hover {
-    border-color: var(--primary-color);
-    color: var(--primary-color);
+    background-color: var(--lightest);
     transform: translateY(-2px);
-    box-shadow: 0px 8px 8px var(--bg-pink);
+    box-shadow: 0px 8px 8px var(--light2);
 
 }
 
@@ -32,5 +35,5 @@
 }
 
 .hero-button:focus {
-    outline-width: 0px;
+    outline-width: 3px;
 }

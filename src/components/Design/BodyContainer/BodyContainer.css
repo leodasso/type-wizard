@@ -4,6 +4,6 @@
     padding: 14px 34px;
     padding-bottom: 80px;
     min-height: 400px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0),var(--deep-black) );
+    background-image: linear-gradient(rgba(0, 0, 0, 0),var(--bg-light) );
     clip-path: polygon(0 0%, 100% 0, 100% 100%, 0% 98%);
 }

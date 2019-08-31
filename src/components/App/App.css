@@ -1,11 +1,18 @@
 :root {
+
+    /* Colors for new color scheme */
+    --lightest: rgb(255, 255, 255);
+    --light1: #ddeaec;
+    --light2: rgb(183, 203, 211);
+    --light3: rgb(162, 177, 179);
+
     --default-color: rgb(161, 161, 161);
-    --primary-color: rgb(255, 79, 187);
+    --primary-color: rgb(214, 52, 152);
     --secondary-color: rgb(194, 194, 194);
     --focus-color: rgb(66, 146, 119);
 
     --deep-black: rgba(2, 2, 2, 0.719);
-    --matte-black: rgb(40, 40, 40);
+    --matte-black: rgb(104, 96, 94);
     --bg-pink:   #502146;
     --clear: rgba(0, 0, 0, 0);
     --error: rgb(204, 13, 39);
@@ -13,11 +20,11 @@
 }
 
 body {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Schoolbell', sans-serif;
     margin: 0px;
     box-sizing: border-box;
-    background-color: var(--matte-black);
-    color: var(--secondary-color);
+    background-color: var(--lightest);
+    color: var(--matte-black);
 }
 
 h2 {
@@ -31,8 +38,6 @@ h2 {
 }
 
 .content {
-    /* Large left margin to keep the content from being overlapped 
-    by the navigation */
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -72,11 +77,11 @@ input {
 .link-button {
     background:none;
     color: var(--primary-color);
+    font-style: normal;
     border:none;
     padding:0;
     font: inherit;
-    outline:0;
-    border-bottom:1px solid #444; 
+    outline:0; 
     cursor: pointer;
 }
 
