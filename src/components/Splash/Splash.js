@@ -14,7 +14,7 @@ class Splash extends Component{
 			<div className="splash">
 				<h1>Hello, welcome to TypeWizard</h1>
 				<p>TypeWizard gives you the tools to increase 
-					your typing skill for any keyboard layout</p>
+					your typing skill for Korean or English keyboard layouts (with more to come soon!)</p>
 
 				
 				<button 

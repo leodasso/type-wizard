@@ -1,7 +1,7 @@
-[] update splash text 'korean or english keyboard layouts'
+[x] update splash text 'korean or english keyboard layouts'
+[] add cookies warning
 [] add robust password checker
 [] add google oAuth
 [] unlock levels
 [] play w/o logging in
 [] store progress with cookies ( when not logged in)
-[] add cookies warning
