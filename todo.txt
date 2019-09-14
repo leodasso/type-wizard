@@ -1,3 +1,4 @@
+[] save keyboard selection to user database
 [] find better handwritten font for hangul
 [] add fireworks when stage is complete
 [] add cookies warning
