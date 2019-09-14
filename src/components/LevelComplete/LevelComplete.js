@@ -46,7 +46,7 @@ class LevelComplete extends Component {
 	render() {
 
 		return (
-			<div className="matte card center-modal">
+			<div className="card center-modal">
 				<h2>
 					Level Complete!
 				</h2>
@@ -57,8 +57,8 @@ class LevelComplete extends Component {
 					{/* <p>Accuracy: {this.props.accuracy} %</p> */}
 					{/* <p>Time: {this.props.level.duration}</p> */}
 				</div>
-				<BodyButton onClick={this.onClickNext}>
-					Next
+				<BodyButton className="full-width" onClick={this.onClickNext}>
+					Continue
 				</BodyButton>
 			</div>
 		);

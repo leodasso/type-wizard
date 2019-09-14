@@ -1,4 +1,6 @@
 [x] update splash text 'korean or english keyboard layouts'
+[x] fix popup modal when level is beat
+[] add fireworks
 [] add cookies warning
 [] add robust password checker
 [] add google oAuth
