@@ -11,16 +11,24 @@ import Keyboard from '../Keyboard/Keyboard';
 class KeyboardSelection extends Component {
 
 	selectKeyboard = () => {
-		console.log('selecting ', this.props.layout.title);
+
+		// dispatch to server
 		this.props.dispatch({
-			type:'SET_LAYOUT',
+			type: 'SET_KB',
 			payload: this.props.layout,
-		});
+		})
+	}
+
+	componentDidMount = () => {
+
+		this.props.dispatch({type: 'FETCH_KB'});
 	}
 
 	render() {
 
 		const layout = this.props.layout;
+
+		console.log('selected layout id is now: ' + this.props.keyboard);
 
 		const selectedClass = this.props.keyboard.id === layout.id ? " selected" : "";
 

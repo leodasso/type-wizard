@@ -13,6 +13,9 @@ class Play extends Component{
 		// the key components, but we want to hard reset it between
 		// play sessions.
 		this.props.dispatch({type:'CLEAR_KEYS'});
+
+		// make sure we have the correct keyboard from the server
+		this.props.dispatch({type: 'FETCH_KB'})
 	}
 
 	render() {

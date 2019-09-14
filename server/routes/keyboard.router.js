@@ -14,7 +14,11 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 	pool.query(`
 		select "keyboard_id" from "user"
 		where "id" = $1;`, [req.user.id])
-	.then(response => res.send(response.rows))
+	.then(response => {
+			console.log('response: ' + response.rows[0].keyboard_id);
+			res.send(response.rows[0])
+		}
+		)
 	.catch(error => console.log('error getting user keyboard id', error));
   });
 
@@ -44,15 +48,15 @@ router.post('/', (req, res) => {
  */
 router.put('/', rejectUnauthenticated, (req, res) => {
 
-	console.log('updating selected keyboard', req.user, req.body);
+	console.log('updating selected keyboard', req.body);
 	pool.query(
 	`
 		update "user"
 		set "keyboard_id" = $1
-		where "id" = $2;`, [req.keyboardId, req.user.id])
+		where "id" = $2;`, [req.body.kbId, req.user.id])
 	.then(response => res.sendStatus(204))
 	.catch(error => {
-		console.log('error updating keyboard id for user ' + req.user.id) + ' error: ' + error;
+		console.log('error updating keyboard id for user ' + req.user.id + error);
 		res.sendStatus(500);
 	})
 })
