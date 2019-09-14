@@ -1,10 +1,12 @@
-[] add fireworks
+[] find better handwritten font for hangul
+[] add fireworks when stage is complete
 [] add cookies warning
 [] add robust password checker
 [] add google oAuth
 [] unlock levels
 [] play w/o logging in
 [] store progress with cookies ( when not logged in)
+[x] make fonts match for keymons/keyboard
 [x] fix keyboard key letter placement
 [x] update splash text 'korean or english keyboard layouts'
 [x] fix popup modal when level is beat

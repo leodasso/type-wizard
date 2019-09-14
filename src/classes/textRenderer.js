@@ -24,7 +24,7 @@ export default class TextRenderer {
 		}
 
 		// render the text on the canvas
-		ctx.font =  fontSize + 'px Raleway';
+		ctx.font =  fontSize + 'px Schoolbell';
 		ctx.textAlign = align;
 		ctx.fillStyle = color;
 		ctx.fillText(text, coordsOnCanvas.x + this.textOffset.x, coordsOnCanvas.y + this.textOffset.y);
